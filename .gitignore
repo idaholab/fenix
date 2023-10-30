@@ -267,6 +267,7 @@ share/
 .vscode/*
 
 # App Resource file (including modules/)
+fenix.yaml
 /test/moose_test.yaml
 /modules/functional_expansion_tools/functional_expansion_tools.yaml
 /modules/solid_properties/solid_properties.yaml
@@ -294,6 +295,7 @@ share/
 /modules/reactor/reactor.yaml
 /modules/rdg/rdg.yaml
 /modules/fsi/fsi.yaml
+fenix-unit.yaml
 /unit/moose-unit.yaml
 /modules/functional_expansion_tools/unit/functional_expansion_tools-unit.yaml
 /modules/solid_properties/unit/solid_properties-unit.yaml

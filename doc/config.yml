@@ -1,22 +1,47 @@
 Content:
     Fenix:
         root_dir: ${ROOT_DIR}/doc/content
-    moose:
+    framework:
         root_dir: ${MOOSE_DIR}/framework/doc/content
+    electromagnetics:
+        root_dir: ${MOOSE_DIR}/modules/electromagnetics/doc/content
+    ray_tracing:
+        root_dir: ${MOOSE_DIR}/modules/ray_tracing/doc/content
+    modules:
+        root_dir: ${MOOSE_DIR}/modules/doc/content
         content:
-            - js/*
-            - css/*
-            - contrib/**
-            - media/**
+            - help/finite_element_concepts/nodal_patch_recovery.md
+            - application_usage/restart_recover.md
 
 Renderer:
     type: MooseDocs.base.MaterializeRenderer
-
 Extensions:
     MooseDocs.extensions.navigation:
-        name: Fenix
+        name: FENIX
+        repo: https://github.com/idaholab/fenix
+        menu:
+            Documentation and Resources:
+                Complete Code Manual: syntax/index.md
+                Code Standards: sqa/fenix_scs.md
+                Software Quality Assurance (SQA) Information: /sqa/index.md
     MooseDocs.extensions.appsyntax:
         executable: ${ROOT_DIR}
-        remove: !include ${MOOSE_DIR}/framework/doc/remove.yml
-        includes:
-            - include
+        remove:
+            framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
+    MooseDocs.extensions.common:
+        shortcuts: !include ${MOOSE_DIR}/framework/doc/globals.yml
+    MooseDocs.extensions.acronym:
+        acronyms:
+            framework: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+    MooseDocs.extensions.sqa:
+        active: true
+        categories:
+            fenix: !include ${ROOT_DIR}/doc/sqa_fenix.yml
+            framework: !include ${MOOSE_DIR}/framework/doc/sqa_framework.yml
+            ray_tracing: !include ${MOOSE_DIR}/modules/ray_tracing/doc/sqa_ray_tracing.yml
+            electromagnetics: !include ${MOOSE_DIR}/modules/electromagnetics/doc/sqa_electromagnetics.yml
+        reports: !include ${ROOT_DIR}/doc/sqa_reports.yml
+        repos:
+            default: https://github.com/idaholab/fenix
+    MooseDocs.extensions.template:
+        active: true
