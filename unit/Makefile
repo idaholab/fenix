@@ -25,22 +25,37 @@ include $(FRAMEWORK_DIR)/build.mk
 include $(FRAMEWORK_DIR)/moose.mk
 
 ################################## MODULES ####################################
-# set desired physics modules equal to 'yes' to enable them
-CHEMICAL_REACTIONS        := no
-CONTACT                   := no
-FLUID_PROPERTIES          := no
-FSI                       := no
-HEAT_TRANSFER             := no
-MISC                      := no
-NAVIER_STOKES             := no
-PHASE_FIELD               := no
-RDG                       := no
-RICHARDS                  := no
-STOCHASTIC_TOOLS          := no
-TENSOR_MECHANICS          := no
-XFEM                      := no
-POROUS_FLOW               := no
-LEVEL_SET                 := no
+# To use certain physics included with MOOSE, set variables below to
+# yes as needed.  Or set ALL_MODULES to yes to turn on everything (overrides
+# other set variables).
+
+ALL_MODULES                 := no
+
+CHEMICAL_REACTIONS          := no
+CONTACT                     := no
+ELECTROMAGNETICS            := yes
+EXTERNAL_PETSC_SOLVER       := no
+FLUID_PROPERTIES            := no
+FSI                         := no
+FUNCTIONAL_EXPANSION_TOOLS  := no
+GEOCHEMISTRY                := no
+HEAT_TRANSFER               := no
+LEVEL_SET                   := no
+MISC                        := no
+NAVIER_STOKES               := no
+OPTIMIZATION                := no
+PERIDYNAMICS                := no
+PHASE_FIELD                 := no
+POROUS_FLOW                 := no
+RAY_TRACING                 := yes
+REACTOR                     := no
+RDG                         := no
+RICHARDS                    := no
+STOCHASTIC_TOOLS            := no
+THERMAL_HYDRAULICS          := no
+TENSOR_MECHANICS            := no
+XFEM                        := no
+
 include           $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
