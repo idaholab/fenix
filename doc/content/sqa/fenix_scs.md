@@ -1,0 +1,1 @@
+!template load file=sqa/app_scs.md.template app=FENIX category=fenix
