@@ -5,10 +5,16 @@ Applications:
         content_directory: ${ROOT_DIR}/doc/content
         remove:
             - ${MOOSE_DIR}/framework/doc/remove.yml
-        log_default: WARNING
         show_warning: false
 
 Documents:
+    software_quality_plan: sqa/inl_records.md#software_quality_plan
+    enterprise_architecture_entry: sqa/inl_records.md#enterprise_architecture_entry
+    safety_software_determination: sqa/inl_records.md#safety_software_determination
+    quality_level_determination: sqa/inl_records.md#quality_level_determination
+    configuration_management_plan: sqa/inl_records.md#configuration_management_plan
+    asset_management_plan: sqa/inl_records.md#asset_management_plan
+    verification_validation_plan: sqa/inl_records.md#verification_and_validation_plan
     software_requirements_specification: sqa/fenix_srs.md
     software_design_description: sqa/fenix_sdd.md
     software_test_plan: sqa/fenix_stp.md
@@ -16,12 +22,21 @@ Documents:
     verification_validation_report: sqa/fenix_vvr.md
     failure_analysis_report: sqa/fenix_far.md
     software_library_list: sqa/fenix_sll.md
+    communication_and_contact_information: sqa/fenix_cci.md
+    software_coding_standards: sqa/fenix_scs.md
     log_default: WARNING
     show_warning: false
+    working_dirs:
+        - ${ROOT_DIR}/doc/content
+        - ${MOOSE_DIR}/framework/doc/content
 
 Requirements:
     fenix:
+        working_dirs:
+            - ${ROOT_DIR}/doc/content
+            - ${MOOSE_DIR}/framework/doc/content
+            - ${MOOSE_DIR}/modules/electromagnetics/doc/content
+            - ${MOOSE_DIR}/modules/ray_tracing/doc/content
         directories:
             - ${ROOT_DIR}/test
-        log_default: WARNING
         show_warning: false

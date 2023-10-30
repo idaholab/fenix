@@ -18,6 +18,12 @@ Renderer:
 Extensions:
     MooseDocs.extensions.navigation:
         name: FENIX
+        repo: https://github.com/idaholab/fenix
+        menu:
+            Documentation and Resources:
+                Complete Code Manual: syntax/index.md
+                Code Standards: sqa/fenix_scs.md
+                Software Quality Assurance (SQA) Information: /sqa/index.md
     MooseDocs.extensions.appsyntax:
         executable: ${ROOT_DIR}
         remove:
