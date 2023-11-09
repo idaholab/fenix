@@ -23,6 +23,7 @@ Extensions:
             Documentation and Resources:
                 Complete Code Manual: syntax/index.md
                 Code Standards: sqa/fenix_scs.md
+                Contributing to FENIX: /sqa/contributing.md
                 Software Quality Assurance (SQA) Information: /sqa/index.md
     MooseDocs.extensions.appsyntax:
         executable: ${ROOT_DIR}
