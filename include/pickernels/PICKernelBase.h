@@ -24,11 +24,15 @@ public:
 
 protected:
   /**
-   * Method for giving the user an easy way to update the particles velocity
+   * Method for giving the user an easy way to update the particles direction and
+   * maximum distance based on its velocity, time step and the dimension of the mesh
    * @param ray the ray you would like to update the velocity of
    * @param v the new velocity you want to assign to the ray
+   * @param dt the time step we want the particle to take. This is required as some
+   *           particle steps requires a half step for the first step and a full step
+   *           afterwards
    */
-  void setDirectionAndMaxDistance(Ray & ray, const Point v);
+  void setDirectionAndMaxDistance(Ray & ray, const Point v, const Real dt);
 
 private:
   /** Data where the particle 3 componet velocity is stored */

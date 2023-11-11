@@ -36,17 +36,17 @@ PICKernelBase::preTrace()
 {
   auto ray = currentRay();
   Point v = Point(ray->data()[_v_x_index], ray->data()[_v_y_index], ray->data()[_v_z_index]);
-
-  setDirectionAndMaxDistance(*ray, v);
+  auto dt = _fe_problem.dt();
+  setDirectionAndMaxDistance(*ray, v, dt);
 }
 
 void
-PICKernelBase::setDirectionAndMaxDistance(Ray & ray, const Point v)
+PICKernelBase::setDirectionAndMaxDistance(Ray & ray, const Point v, const Real dt)
 {
-  // velocity * dt
   libMesh::Point velocity = Point(0, 0, 0);
   // calculating max distance for the correct problem dimention
   auto dim = _fe_problem.mesh().dimension();
+
   if (dim >= 1)
     velocity(0) = v(0);
 
@@ -56,7 +56,7 @@ PICKernelBase::setDirectionAndMaxDistance(Ray & ray, const Point v)
   if (dim == 3)
     velocity(2) = v(2);
 
-  const auto max_dist = std::sqrt(velocity * velocity) * _fe_problem.dt();
+  const auto max_dist = std::sqrt(velocity * velocity) * dt;
   const auto direction = velocity.unit();
 
   ray.setStartingMaxDistance(max_dist);
