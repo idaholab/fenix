@@ -16,8 +16,8 @@ make development easier.
 
 !style halign=left
 When finding an issue with the code, or developing/suggesting a new feature or enhancement, an issue
-should be created. This can be done ahead of time when developming code, or anytime before pushing
-your changes. However, you will need to list an issue number in one of your commits! To get started:
+should be created. This can be done ahead of time when developing code, or anytime before pushing
+your changes. In any case, you will need to list an issue number in one of your commits! To get started:
 
 1. Select “New issue” on this page: [https://github.com/idaholab/fenix/issues](https://github.com/idaholab/fenix/issues)
 1. Select either “bug report” or “feature request” (most should be feature requests)
@@ -36,7 +36,8 @@ FENIX development follows a "Fork & Pull" development process. See more informat
 
 1. Navigate to [the FENIX repository](https://github.com/idaholab/fenix)
 1. Click the "Fork" button on the upper right of the code file tree to have a copy of FENIX in your own account
-1. Clone your new fork to your local machine using the following command (this assumes you have SSH set up on your GitHub account):
+1. Clone your new fork to your local machine using the following command (this assumes you
+   [have SSH set up on your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account))):
 
    ```
    cd ~/projects
@@ -68,15 +69,29 @@ git fetch upstream
 Before make any changes locally (which would require having a working version of the application),
 we will need to create a new branch.
 
-1. In your terminal, go to your application: `cd ~/projects/fenix`
-1. It is usually best to make sure your changes are based on devel: `git checkout devel`
+1. In your terminal, go to your application:
+
+   ```
+   cd ~/projects/fenix
+   ```
+
+1. It is usually best to make sure your changes are based on devel:
+
+   ```
+   git checkout devel
+   ```
+
 1. Clean and reset devel to get it up to date (make sure you do not have any changes on devel, because you would lose that):
 
    ```
    git reset --hard upstream/devel && git submodule update --init
    ```
 
-1. Create new branch: `git checkout -b <BRANCH_NAME>`
+1. Create new branch:
+
+   ```
+   git checkout -b <BRANCH_NAME>
+   ```
 
 ## Make modifications and commit (the regular development workflow)
 
@@ -86,7 +101,12 @@ unrelated changes all at once.
 
 1. Make your changes locally to address the issue (partly or fully) - using
    [VSCode is recommended](help/development/VSCode.md).
-1. In your terminal, go to your application: `cd ~/projects/fenix`
+1. In your terminal, go to your application:
+
+   ```
+   cd ~/projects/fenix
+   ```
+
 1. Make sure that the app still compiles and that the tests run:
 
    ```
@@ -99,7 +119,7 @@ unrelated changes all at once.
    cd ~/projects/fenix/doc && ./moosedocs.py build --serve
    ```
 
-1. Type `git status` to see the status of your branch. - that should show you the changed files and
+1. Type `git status` to see the status of your branch. That should show you the changed files and
    give you some commands to stage them.
 1. Once you are ready, perform
 
@@ -108,10 +128,26 @@ unrelated changes all at once.
    ```
 
    to stage your updated files.
-1. At that point, it is usually good practice to run `git clang-format HEAD~1` to fix the format of
-   the files based on the `.clang-format` file in the root of the repository. If files are changed,
-   run `git add <...>` for these files.
-1. Now you’re ready to commit. Run `git commit`.
+1. At that point, it is usually good practice to run
+
+   ```
+   git clang-format HEAD~1
+   ```
+
+   to fix the formatting of the files based on the `.clang-format` file in the root of the repository.
+   If files are changed, run
+
+   ```
+   git add <...>
+   ```
+
+   for these files.
+1. Now you’re ready to commit. Run
+
+   ```
+   git commit
+   ```
+
 1. A file editor will appear. Press the `i` key, and you’ll be able to type a short description of
    the commit. It is good practice to have a short title, and then a list of items describing the
    changes in more detail. At the bottom, you should add `(Ref. #<ISSUE_NUMBER>)`. It will look
@@ -129,7 +165,12 @@ unrelated changes all at once.
 
 1. To exit and save, press `esc`, then type `:wq`. The commit file will close.
 1. You might have to do several commits to capture all your changes.
-1. At some point, you’ll be ready to push your work to your fork (remember, it has the remote name `origin`): run `git push origin <BRANCH_NAME>`
+1. At some point, you’ll be ready to push your work to your fork (remember, it has the remote name `origin`): run
+
+   ```
+   git push origin <BRANCH_NAME>
+   ```
+
 1. A link will be printed in the terminal; visit that page.
 1. There, you’ll find instructions to create your PR. Fill out the form (one can simply copy what is
    in the commit messages, or write a custom summary of your own) and submit your PR!
