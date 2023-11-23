@@ -1,0 +1,20 @@
+[Tests]
+  design = 'PICKernelBase.md'
+  issues = '#4'
+  [simple_stepping]
+    type = 'Exodiff'
+    input = 'simple_stepping.i'
+    exodiff = 'simple_stepping_rays.e
+               simple_stepping_rays.e-s0001
+               simple_stepping_rays.e-s0002
+               simple_stepping_rays.e-s0003
+               simple_stepping_rays.e-s0004
+               simple_stepping_rays.e-s0005
+               simple_stepping_rays.e-s0006
+               simple_stepping_rays.e-s0007
+               simple_stepping_rays.e-s0008
+               simple_stepping_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'PIC Requires the ability to track 3 velocity components but propagate in lower dimensions'
+  []
+[]

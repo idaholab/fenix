@@ -7,15 +7,15 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "PICStudyBase.h"
+#include "TestPICStudyBase.h"
 
 #include "ClaimRays.h"
 #include "Function.h"
 
-registerMooseObject("FenixApp", PICRayStudy);
+registerMooseObject("FenixTestApp", TestPICStudyBase);
 
 InputParameters
-PICRayStudy::validParams()
+TestPICStudyBase::validParams()
 {
   auto params = RayTracingStudy::validParams();
 
@@ -31,7 +31,7 @@ PICRayStudy::validParams()
   return params;
 }
 
-PICRayStudy::PICRayStudy(const InputParameters & parameters)
+TestPICStudyBase::TestPICStudyBase(const InputParameters & parameters)
   : RayTracingStudy(parameters),
     _v_x_index(registerRayData("v_x")),
     _v_y_index(registerRayData("v_y")),
@@ -47,7 +47,7 @@ PICRayStudy::PICRayStudy(const InputParameters & parameters)
 }
 
 void
-PICRayStudy::generateRays()
+TestPICStudyBase::generateRays()
 {
   // We generate rays the first time only, after that we will
   // pull from the bank and update velocities/max distances
@@ -84,29 +84,31 @@ PICRayStudy::generateRays()
   // Rays are in the bank: reset them
   else
   {
-    // Reset each ray
-    for (auto it = _banked_rays.begin(); _banked_rays.size() != 0 && it != _banked_rays.end(); ++it)
+    for (auto & ray : _banked_rays)
     {
-      auto ray = *it;
       // Store off the ray's info before we reset it
       const auto start_point = ray->currentPoint();
-
       const auto elem = ray->currentElem();
+      // const auto direction = ray->direction();
 
       // Reset it (this is required to reuse a ray)
       ray->resetCounters();
       ray->clearStartingInfo();
 
-      // And set the new starting information
+      // // And set the new starting information
       ray->setStart(start_point, elem);
-      // setDirectionAndMaxDistance(*ray);
+      // ray->setStartingDirection(direction);
+      // ray->setStartingMaxDistance(maxDistance(*ray));
     }
+    // Add the rays to be traced
+    moveRaysToBuffer(_banked_rays);
+    _banked_rays.clear();
   }
   _has_generated = true;
 }
 
 void
-PICRayStudy::postExecuteStudy()
+TestPICStudyBase::postExecuteStudy()
 {
   // Copy the rays that are banked in the study into our own bank
   _banked_rays = rayBank();

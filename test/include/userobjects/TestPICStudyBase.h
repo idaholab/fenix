@@ -15,10 +15,10 @@
  * Test study for generating rays for a basic particle-in-cell capability,
  * where Rays have propagate a bit each time step
  */
-class PICRayStudy : public RayTracingStudy
+class TestPICStudyBase : public RayTracingStudy
 {
 public:
-  PICRayStudy(const InputParameters & parameters);
+  TestPICStudyBase(const InputParameters & parameters);
 
   static InputParameters validParams();
 

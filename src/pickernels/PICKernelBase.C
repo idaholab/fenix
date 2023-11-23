@@ -15,11 +15,7 @@ InputParameters
 PICKernelBase::validParams()
 {
   InputParameters params = GeneralRayKernel::validParams();
-
-  params.addClassDescription("Compute the value of a variable at a specified location.");
-  params.addRequiredParam<std::vector<VariableName>>(
-      "components", "The name of the vector components that act on the particles");
-  params.addClassDescription("Compute a force on the particle due a vector");
+  params.addClassDescription("Basic kernel which simply updates the starting direction and maximum distance of each ray on the start of each time step");
   return params;
 }
 
@@ -34,15 +30,15 @@ PICKernelBase::PICKernelBase(const InputParameters & params)
 void
 PICKernelBase::preTrace()
 {
-  auto ray = currentRay();
-  Point v = Point(ray->data()[_v_x_index], ray->data()[_v_y_index], ray->data()[_v_z_index]);
   auto dt = _fe_problem.dt();
-  setDirectionAndMaxDistance(*ray, v, dt);
+  setDirectionAndMaxDistance(dt);
 }
 
 void
-PICKernelBase::setDirectionAndMaxDistance(Ray & ray, const Point v, const Real dt)
+PICKernelBase::setDirectionAndMaxDistance(const Real dt)
 {
+  auto ray = currentRay();
+  Point v = Point(ray->data()[_v_x_index], ray->data()[_v_y_index], ray->data()[_v_z_index]);
   libMesh::Point velocity = Point(0, 0, 0);
   // calculating max distance for the correct problem dimention
   auto dim = _fe_problem.mesh().dimension();
@@ -59,11 +55,17 @@ PICKernelBase::setDirectionAndMaxDistance(Ray & ray, const Point v, const Real d
   const auto max_dist = std::sqrt(velocity * velocity) * dt;
   const auto direction = velocity.unit();
 
-  ray.setStartingMaxDistance(max_dist);
-  ray.setStartingDirection(direction);
+  ray->setStartingMaxDistance(max_dist);
+  ray->setStartingDirection(direction);
 }
 
 void
 PICKernelBase::onSegment()
+{
+}
+
+
+void
+PICKernelBase::postTrace()
 {
 }
