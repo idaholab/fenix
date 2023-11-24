@@ -15,7 +15,8 @@ InputParameters
 PICKernelBase::validParams()
 {
   InputParameters params = GeneralRayKernel::validParams();
-  params.addClassDescription("Basic kernel which simply updates the starting direction and maximum distance of each ray on the start of each time step");
+  params.addClassDescription("Basic kernel which simply updates the starting direction and maximum "
+                             "distance of each ray on the start of each time step");
   return params;
 }
 
@@ -63,7 +64,6 @@ void
 PICKernelBase::onSegment()
 {
 }
-
 
 void
 PICKernelBase::postTrace()
