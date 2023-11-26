@@ -9,13 +9,13 @@
 
 #pragma once
 
-#include "RayTracingStudy.h"
+#include "PICStudyBase.h"
 
 /**
  * Test study for generating rays for a basic particle-in-cell capability,
  * where Rays have propagate a bit each time step
  */
-class TestPICStudyBase : public RayTracingStudy
+class TestPICStudyBase : public PICStudyBase
 {
 public:
   TestPICStudyBase(const InputParameters & parameters);
@@ -23,20 +23,6 @@ public:
   static InputParameters validParams();
 
   virtual void generateRays() override;
-  /** Ray Data for storing all components of velocity */
-  const RayDataIndex _v_x_index;
-  const RayDataIndex _v_y_index;
-  const RayDataIndex _v_z_index;
-  /** Keep a second counter so that we don't try and set the
-   * ray direction again when it is passed from one processor to another
-  */
-  const RayDataIndex _direction_set_index;
-
-  // The banked rays to be used on the next timestep (restartable)
-  std::vector<std::shared_ptr<Ray>> & _banked_rays;
-
-protected:
-  virtual void postExecuteStudy() override;
 
 private:
   // The starting points
@@ -44,6 +30,4 @@ private:
 
   // The starting directions
   const std::vector<Point> & _start_velocities;
-  // Whether or not we've generated rays yet (restartable)
-  bool & _has_generated;
 };

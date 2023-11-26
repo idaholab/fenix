@@ -17,7 +17,7 @@ registerMooseObject("FenixTestApp", TestPICStudyBase);
 InputParameters
 TestPICStudyBase::validParams()
 {
-  auto params = RayTracingStudy::validParams();
+  auto params = PICStudyBase::validParams();
 
   params.addRequiredParam<std::vector<Point>>("start_points",
                                               "The point(s) where the ray(s) start");
@@ -32,16 +32,9 @@ TestPICStudyBase::validParams()
 }
 
 TestPICStudyBase::TestPICStudyBase(const InputParameters & parameters)
-  : RayTracingStudy(parameters),
-    _v_x_index(registerRayData("v_x")),
-    _v_y_index(registerRayData("v_y")),
-    _v_z_index(registerRayData("v_z")),
-    _direction_set_index(registerRayData("direction_set")),
-    _banked_rays(
-        declareRestartableDataWithContext<std::vector<std::shared_ptr<Ray>>>("_banked_rays", this)),
+  : PICStudyBase(parameters),
     _start_points(getParam<std::vector<Point>>("start_points")),
-    _start_velocities(getParam<std::vector<Point>>("start_velocities")),
-    _has_generated(declareRestartableData<bool>("has_generated", false))
+    _start_velocities(getParam<std::vector<Point>>("start_velocities"))
 {
   if (_start_points.size() != _start_velocities.size())
     paramError("start_velocities", "Must be the same size as 'start_points'");
@@ -108,11 +101,4 @@ TestPICStudyBase::generateRays()
     _banked_rays.clear();
   }
   _has_generated = true;
-}
-
-void
-TestPICStudyBase::postExecuteStudy()
-{
-  // Copy the rays that are banked in the study into our own bank
-  _banked_rays = rayBank();
 }
