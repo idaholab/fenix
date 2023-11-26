@@ -36,6 +36,7 @@ TestPICStudyBase::TestPICStudyBase(const InputParameters & parameters)
     _v_x_index(registerRayData("v_x")),
     _v_y_index(registerRayData("v_y")),
     _v_z_index(registerRayData("v_z")),
+    _direction_set_index(registerRayData("direction_set")),
     _banked_rays(
         declareRestartableDataWithContext<std::vector<std::shared_ptr<Ray>>>("_banked_rays", this)),
     _start_points(getParam<std::vector<Point>>("start_points")),
@@ -72,6 +73,7 @@ TestPICStudyBase::generateRays()
       rays[i]->data()[_v_x_index] = _start_velocities[i](0);
       rays[i]->data()[_v_y_index] = _start_velocities[i](1);
       rays[i]->data()[_v_z_index] = _start_velocities[i](2);
+      rays[i]->data()[_direction_set_index] = false;
     }
 
     // Claim the rays
@@ -94,6 +96,7 @@ TestPICStudyBase::generateRays()
       // Reset it (this is required to reuse a ray)
       ray->resetCounters();
       ray->clearStartingInfo();
+      ray->data()[_direction_set_index] = false;
 
       // // And set the new starting information
       ray->setStart(start_point, elem);

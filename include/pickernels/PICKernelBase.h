@@ -39,4 +39,5 @@ private:
   const RayDataIndex _v_x_index;
   const RayDataIndex _v_y_index;
   const RayDataIndex _v_z_index;
+  const RayDataIndex _direction_set_index;
 };

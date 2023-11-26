@@ -24,7 +24,8 @@ PICKernelBase::PICKernelBase(const InputParameters & params)
   : GeneralRayKernel(params),
     _v_x_index(_study.getRayDataIndex("v_x")),
     _v_y_index(_study.getRayDataIndex("v_y")),
-    _v_z_index(_study.getRayDataIndex("v_z"))
+    _v_z_index(_study.getRayDataIndex("v_z")),
+    _direction_set_index(_study.getRayDataIndex("direction_set"))
 {
 }
 
@@ -38,6 +39,12 @@ PICKernelBase::preTrace()
 void
 PICKernelBase::setDirectionAndMaxDistance(const Real dt)
 {
+  // lets make sure we don't keep trying to set the starting direction
+  // if it has already been set when the ray is passed between processors.
+  if (currentRay()->data()[_direction_set_index])
+    return;
+  currentRay()->data()[_direction_set_index] = true;
+
   auto ray = currentRay();
   Point v = Point(ray->data()[_v_x_index], ray->data()[_v_y_index], ray->data()[_v_z_index]);
   libMesh::Point velocity = Point(0, 0, 0);
