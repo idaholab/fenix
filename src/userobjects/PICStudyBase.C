@@ -29,12 +29,12 @@ PICStudyBase::validParams()
 
 PICStudyBase::PICStudyBase(const InputParameters & parameters)
   : RayTracingStudy(parameters),
+    _banked_rays(
+        declareRestartableDataWithContext<std::vector<std::shared_ptr<Ray>>>("_banked_rays", this)),
     _v_x_index(registerRayData("v_x")),
     _v_y_index(registerRayData("v_y")),
     _v_z_index(registerRayData("v_z")),
     _direction_set_index(registerRayData("direction_set")),
-    _banked_rays(
-        declareRestartableDataWithContext<std::vector<std::shared_ptr<Ray>>>("_banked_rays", this)),
     _has_generated(declareRestartableData<bool>("has_generated", false))
 {
 }
@@ -47,5 +47,7 @@ PICStudyBase::generateRays()
 void
 PICStudyBase::postExecuteStudy()
 {
+  // we are going to be re using the same rays which just took a step so
+  // we store them here to re use them on the next trace
   _banked_rays = rayBank();
 }
