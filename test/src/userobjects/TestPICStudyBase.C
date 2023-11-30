@@ -24,9 +24,6 @@ TestPICStudyBase::validParams()
   params.addRequiredParam<std::vector<Point>>(
       "start_velocities",
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
-  // We're not going to use registration because we don't care to name our rays because
-  // we will have a lot of them
-  params.set<bool>("_use_ray_registration") = false;
 
   return params;
 }
