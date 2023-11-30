@@ -36,7 +36,7 @@ public:
   std::vector<std::shared_ptr<Ray>> & _banked_rays;
 
 protected:
-  virtual void postExecuteStudy();
+  virtual void postExecuteStudy() override;
 
   // Whether or not we've generated rays yet (restartable)
   bool & _has_generated;
