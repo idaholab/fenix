@@ -8,7 +8,6 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #pragma once
-// Local Includes
 #include "GeneralRayKernel.h"
 
 class PICKernelBase : public GeneralRayKernel
