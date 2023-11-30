@@ -22,7 +22,7 @@ public:
 
   static InputParameters validParams();
 
-  virtual void generateRays();
+  virtual void generateRays() override;
   /** Ray Data for storing all components of velocity */
   const RayDataIndex _v_x_index;
   const RayDataIndex _v_y_index;
