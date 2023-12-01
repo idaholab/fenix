@@ -38,13 +38,13 @@ PICKernelBase::preTrace()
 void
 PICKernelBase::setDirectionAndMaxDistance(const Real dt)
 {
+  auto & ray = currentRay();
   // lets make sure we don't keep trying to set the starting direction
   // if it has already been set when the ray is passed between processors.
-  if (currentRay()->data()[_direction_set_index])
+  if (ray->data()[_direction_set_index])
     return;
-  currentRay()->data()[_direction_set_index] = true;
+  ray->data()[_direction_set_index] = true;
 
-  auto ray = currentRay();
   Point v = Point(ray->data()[_v_x_index], ray->data()[_v_y_index], ray->data()[_v_z_index]);
   libMesh::Point velocity = Point(0, 0, 0);
   // calculating max distance for the correct problem dimention
