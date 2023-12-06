@@ -16,7 +16,8 @@ InputParameters
 VelocityUpdaterBase::validParams()
 {
   auto params = GeneralUserObject::validParams();
-  params.addClassDescription("Base class for VelocityUpdaters. Provides the basic implementation for dimensional dependent velocity updating.");
+  params.addClassDescription("Base class for VelocityUpdaters. Provides the basic implementation "
+                             "for dimensional dependent velocity updating.");
   return params;
 }
 

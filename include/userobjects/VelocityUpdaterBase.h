@@ -42,6 +42,6 @@ public:
    * @param ray the ray whose velocity we want to set
    * @param v the new velocity that you want the ray to have
    * @param dt the time step which you are using to set the maximum distance
-  */
+   */
   virtual void updateVelocity(Ray & ray, const Point v, const Real dt) const;
 };
