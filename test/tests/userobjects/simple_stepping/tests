@@ -1,5 +1,5 @@
 [Tests]
-  design = 'PICKernelBase.md'
+  design = 'VelocityUpdaterBase.md PICStudyBase.md'
   issues = '#4'
   [simple_stepping]
     type = 'Exodiff'
