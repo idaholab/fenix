@@ -20,8 +20,8 @@ InputParameters
 PICStudyBase::validParams()
 {
   auto params = RayTracingStudy::validParams();
-  params.addClassDescription("Base class for PIC studies. Base use object only registers the ray "
-                             "data needed and provides a basic postnexecute method");
+  params.addClassDescription("Base class for PIC studies. Provides some of the basic ray data needed"
+                              "And the basic logic for resetting rays after the original generation is complete");
   params.addRequiredParam<UserObjectName>("velocity_updater", "The RayTracingStudy that owns the Ray");
   // We're not going to use registration because we don't care to name our rays because
   // we will have a lot of them
@@ -37,6 +37,7 @@ PICStudyBase::PICStudyBase(const InputParameters & parameters)
     _v_x_index(registerRayData("v_x")),
     _v_y_index(registerRayData("v_y")),
     _v_z_index(registerRayData("v_z")),
+    _weight_index(registerRayData("weight")),
     _has_generated(declareRestartableData<bool>("has_generated", false)),
     _velocity_updater(getUserObject<VelocityUpdaterBase>("velocity_updater"))
 {
@@ -72,7 +73,7 @@ void
 PICStudyBase::postExecuteStudy()
 {
   // we are going to be re using the same rays which just took a step so
-  // we store them here to re use them on the next trace
+  // we store them here to reset them in the generateRays method
   _banked_rays = rayBank();
 }
 

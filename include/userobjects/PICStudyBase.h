@@ -14,10 +14,7 @@
 #include "ClaimRays.h"
 #include "RayTracingStudy.h"
 #include "VelocityUpdaterBase.h"
-/**
- * Test study for generating rays for a basic particle-in-cell capability,
- * where Rays have propagate a bit each time step
- */
+
 class PICStudyBase : public RayTracingStudy
 {
 public:
@@ -35,11 +32,21 @@ protected:
   const RayDataIndex _v_x_index;
   const RayDataIndex _v_y_index;
   const RayDataIndex _v_z_index;
+  /** Ray data fro storing the number of real particles each ray represents */
+  const RayDataIndex _weight_index;
 
   // Whether or not we've generated rays yet (restartable)
   bool & _has_generated;
 
+  // the velocity updater object which we will hold the rules for how our
+  // particles velocities are updated
   const VelocityUpdaterBase & _velocity_updater;
 
+  /**
+   * Method for getting a rays velocity as a vector
+   * Each component is retrieved from ray data and given
+   * back to user as a vector to make calculations easier
+   * @param ray the ray
+   */
   Point getVelocity(const Ray & ray) const;
 };
