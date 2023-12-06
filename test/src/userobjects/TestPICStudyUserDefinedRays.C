@@ -7,15 +7,15 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "TestPICStudyBase.h"
+#include "TestPICStudyUserDefinedRays.h"
 
 #include "ClaimRays.h"
 #include "Function.h"
 
-registerMooseObject("FenixTestApp", TestPICStudyBase);
+registerMooseObject("FenixTestApp", TestPICStudyUserDefinedRays);
 
 InputParameters
-TestPICStudyBase::validParams()
+TestPICStudyUserDefinedRays::validParams()
 {
   auto params = PICStudyBase::validParams();
 
@@ -28,7 +28,7 @@ TestPICStudyBase::validParams()
   return params;
 }
 
-TestPICStudyBase::TestPICStudyBase(const InputParameters & parameters)
+TestPICStudyUserDefinedRays::TestPICStudyUserDefinedRays(const InputParameters & parameters)
   : PICStudyBase(parameters),
     _start_points(getParam<std::vector<Point>>("start_points")),
     _start_velocities(getParam<std::vector<Point>>("start_velocities"))
@@ -38,7 +38,7 @@ TestPICStudyBase::TestPICStudyBase(const InputParameters & parameters)
 }
 
 void
-TestPICStudyBase::generateRays()
+TestPICStudyUserDefinedRays::generateRays()
 {
   // We generate rays the first time only, after that we will
   // pull from the bank and update velocities/max distances
@@ -63,7 +63,7 @@ TestPICStudyBase::generateRays()
       rays[i]->data()[_v_x_index] = _start_velocities[i](0);
       rays[i]->data()[_v_y_index] = _start_velocities[i](1);
       rays[i]->data()[_v_z_index] = _start_velocities[i](2);
-      rays[i]->data()[_direction_set_index] = false;
+      _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]),  _dt);
     }
 
     // Claim the rays
@@ -72,30 +72,8 @@ TestPICStudyBase::generateRays()
     claim_rays.claim();
     // ...and then add them to be traced
     moveRaysToBuffer(claimed_rays);
+    _has_generated = true;
   }
-  // Rays are in the bank: reset them
-  else
-  {
-    for (auto & ray : _banked_rays)
-    {
-      // Store off the ray's info before we reset it
-      const auto start_point = ray->currentPoint();
-      const auto elem = ray->currentElem();
-      // const auto direction = ray->direction();
 
-      // Reset it (this is required to reuse a ray)
-      ray->resetCounters();
-      ray->clearStartingInfo();
-      ray->data()[_direction_set_index] = false;
-
-      // // And set the new starting information
-      ray->setStart(start_point, elem);
-      // ray->setStartingDirection(direction);
-      // ray->setStartingMaxDistance(maxDistance(*ray));
-    }
-    // Add the rays to be traced
-    moveRaysToBuffer(_banked_rays);
-    _banked_rays.clear();
-  }
-  _has_generated = true;
+  PICStudyBase::generateRays();
 }

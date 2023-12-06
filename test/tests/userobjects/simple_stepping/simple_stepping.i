@@ -8,8 +8,12 @@
 []
 
 [UserObjects]
+  [stepper]
+    type = TestSimpleVelocityUpdater
+  []
+
   [study]
-    type = TestPICStudyBase
+    type = TestPICStudyUserDefinedRays
     start_points = '1.0 1.0 0.0
                     9.0 8.0 0.0
                     4.5 3.3 0.0'
@@ -20,6 +24,7 @@
 
     execute_on = 'TIMESTEP_BEGIN'
     always_cache_traces = true
+    velocity_updater = stepper
   []
 []
 
@@ -28,6 +33,12 @@
     type = ReflectRayBC
     boundary = 'top bottom right left'
     study = study
+  []
+[]
+
+[RayKernels]
+  [null]
+    type = NullRayKernel
   []
 []
 
@@ -40,14 +51,8 @@
   solve = false
 []
 
-[RayKernels/kernel]
-  type = PICKernelBase
-[]
-
-
 [Outputs/rays]
   type = RayTracingExodus
   study = study
   execute_on = TIMESTEP_BEGIN
 []
-
