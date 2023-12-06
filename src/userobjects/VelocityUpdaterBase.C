@@ -23,8 +23,8 @@ VelocityUpdaterBase::validParams()
 
 VelocityUpdaterBase::VelocityUpdaterBase(const InputParameters & parameters)
   : GeneralUserObject(parameters)
-{}
-
+{
+}
 
 void
 VelocityUpdaterBase::updateVelocity(Ray & ray, const Point v, const Real dt) const

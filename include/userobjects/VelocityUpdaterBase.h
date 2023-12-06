@@ -15,10 +15,9 @@
 #include "GeneralUserObject.h"
 #include "RayTracingStudy.h"
 
-class VelocityUpdaterBase: public GeneralUserObject
+class VelocityUpdaterBase : public GeneralUserObject
 {
 public:
-
   VelocityUpdaterBase(const InputParameters & parameters);
 
   static InputParameters validParams();

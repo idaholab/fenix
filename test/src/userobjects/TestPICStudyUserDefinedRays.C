@@ -66,7 +66,7 @@ TestPICStudyUserDefinedRays::generateRays()
       rays[i]->data()[_v_z_index] = _start_velocities[i](2);
       // lets just give the weight index a dummy value since we don't need it for this test
       rays[i]->data()[_weight_index] = 0;
-      _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]),  _dt);
+      _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]), _dt);
     }
 
     // Claim the rays
