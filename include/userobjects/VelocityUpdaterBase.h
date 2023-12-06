@@ -40,7 +40,7 @@ public:
    * for a 2D problem only the x and y values of the velocity store in ray data will be used
    * for a 3D problem all components of the velocity will be used
    * @param ray the ray whose velocity we want to set
-   * @param v a vector which is intended to be either the new velocity vector or the current velocity vector for the ray
+   * @param v the new velocity that you want the ray to have
    * @param dt the time step which you are using to set the maximum distance
   */
   virtual void updateVelocity(Ray & ray, const Point v, const Real dt) const;

@@ -75,7 +75,6 @@ TestPICStudyUserDefinedRays::generateRays()
     claim_rays.claim();
     // ...and then add them to be traced
     moveRaysToBuffer(claimed_rays);
-    _has_generated = true;
   }
 
   PICStudyBase::generateRays();

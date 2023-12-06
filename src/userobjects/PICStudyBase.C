@@ -67,6 +67,9 @@ PICStudyBase::generateRays()
     moveRaysToBuffer(_banked_rays);
     _banked_rays.clear();
   }
+
+  if (!_has_generated)
+    _has_generated = true;
 }
 
 void
