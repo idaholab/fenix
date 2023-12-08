@@ -11,7 +11,7 @@
 #include "TestPICStudyUserDefinedRays.h"
 
 #include "ClaimRays.h"
-#include "Function.h"
+#include "VelocityUpdaterBase.h"
 
 registerMooseObject("FenixTestApp", TestPICStudyUserDefinedRays);
 
@@ -39,12 +39,8 @@ TestPICStudyUserDefinedRays::TestPICStudyUserDefinedRays(const InputParameters &
 }
 
 void
-TestPICStudyUserDefinedRays::generateRays()
+TestPICStudyUserDefinedRays::initializeParticles()
 {
-  // We generate rays the first time only, after that we will
-  // pull from the bank and update velocities/max distances
-  if (!_has_generated)
-  {
     // The unclaimed rays that we're going to generate
     // Here we need to "claim" rays because in parallel, we have
     // a list of points but do not know which processor will
@@ -75,7 +71,4 @@ TestPICStudyUserDefinedRays::generateRays()
     claim_rays.claim();
     // ...and then add them to be traced
     moveRaysToBuffer(claimed_rays);
-  }
-
-  PICStudyBase::generateRays();
 }

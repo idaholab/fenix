@@ -23,12 +23,13 @@ public:
 
   static InputParameters validParams();
 
-  virtual void generateRays() override;
+protected:
 
+  virtual void initializeParticles() final;
 private:
-  // The starting points
+  /// The starting points
   const std::vector<Point> & _start_points;
 
-  // The starting directions
+  /// The starting velocities
   const std::vector<Point> & _start_velocities;
 };

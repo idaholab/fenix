@@ -44,7 +44,7 @@ VelocityUpdaterBase::updateVelocity(Ray & ray, const Point v, const Real dt) con
   if (dim == 3)
     velocity(2) = v(2);
 
-  // max distance is the
+  // max distance is v^2 dt
   const auto max_dist = std::sqrt(velocity * velocity) * dt;
   // use the unit vector for the rays direction
   const auto direction = velocity.unit();

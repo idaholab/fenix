@@ -21,16 +21,15 @@ public:
   VelocityUpdaterBase(const InputParameters & parameters);
 
   static InputParameters validParams();
-  // setting all of these methods to do nothing since this class will only
-  // provide a method to be called by a ray tracing study
-  virtual void initialSetup() override {}
-  virtual void residualSetup() override {}
-  virtual void jacobianSetup() override {}
-  virtual void meshChanged() override {}
-  virtual void timestepSetup() override {}
+  /**
+   * Unused methods
+   */
+  ///@{
   virtual void initialize() override {}
   virtual void finalize() override {}
   virtual void execute() override {}
+
+  ///@}
 
   /**
    * Method for a simple dimenion dependent update of the rays max distance and

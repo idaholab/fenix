@@ -22,10 +22,11 @@ public:
   static InputParameters validParams();
 
   virtual void generateRays() override;
+
+protected:
   // The banked rays to be used on the next timestep (restartable)
   std::vector<std::shared_ptr<Ray>> & _banked_rays;
 
-protected:
   virtual void postExecuteStudy() override;
   /// Ray data for storing velocity components
   ///@{
@@ -33,7 +34,7 @@ protected:
   const RayDataIndex _v_y_index;
   const RayDataIndex _v_z_index;
   ///@}
-  /** Ray data fro storing the number of real particles each ray represents */
+  /// Ray data fro storing the number of real particles each ray represents
   const RayDataIndex _weight_index;
 
   /// Whether or not we've generated rays yet (restartable)
@@ -50,4 +51,7 @@ protected:
    * @param ray the ray
    */
   Point getVelocity(const Ray & ray) const;
+
+  virtual void initializeParticles() {}
+  virtual void reinitializeParticles();
 };
