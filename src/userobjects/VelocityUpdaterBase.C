@@ -27,7 +27,7 @@ VelocityUpdaterBase::VelocityUpdaterBase(const InputParameters & parameters)
 }
 
 void
-VelocityUpdaterBase::updateVelocity(Ray & ray, const Point v, const Real dt) const
+VelocityUpdaterBase::updateVelocity(Ray & ray, const Point & v, const Real dt) const
 {
   // temporary point to store the new velocity as we work on it
   Point velocity = Point(0, 0, 0);

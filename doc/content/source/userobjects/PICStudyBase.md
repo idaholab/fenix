@@ -11,22 +11,3 @@ A base class for the PIC simulations utilizing the RayTracing module. The base s
 | Y Velocity Component | `"v_y"` | `_v_y_index` |
 | Z Velocity Component | `"v_z"` | `_v_z_index` |
 | Particle Weight | `"weight"` | `_weight_index`
-
-## Building From The Base
-
-The `PICBaseStudy` provides the basic functionality for resetting rays but does not provide the implementation for generating them. When creating a new study which inherits from `PICStudyBase` your implmentation of the `generateRays()` method should looks something like the following
-
-```c++
-void
-PICStudyBase::generateRays()
-{
-  if (!_has_generated)
-  {
-    // add your custom logic for initial generation here
-  }
-
-  PICStudyBase::generateRays();
-}
-```
-
-The base implementation of `generateRays()` will do nothing but flip the `_has_generated` flag on the first time it is called and provides the logic needed for a basic resetting of rays. Rays will be reset with their velocity updated with the current velocity stored in `RayData` as the vector argument and _dt being passed as the time step into to `_velocity_updater.updateVelocity`.

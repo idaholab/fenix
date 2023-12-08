@@ -52,6 +52,14 @@ protected:
    */
   Point getVelocity(const Ray & ray) const;
 
+  /**
+   *  Method that users should override for their custom particle initialization
+   *  This is only called when the study first starts up
+   */
   virtual void initializeParticles() {}
+  /**
+   * Method that defines how to reuse particles this will be called on
+   * every step after the initialization has been called
+   */
   virtual void reinitializeParticles();
 };
