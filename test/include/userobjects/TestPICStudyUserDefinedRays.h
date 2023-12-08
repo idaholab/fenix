@@ -24,8 +24,8 @@ public:
   static InputParameters validParams();
 
 protected:
-
   virtual void initializeParticles() final;
+
 private:
   /// The starting points
   const std::vector<Point> & _start_points;

@@ -17,12 +17,14 @@ InputParameters
 PICStudyBase::validParams()
 {
   auto params = RayTracingStudy::validParams();
-  params.addClassDescription(
-      "Base class for PIC studies. Provides some of the basic ray data needed for particle tracking."
-      "Basic logic for resetting rays to be used as particles after the original generation is complete is also provided");
-  params.addRequiredParam<UserObjectName>("velocity_updater",
-                                          "The VelocityUpdater UserObject that has the rules for how particle"
-                                          "velocities should be updated");
+  params.addClassDescription("Base class for PIC studies. Provides some of the basic ray data "
+                             "needed for particle tracking."
+                             "Basic logic for resetting rays to be used as particles after the "
+                             "original generation is complete is also provided");
+  params.addRequiredParam<UserObjectName>(
+      "velocity_updater",
+      "The VelocityUpdater UserObject that has the rules for how particle"
+      "velocities should be updated");
   // We're not going to use registration because we don't care to name our rays because
   // we will have a lot of them
   params.set<bool>("_use_ray_registration") = false;
@@ -48,7 +50,8 @@ PICStudyBase::generateRays()
 {
   // We generate rays the first time only, after that we will
   // pull from the bank and update velocities/max distances
-  if (!_has_generated) {
+  if (!_has_generated)
+  {
     initializeParticles();
     _has_generated = true;
   }

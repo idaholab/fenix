@@ -41,34 +41,34 @@ TestPICStudyUserDefinedRays::TestPICStudyUserDefinedRays(const InputParameters &
 void
 TestPICStudyUserDefinedRays::initializeParticles()
 {
-    // The unclaimed rays that we're going to generate
-    // Here we need to "claim" rays because in parallel, we have
-    // a list of points but do not know which processor will
-    // own the point that that ray starts in. So, we duplicate
-    // the rays on all processors and then let one processor pick them.
-    // Basically - we fill them here and then pass them to a ClaimRays
-    // object to do all of the magic. In a real PIC case, we'll just
-    // generate the rays for the local rays that we care about
-    // and the claiming probably won't be necessary
-    std::vector<std::shared_ptr<Ray>> rays(_start_points.size());
-    // Create a ray for each point/velocity triplet
-    for (const auto i : index_range(_start_points))
-    {
-      rays[i] = acquireReplicatedRay();
-      rays[i]->setStart(_start_points[i]);
-      // saving the inital velocities so we can have 3v (1d or 2d)
-      rays[i]->data()[_v_x_index] = _start_velocities[i](0);
-      rays[i]->data()[_v_y_index] = _start_velocities[i](1);
-      rays[i]->data()[_v_z_index] = _start_velocities[i](2);
-      // lets just give the weight index a dummy value since we don't need it for this test
-      rays[i]->data()[_weight_index] = 0;
-      _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]), _dt);
-    }
+  // The unclaimed rays that we're going to generate
+  // Here we need to "claim" rays because in parallel, we have
+  // a list of points but do not know which processor will
+  // own the point that that ray starts in. So, we duplicate
+  // the rays on all processors and then let one processor pick them.
+  // Basically - we fill them here and then pass them to a ClaimRays
+  // object to do all of the magic. In a real PIC case, we'll just
+  // generate the rays for the local rays that we care about
+  // and the claiming probably won't be necessary
+  std::vector<std::shared_ptr<Ray>> rays(_start_points.size());
+  // Create a ray for each point/velocity triplet
+  for (const auto i : index_range(_start_points))
+  {
+    rays[i] = acquireReplicatedRay();
+    rays[i]->setStart(_start_points[i]);
+    // saving the inital velocities so we can have 3v (1d or 2d)
+    rays[i]->data()[_v_x_index] = _start_velocities[i](0);
+    rays[i]->data()[_v_y_index] = _start_velocities[i](1);
+    rays[i]->data()[_v_z_index] = _start_velocities[i](2);
+    // lets just give the weight index a dummy value since we don't need it for this test
+    rays[i]->data()[_weight_index] = 0;
+    _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]), _dt);
+  }
 
-    // Claim the rays
-    std::vector<std::shared_ptr<Ray>> claimed_rays;
-    ClaimRays claim_rays(*this, rays, claimed_rays, false);
-    claim_rays.claim();
-    // ...and then add them to be traced
-    moveRaysToBuffer(claimed_rays);
+  // Claim the rays
+  std::vector<std::shared_ptr<Ray>> claimed_rays;
+  ClaimRays claim_rays(*this, rays, claimed_rays, false);
+  claim_rays.claim();
+  // ...and then add them to be traced
+  moveRaysToBuffer(claimed_rays);
 }
