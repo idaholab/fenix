@@ -24,6 +24,7 @@
 
     execute_on = 'TIMESTEP_BEGIN'
     always_cache_traces = true
+    data_on_cache_traces = true
     velocity_updater = stepper
   []
 []
@@ -54,5 +55,6 @@
 [Outputs/rays]
   type = RayTracingExodus
   study = study
+  output_data = true
   execute_on = TIMESTEP_BEGIN
 []
