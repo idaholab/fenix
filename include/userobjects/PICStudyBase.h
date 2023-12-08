@@ -28,10 +28,12 @@ public:
 
 protected:
   virtual void postExecuteStudy() override;
-  /** Ray Data for storing all components of velocity */
+  /// Ray data for storing velocity components
+  ///@{
   const RayDataIndex _v_x_index;
   const RayDataIndex _v_y_index;
   const RayDataIndex _v_z_index;
+  ///@}
   /** Ray data fro storing the number of real particles each ray represents */
   const RayDataIndex _weight_index;
 
