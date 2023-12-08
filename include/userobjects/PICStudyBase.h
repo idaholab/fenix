@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include "Function.h"
-#include "ClaimRays.h"
 #include "RayTracingStudy.h"
 #include "VelocityUpdaterBase.h"
 
