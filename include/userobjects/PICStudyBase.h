@@ -11,7 +11,8 @@
 #pragma once
 
 #include "RayTracingStudy.h"
-#include "VelocityUpdaterBase.h"
+
+class VelocityUpdaterBase;
 
 class PICStudyBase : public RayTracingStudy
 {
