@@ -40,8 +40,8 @@ PICStudyBase::PICStudyBase(const InputParameters & parameters)
     _v_y_index(registerRayData("v_y")),
     _v_z_index(registerRayData("v_z")),
     _weight_index(registerRayData("weight")),
-    _has_generated(declareRestartableData<bool>("has_generated", false)),
-    _velocity_updater(getUserObject<VelocityUpdaterBase>("velocity_updater"))
+    _velocity_updater(getUserObject<VelocityUpdaterBase>("velocity_updater")),
+    _has_generated(declareRestartableData<bool>("has_generated", false))
 {
 }
 
@@ -52,7 +52,7 @@ PICStudyBase::generateRays()
   // pull from the bank and update velocities/max distances
   if (!_has_generated)
   {
-    initializeParticles();
+    this->initializeParticles();
     _has_generated = true;
   }
   else
