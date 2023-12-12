@@ -165,7 +165,71 @@ unrelated changes all at once.
 
 1. To exit and save, press `esc`, then type `:wq`. The commit file will close.
 1. You might have to do several commits to capture all your changes.
-1. At some point, you’ll be ready to push your work to your fork (remember, it has the remote name `origin`): run
+
+## Generating new documentation pages using MooseDocs
+
+During the course of development, especially during the creation of new FENIX objects (e.g., kernels,
+boundary conditions, interface conditions, etc.), it is important to create documentation outlining
+any new capabilities. Templates for object documents can be generated using the [MooseDocs system](MooseDocs/index.md)
+using the "generate" sub-command. To generate templates for new objects, run:
+
+```
+cd ~/projects/fenix
+./moosedocs.py generate app_types FenixApp
+```
+
+For example, with a new object called `FenixDiffusion` without documentation, the following output will be seen:
+
+```
+% ./moosedocs.py generate app_types FenixApp
+Creating/updating stub page: /Users/username/projects/fenix/doc/content/source/kernels/FenixDiffusion.md
+CRITICAL:0 ERROR:0 WARNING:0
+```
+
+And the following template would be created:
+
+```markdown
+# FenixDiffusion
+
+!alert construction title=Undocumented Class
+The FenixDiffusion has not been documented. The content listed below should be used as a starting point for
+documenting the class, which includes the typical automatic documentation associated with a
+MooseObject; however, what is contained is ultimately determined by what is necessary to make the
+documentation clear for users.
+
+!syntax description /Kernels/FenixDiffusion
+
+## Overview
+
+!! Replace these lines with information regarding the FenixDiffusion object.
+
+## Example Input File Syntax
+
+!! Describe and include an example of how to use the FenixDiffusion object.
+
+!syntax parameters /Kernels/FenixDiffusion
+
+!syntax inputs /Kernels/FenixDiffusion
+
+!syntax children /Kernels/FenixDiffusion
+```
+
+Note that certain items, such as the source code description, object parameters, inputs in which the
+object is used, and child objects are filled in automatically using the [MooseDocs/extensions/appsyntax.md].
+The lines leading with `!!` as well as the `!alert` extension command should be removed and replaced
+with relevant documentation regarding how to use the object.
+
+!alert! note title=Use good documentation practices!
+When creating documentation, it is particularly important to note any design limitations or assumptions
+as well as best practices to apply when using the object.
+!alert-end!
+
+## Pushing and submitting FENIX changes
+
+At some point, you'll be ready to push your work to your fork and submit the changes as a pull request
+(PR). To do this follow the following steps.
+
+1. To push your work to your fork (remember, it has the remote name `origin`) run:
 
    ```
    git push origin <BRANCH_NAME>
