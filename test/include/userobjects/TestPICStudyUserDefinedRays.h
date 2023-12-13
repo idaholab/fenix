@@ -24,7 +24,7 @@ public:
   static InputParameters validParams();
 
 protected:
-  virtual void initializeParticles() final;
+  virtual void initializeParticles() override final;
 
 private:
   /// The starting points

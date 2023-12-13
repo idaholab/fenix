@@ -34,7 +34,7 @@ protected:
   const RayDataIndex _v_y_index;
   const RayDataIndex _v_z_index;
   ///@}
-  /// Ray data fro storing the number of real particles each ray represents
+  /// Ray data for storing the number of real particles each ray represents
   const RayDataIndex _weight_index;
 
   /// the velocity updater object which we will hold the rules for how our
@@ -53,7 +53,7 @@ protected:
    *  Method that users should override for their custom particle initialization
    *  This is only called when the study first starts up
    */
-  virtual void initializeParticles(){};
+  virtual void initializeParticles() = 0;
   /**
    * Method that defines how to reuse particles this will be called on
    * every step after the initialization has been called

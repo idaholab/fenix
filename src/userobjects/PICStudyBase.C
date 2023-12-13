@@ -11,8 +11,6 @@
 #include "PICStudyBase.h"
 #include "VelocityUpdaterBase.h"
 
-registerMooseObject("FenixApp", PICStudyBase);
-
 InputParameters
 PICStudyBase::validParams()
 {
