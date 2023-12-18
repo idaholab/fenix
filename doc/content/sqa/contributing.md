@@ -224,6 +224,7 @@ When creating documentation, it is particularly important to note any design lim
 as well as best practices to apply when using the object.
 !alert-end!
 
+Again, make sure to commit these changes using the instructions above before pushing your branch.
 ## Pushing and submitting FENIX changes
 
 At some point, you'll be ready to push your work to your fork and submit the changes as a pull request
