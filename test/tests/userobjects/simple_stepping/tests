@@ -15,6 +15,6 @@
                simple_stepping_rays.e-s0008
                simple_stepping_rays.e-s0009'
     allow_test_objects = true
-    requirement = 'PIC Requires the ability to track 3 velocity components but propagate in lower dimensions'
+    requirement = 'The system shall be capable of tracking 3 velocity components within the PIC capability while propagating rays in lower dimensions'
   []
 []
