@@ -1,0 +1,21 @@
+[Tests]
+  design = 'AuxAccumulator.md'
+  issues = '#9'
+  [test]
+    type = 'Exodiff'
+    input = 'auxaccumulator.i'
+    exodiff = 'auxaccumulator_out.e'
+    allow_test_objects = true
+
+    requirement = 'The system shall support the accumulation of point values as if they were point sources into an auxiliary field'
+  []
+  [error]
+    type = 'RunException'
+    input = 'auxaccumulator.i'
+    cli_args = 'UserObjects/auxaccumulator/skip_finalize=True'
+    expect_err = 'AuxAccumulator was not finalized'
+    allow_test_objects = true
+
+    requirement = 'The system shall report a reasonable error when accumulating point values into an auxiliary field when the system is not properly finalized'
+  []
+[]
