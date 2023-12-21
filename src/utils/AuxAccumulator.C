@@ -54,7 +54,7 @@ AuxAccumulator::add(const Elem & elem, const Point & point, const Real & value)
 
   mooseAssert(_current_accumulation.size() == phi.size(), "Not sized properly");
   for (const auto i : index_range(phi))
-    _current_accumulation[i] = phi[i][0] * value;
+    _current_accumulation[i] += phi[i][0] * value;
 }
 
 void
