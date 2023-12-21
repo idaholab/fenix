@@ -68,7 +68,7 @@ private:
   AuxiliarySystem & _aux;
 
   /// The AuxVariable this AuxRayKernel contributes to
-  MooseVariableFE<Real> & _var;
+  const MooseVariableFE<Real> & _var;
 
   /// The FE object for getting phi
   const std::unique_ptr<FEGenericBase<Real>> _fe;
