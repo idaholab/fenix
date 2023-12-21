@@ -12,7 +12,7 @@
   [error]
     type = 'RunException'
     input = 'auxaccumulator.i'
-    cli_args = 'UserObjects/auxaccumulator/skip_finalize=True'
+    cli_args = 'Outputs/exodus=false UserObjects/auxaccumulator/skip_finalize=True'
     expect_err = 'AuxAccumulator was not finalized'
     allow_test_objects = true
 
