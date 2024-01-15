@@ -42,8 +42,8 @@ FenixTestApp::registerAll(Factory & f, ActionFactory & af, Syntax & s, bool use_
 void
 FenixTestApp::registerApps()
 {
-  registerApp(FenixApp);
   registerApp(FenixTestApp);
+  FenixApp::registerApps();
 }
 
 /***************************************************************************************************
