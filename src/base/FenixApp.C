@@ -19,7 +19,7 @@ FenixApp::FenixApp(InputParameters parameters) : MooseApp(parameters)
 
 FenixApp::~FenixApp() {}
 
-void 
+void
 FenixApp::registerAll(Factory & f, ActionFactory & af, Syntax & s)
 {
   ModulesApp::registerAllObjects<FenixApp>(f, af, s);
@@ -33,6 +33,7 @@ void
 FenixApp::registerApps()
 {
   registerApp(FenixApp);
+  ModulesApp::registerApps();
 }
 
 /***************************************************************************************************
