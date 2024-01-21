@@ -29,6 +29,11 @@ VelocityUpdaterBase::VelocityUpdaterBase(const InputParameters & parameters)
 void
 VelocityUpdaterBase::updateVelocity(Ray & ray, const Point & v, const Real dt) const
 {
+  if (v.absolute_fuzzy_equals(Point(0, 0, 0)))
+  {
+    ray.setStationary();
+    return;
+  }
   // temporary point to store the new velocity as we work on it
   Point velocity = Point(0, 0, 0);
   // lets the get the dimension of the problem so we can make sure we don't have
@@ -46,9 +51,7 @@ VelocityUpdaterBase::updateVelocity(Ray & ray, const Point & v, const Real dt) c
 
   // max distance is v^2 dt
   const auto max_dist = std::sqrt(velocity * velocity) * dt;
-  // use the unit vector for the rays direction
-  const auto direction = velocity.unit();
 
   ray.setStartingMaxDistance(max_dist);
-  ray.setStartingDirection(direction);
+  ray.setStartingDirection(velocity);
 }

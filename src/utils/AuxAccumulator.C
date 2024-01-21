@@ -28,6 +28,16 @@ AuxAccumulator::AuxAccumulator(FEProblemBase & problem, const AuxVariableName & 
     _finalized(false)
 {
   _fe->request_phi();
+
+  // Zero the solution before we accumulate
+  std::vector<libMesh::dof_id_type> di;
+  for (const auto & elem : *_problem.mesh().getActiveLocalElementRange())
+  {
+    _aux.dofMap().dof_indices(elem, di, _var.number());
+    for (const auto i : di)
+      _aux.solution().set(i, 0);
+  }
+  _aux.solution().close();
 }
 
 AuxAccumulator::~AuxAccumulator()
@@ -80,7 +90,6 @@ AuxAccumulator::addCachedValues()
   mooseAssert(_current_accumulation.size() == di.size(), "Inconsistent size");
   for (const auto i : index_range(di))
     _aux.solution().add(di[i], _current_accumulation[i]);
-
   _current_elem = nullptr;
   std::fill(_current_accumulation.begin(), _current_accumulation.end(), 0);
 }

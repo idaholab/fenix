@@ -16,4 +16,11 @@
     allow_test_objects = true
     requirement = 'The system shall report a reasonable error when accumulating point values into an auxiliary field when the system is not properly finalized'
   []
+  [charge_mapping]
+    type = 'Exodiff'
+    input = 'charge_accumulator.i'
+    exodiff = 'charge_accumulator_out.e'
+    allow_test_objects = true
+    requirement = 'The system should support mapping data from rays to an aux variable and reset the aux variable to 0 on each time step'
+  []
 []
