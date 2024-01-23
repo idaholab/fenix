@@ -1,0 +1,21 @@
+[Tests]
+  design = 'VariableSampler.md'
+  issues = '#12'
+  [variable_sampling]
+    type = 'Exodiff'
+    input = 'variable_sampler.i'
+    exodiff = 'variable_sampler_out.e
+               variable_sampler_rays.e
+               variable_sampler_rays.e-s0001
+               variable_sampler_rays.e-s0002
+               variable_sampler_rays.e-s0003
+               variable_sampler_rays.e-s0004
+               variable_sampler_rays.e-s0005
+               variable_sampler_rays.e-s0006
+               variable_sampler_rays.e-s0007
+               variable_sampler_rays.e-s0008
+               variable_sampler_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'A ray should be able to sample the value of field variable at any point in space as it moves through space'
+  []
+[]
