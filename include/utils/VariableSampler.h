@@ -6,7 +6,7 @@
 namespace FENIX
 {
 /**
- * Utility that samples the value of a vector variable at a given point
+ * Utility that samples the value of a MooseVariable at a given point
  */
 class VariableSampler
 {
