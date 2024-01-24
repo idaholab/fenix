@@ -16,6 +16,6 @@
                variable_sampler_rays.e-s0008
                variable_sampler_rays.e-s0009'
     allow_test_objects = true
-    requirement = 'A ray should be able to sample the value of field variable at any point in space as it moves through space'
+    requirement = 'The system shall allow a ray to sample the value of field variable at any point in space as it moves through space'
   []
 []

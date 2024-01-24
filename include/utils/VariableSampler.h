@@ -15,7 +15,7 @@ public:
 
   /**
    *  Method for getting the value of a variable at a given point
-   * @param point the point where you want to know the value of a variable
+   * @param point the point at which you want to know the value of a variable
    * @param element the element in which the point you want to sample resides
    * @returns the value of the variable of interest at the point of interest
    */
@@ -24,7 +24,7 @@ public:
 private:
   /// A reference to the system containing the variable
   const System & _system;
-  /// the variable number for the vector field in the system
+  /// The variable number for the vector field in the system
   const unsigned int _var_num;
 };
 }
