@@ -21,6 +21,6 @@
     input = 'charge_accumulator.i'
     exodiff = 'charge_accumulator_out.e'
     allow_test_objects = true
-    requirement = 'The system should support mapping data from rays to an aux variable and reset the aux variable to 0 on each time step'
+    requirement = 'The system shall support mapping data from rays to an aux variable and reset the aux variable to 0 on each time step'
   []
 []
