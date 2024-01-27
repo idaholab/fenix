@@ -11,7 +11,7 @@
 #include "TestPICStudyUserDefinedRays.h"
 
 #include "ClaimRays.h"
-#include "VelocityUpdaterBase.h"
+#include "ParticleStepperBase.h"
 
 registerMooseObject("FenixTestApp", TestPICStudyUserDefinedRays);
 
@@ -25,14 +25,17 @@ TestPICStudyUserDefinedRays::validParams()
   params.addRequiredParam<std::vector<Point>>(
       "start_velocities",
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
-
+  params.addParam<Real>("mass", 0, "The mass of the particles used for during a test");
+  params.addParam<Real>("charge", 0, "The charge of the particles used for during a test");
   return params;
 }
 
 TestPICStudyUserDefinedRays::TestPICStudyUserDefinedRays(const InputParameters & parameters)
   : PICStudyBase(parameters),
     _start_points(getParam<std::vector<Point>>("start_points")),
-    _start_velocities(getParam<std::vector<Point>>("start_velocities"))
+    _start_velocities(getParam<std::vector<Point>>("start_velocities")),
+    _mass(getParam<Real>("mass")),
+    _charge(getParam<Real>("charge"))
 {
   if (_start_points.size() != _start_velocities.size())
     paramError("start_velocities", "Must be the same size as 'start_points'");
@@ -60,15 +63,24 @@ TestPICStudyUserDefinedRays::initializeParticles()
     rays[i]->data()[_v_x_index] = _start_velocities[i](0);
     rays[i]->data()[_v_y_index] = _start_velocities[i](1);
     rays[i]->data()[_v_z_index] = _start_velocities[i](2);
-    // lets just give the weight index a dummy value since we don't need it for this test
-    rays[i]->data()[_weight_index] = 0;
-    _velocity_updater.updateVelocity(*rays[i], getVelocity(*rays[i]), _dt);
+    rays[i]->data()[_mass_index] = _mass;
+    rays[i]->data()[_charge_index] = _charge;
+    // lets set the particle up for its first timestep
   }
 
   // Claim the rays
   std::vector<std::shared_ptr<Ray>> claimed_rays;
   ClaimRays claim_rays(*this, rays, claimed_rays, false);
   claim_rays.claim();
+  // lets loop through the claimed rays and set them up for the step
+  // we need to do so because before they are claimed the ray does not
+  // know what element it is in
+  for (auto & ray : claimed_rays)
+  {
+    getVelocity(*ray, _temp_velocity);
+    _stepper.setupStep(*ray, _temp_velocity, ray->data()[_charge_index] / ray->data()[_mass_index]);
+    setVelocity(*ray, _temp_velocity);
+  }
   // ...and then add them to be traced
   moveRaysToBuffer(claimed_rays);
 }

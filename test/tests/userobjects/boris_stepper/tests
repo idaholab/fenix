@@ -1,0 +1,36 @@
+[Tests]
+  design = 'ParticleStepperBase.md PICStudyBase.md'
+  issues = '#4 #19'
+  [e_cross_b]
+    type = 'Exodiff'
+    input = 'e_cross_b.i'
+    exodiff = 'e_cross_b_rays.e
+               e_cross_b_rays.e-s0001
+               e_cross_b_rays.e-s0002
+               e_cross_b_rays.e-s0003
+               e_cross_b_rays.e-s0004
+               e_cross_b_rays.e-s0005
+               e_cross_b_rays.e-s0006
+               e_cross_b_rays.e-s0007
+               e_cross_b_rays.e-s0008
+               e_cross_b_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'The system shall be capable of accurately capturing the path of charged particles in both an electric and a magnetic field'
+  []
+  [cyclotron_motion]
+    type = 'Exodiff'
+    input = 'cyclotron_motion.i'
+    exodiff = 'cyclotron_motion_rays.e
+               cyclotron_motion_rays.e-s0001
+               cyclotron_motion_rays.e-s0002
+               cyclotron_motion_rays.e-s0003
+               cyclotron_motion_rays.e-s0004
+               cyclotron_motion_rays.e-s0005
+               cyclotron_motion_rays.e-s0006
+               cyclotron_motion_rays.e-s0007
+               cyclotron_motion_rays.e-s0008
+               cyclotron_motion_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'The system shall be capable of accurately capturing the path of charged particles in a perpendicular magnetic field'
+  []
+[]

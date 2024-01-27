@@ -12,7 +12,7 @@
 
 #include "RayTracingStudy.h"
 
-class VelocityUpdaterBase;
+class ParticleStepperBase;
 
 class PICStudyBase : public RayTracingStudy
 {
@@ -23,8 +23,14 @@ public:
 
   virtual void generateRays() override;
 
+  /**
+   * Method for getting the rays after they have finished tracing
+   * useful for looking at the rays data if needed by another object
+   */
+  const std::vector<std::shared_ptr<Ray>> & getBankedRays() const;
+
 protected:
-  // The banked rays to be used on the next timestep (restartable)
+  /// The banked rays to be used on the next timestep (restartable)
   std::vector<std::shared_ptr<Ray>> & _banked_rays;
 
   virtual void postExecuteStudy() override;
@@ -36,19 +42,39 @@ protected:
   ///@}
   /// Ray data for storing the number of real particles each ray represents
   const RayDataIndex _weight_index;
+  /// Ray data for storing the charge of the particle
+  const RayDataIndex _charge_index;
+  /// Ray data for storing the mass of the particle
+  const RayDataIndex _mass_index;
+  /// Ray data for storing the type of physical particle a ray represents
+  const RayDataIndex _species_index;
 
   /// the velocity updater object which we will hold the rules for how our
   /// particles velocities are updated
-  const VelocityUpdaterBase & _velocity_updater;
+  const ParticleStepperBase & _stepper;
 
+  /// temporary variables used when resetting rays
+  ///@{
+  const Elem * _temp_elem;
+  Point _temp_point;
+  Real _temp_distance;
+  Point _temp_velocity;
+  ///@}
   /**
    * Method for getting a rays velocity as a vector
    * Each component is retrieved from ray data and given
    * back to user as a vector to make calculations easier
    * @param ray the ray
+   * @param v the point where the rays velocity will be stored
    */
-  Point getVelocity(const Ray & ray) const;
+  void getVelocity(const Ray & ray, Point & v) const;
 
+  /**
+   * Method for updating the rays velocity data given a new velocity
+   * @param ray the ray that will have its velocity updated
+   * @param v the new velocity to give the ray
+   */
+  void setVelocity(Ray & ray, const Point & v) const;
   /**
    *  Method that users should override for their custom particle initialization
    *  This is only called when the study first starts up
