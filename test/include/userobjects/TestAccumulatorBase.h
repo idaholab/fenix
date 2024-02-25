@@ -10,18 +10,24 @@
 
 #pragma once
 
-#include "TestAccumulatorBase.h"
+#include "GeneralUserObject.h"
+
+#include "AccumulatorBase.h"
 
 /**
  * UserObject for testing the AuxAccumulator
  */
-class TestAuxAccumulator : public TestAccumulatorBase
+class TestAccumulatorBase : public GeneralUserObject
 {
 public:
   static InputParameters validParams();
 
-  TestAuxAccumulator(const InputParameters & params);
+  TestAccumulatorBase(const InputParameters & params);
+
+  virtual void initialize() override {}
+  virtual void execute() override;
+  virtual void finalize() override {}
 
 protected:
-  virtual std::unique_ptr<FENIX::AccumulatorBase> buildAccumulator() override final;
+  virtual std::unique_ptr<FENIX::AccumulatorBase> buildAccumulator() = 0;
 };

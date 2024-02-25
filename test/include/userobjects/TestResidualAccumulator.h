@@ -13,14 +13,16 @@
 #include "TestAccumulatorBase.h"
 
 /**
- * UserObject for testing the AuxAccumulator
+ * UserObject for testing the ResidualAccumulator
  */
-class TestAuxAccumulator : public TestAccumulatorBase
+class TestResidualAccumulator : public TestAccumulatorBase
 {
 public:
   static InputParameters validParams();
 
-  TestAuxAccumulator(const InputParameters & params);
+  TestResidualAccumulator(const InputParameters & params);
+
+  virtual void execute() override;
 
 protected:
   virtual std::unique_ptr<FENIX::AccumulatorBase> buildAccumulator() override final;
