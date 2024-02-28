@@ -36,7 +36,7 @@ private:
   void addCachedValues() override final;
   void initCachedValues() override final;
 
-  /// The AuxVariable this AuxRayKernel contributes to
+  /// The nonlinear variable to contribute to
   const MooseVariableField<Real> & _var;
 
   /// The Assembly object
