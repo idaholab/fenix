@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "MooseTypes.h"
+#include "AccumulatorBase.h"
 
 #include "libmesh/fe.h"
 #include "libmesh/fe_map.h"
@@ -25,41 +25,17 @@ namespace FENIX
 /**
  * Utility that accumulates values into an aux variable
  */
-class AuxAccumulator
+class AuxAccumulator : public AccumulatorBase
 {
 public:
   AuxAccumulator(FEProblemBase & problem, const AuxVariableName & variable);
-  ~AuxAccumulator();
 
-  /**
-   * Accumulates a value into the aux field
-   *
-   * @param elem The element
-   * @param point The point at which to add the value (should be in \p elem)
-   * @param value The value at the point
-   */
-  void add(const Elem & elem, const Point & point, const Real & value);
-
-  /**
-   * Finalizes the accumulation; must be called once complete
-   */
-  void finalize();
+  virtual void add(const Elem & elem, const Point & point, const Real & value) override final;
+  virtual void finalize() override final;
 
 private:
-  /**
-   * Adds the cached values for the current element
-   *
-   * This enables not calling DofMap::dof_indices for each point that is added
-   * when successive points are in the same element
-   */
-  void addCachedValues();
-  /**
-   * Initializes the cached values for the given element
-   */
-  void initCachedValues(const Elem & elem, const std::size_t size);
-
-  /// The FE problem
-  FEProblemBase & _problem;
+  virtual void addCachedValues() override final;
+  virtual void initCachedValues() override final;
 
   /// The mesh dimension
   const unsigned int _dim;
@@ -75,13 +51,8 @@ private:
   /// The FEMap object for getting physical to master points
   const std::unique_ptr<FEMap> _fe_map;
 
-  /// The current element we're working on; used for optimization
-  const libMesh::Elem * _current_elem;
   /// The current element accumulation; used for optimization
   std::vector<Real> _current_accumulation;
-
-  /// Whether or not finalize was called
-  bool _finalized;
 };
 
 }
