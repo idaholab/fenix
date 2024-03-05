@@ -23,7 +23,7 @@ class AccumulatorBase
 {
 public:
   AccumulatorBase(FEProblemBase & problem);
-  ~AccumulatorBase();
+  virtual ~AccumulatorBase();
 
   /**
    * Accumulates a value into the field
