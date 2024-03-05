@@ -1,0 +1,11 @@
+[Tests]
+  design = 'ResidualAccumulator.md'
+  issues = '#16'
+  [test]
+    type = 'Exodiff'
+    input = 'residualaccumulator.i'
+    exodiff = 'residualaccumulator_out.e'
+    allow_test_objects = true
+    requirement = 'The system shall support the accumulation of point values as if they were point sources into a nonlinear field'
+  []
+[]

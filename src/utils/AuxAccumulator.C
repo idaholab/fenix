@@ -18,14 +18,12 @@
 namespace FENIX
 {
 AuxAccumulator::AuxAccumulator(FEProblemBase & problem, const AuxVariableName & variable)
-  : _problem(problem),
+  : AccumulatorBase(problem),
     _dim(_problem.mesh().dimension()),
     _aux(_problem.getAuxiliarySystem()),
     _var(_aux.getFieldVariable<Real>(0, variable)),
     _fe(FEGenericBase<Real>::build(_dim, _var.feType())),
-    _fe_map(FEMap::build(_var.feType())),
-    _current_elem(nullptr),
-    _finalized(false)
+    _fe_map(FEMap::build(_var.feType()))
 {
   _fe->request_phi();
 
@@ -40,28 +38,16 @@ AuxAccumulator::AuxAccumulator(FEProblemBase & problem, const AuxVariableName & 
   _aux.solution().close();
 }
 
-AuxAccumulator::~AuxAccumulator()
-{
-  if (!_finalized)
-    mooseError("AuxAccumulator was not finalized");
-}
-
 void
 AuxAccumulator::add(const Elem & elem, const Point & point, const Real & value)
 {
-  mooseAssert(!_finalized, "Already finalized");
-
   const std::vector<Point> master_points = {_fe_map->inverse_map(_dim, &elem, point)};
   _fe->reinit(&elem, &master_points);
+
+  // Need to reinit first so that we can get a size for _phi
+  prepare(elem);
+
   const auto & phi = _fe->get_phi();
-
-  if (_current_elem != &elem)
-  {
-    if (_current_elem)
-      addCachedValues();
-    initCachedValues(elem, phi.size());
-  }
-
   mooseAssert(_current_accumulation.size() == phi.size(), "Not sized properly");
   for (const auto i : index_range(phi))
     _current_accumulation[i] += phi[i][0] * value;
@@ -70,42 +56,33 @@ AuxAccumulator::add(const Elem & elem, const Point & point, const Real & value)
 void
 AuxAccumulator::finalize()
 {
-  mooseAssert(!_finalized, "Already finalized");
-
-  if (_current_elem)
-    addCachedValues();
+  AccumulatorBase::finalize();
   _aux.solution().close();
-
-  _finalized = true;
 }
 
 void
 AuxAccumulator::addCachedValues()
 {
-  mooseAssert(_current_elem, "Element not set");
-
   std::vector<libMesh::dof_id_type> di;
-  _aux.dofMap().dof_indices(_current_elem, di, _var.number());
+  _aux.dofMap().dof_indices(&currentElem(), di, _var.number());
 
   mooseAssert(_current_accumulation.size() == di.size(), "Inconsistent size");
   for (const auto i : index_range(di))
     _aux.solution().add(di[i], _current_accumulation[i]);
-  _current_elem = nullptr;
+
   std::fill(_current_accumulation.begin(), _current_accumulation.end(), 0);
 }
 
 void
-AuxAccumulator::initCachedValues(const Elem & elem, const std::size_t size)
+AuxAccumulator::initCachedValues()
 {
-  mooseAssert(!_current_elem, "Element currently set");
   mooseAssert(std::find_if(_current_accumulation.begin(),
                            _current_accumulation.end(),
                            [](const auto & val)
                            { return val != 0; }) == _current_accumulation.end(),
               "Values not zeroed");
 
-  _current_elem = &elem;
-  _current_accumulation.resize(size, 0);
+  mooseAssert(_fe->get_phi().size(), "Test function not sized");
+  _current_accumulation.resize(_fe->get_phi().size(), 0);
 }
-
 }
