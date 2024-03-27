@@ -32,14 +32,12 @@ BorisStepper::BorisStepper(const InputParameters & parameters)
     _bfield_vars(getParam<std::vector<VariableName>>("bfield_components"))
 {
   if (_efield_vars.size() != 3)
-    mooseError("BorisStepper with name ",
-               name(),
-               ": You must provide 3 components representing the electric field!");
+    paramError("efield_components",
+               "You must provide 3 components representing the electric field");
 
   if (_bfield_vars.size() != 3)
-    mooseError("BorisStepper with name ",
-               name(),
-               ": You must provide 3 components representing the magnetic field!");
+    paramError("bfield_components",
+               "You must provide 3 components representing the magnetic field");
 
   for (int i = 0; i < 3; ++i)
   {

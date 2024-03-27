@@ -77,9 +77,10 @@ TestPICStudyUserDefinedRays::initializeParticles()
   // know what element it is in
   for (auto & ray : claimed_rays)
   {
-    getVelocity(*ray, _temp_velocity);
-    _stepper.setupStep(*ray, _temp_velocity, ray->data()[_charge_index] / ray->data()[_mass_index]);
-    setVelocity(*ray, _temp_velocity);
+    getVelocity(*ray, _temporary_velocity);
+    _stepper.setupStep(
+        *ray, _temporary_velocity, ray->data()[_charge_index] / ray->data()[_mass_index]);
+    setVelocity(*ray, _temporary_velocity);
   }
   // ...and then add them to be traced
   moveRaysToBuffer(claimed_rays);

@@ -29,9 +29,7 @@ LeapFrogStepper::LeapFrogStepper(const InputParameters & parameters)
     _field_vars(getParam<std::vector<VariableName>>("field_components"))
 {
   if (_field_vars.size() != 3)
-    mooseError("LeapFrogStepper with name ",
-               name(),
-               ": You must provide 3 components representing the force field!");
+    paramError("field_components", "You must provide 3 components representing the force field");
 
   for (int i = 0; i < 3; ++i)
   {
@@ -48,6 +46,7 @@ LeapFrogStepper::setupStep(Ray & ray, Point & v, const Real q_m_ratio, const Rea
   Point F = sampleField(_field_samplers, ray);
 
   const auto dt = distance == 0 ? _dt / 2 : _dt;
+
   v = linearImpulse(v, F, q_m_ratio, dt);
-  setMaxDistanceAndDirection(ray, v, dt);
+  setMaxDistanceAndDirection(ray, v, _dt);
 }

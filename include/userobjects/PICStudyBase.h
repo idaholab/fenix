@@ -23,12 +23,6 @@ public:
 
   virtual void generateRays() override;
 
-  /**
-   * Method for getting the rays after they have finished tracing
-   * useful for looking at the rays data if needed by another object
-   */
-  const std::vector<std::shared_ptr<Ray>> & getBankedRays() const;
-
 protected:
   /// The banked rays to be used on the next timestep (restartable)
   std::vector<std::shared_ptr<Ray>> & _banked_rays;
@@ -53,13 +47,8 @@ protected:
   /// particles velocities are updated
   const ParticleStepperBase & _stepper;
 
-  /// temporary variables used when resetting rays
-  ///@{
-  const Elem * _temp_elem;
-  Point _temp_point;
-  Real _temp_distance;
-  Point _temp_velocity;
-  ///@}
+  /// temporary variable used when resetting rays
+  Point _temporary_velocity;
   /**
    * Method for getting a rays velocity as a vector
    * Each component is retrieved from ray data and given

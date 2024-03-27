@@ -16,20 +16,6 @@
   []
 []
 
-[Kernels]
-  [Ex_null]
-    type = NullKernel
-    variable = Ex
-  []
-  [Ey_null]
-    type = NullKernel
-    variable = Ey
-  []
-  [Ez_null]
-    type = NullKernel
-    variable = Ez
-  []
-[]
 
 [Functions]
   [E_x_ic]
@@ -106,6 +92,7 @@
 
 [Problem]
   solve = false
+  kernel_coverage_check = false
 []
 
 [Outputs/rays]

@@ -24,33 +24,6 @@
   []
 []
 
-[Kernels]
-  [Ex_null]
-    type = NullKernel
-    variable = Ex
-  []
-  [Ey_null]
-    type = NullKernel
-    variable = Ey
-  []
-  [Ez_null]
-    type = NullKernel
-    variable = Ez
-  []
-  [Bx_null]
-    type = NullKernel
-    variable = Bx
-  []
-  [By_null]
-    type = NullKernel
-    variable = By
-  []
-  [Bz_null]
-    type = NullKernel
-    variable = Bz
-  []
-[]
-
 [Functions]
   [E_x_ic]
     type = ParsedFunction
@@ -154,6 +127,7 @@
 
 [Problem]
   solve = false
+  kernel_coverage_check=false
 []
 
 [Outputs/rays]

@@ -72,23 +72,21 @@ PICStudyBase::reinitializeParticles()
   for (auto & ray : _banked_rays)
   {
     // Store off the ray's info before we reset it
-    _temp_elem = ray->currentElem();
-    _temp_point = ray->currentPoint();
-    _temp_distance = ray->distance();
+    const auto elem = ray->currentElem();
+    const auto point = ray->currentPoint();
+    const auto distance = ray->distance();
 
-    getVelocity(*ray, _temp_velocity);
+    getVelocity(*ray, _temporary_velocity);
     // Reset it (this is required to reuse a ray)
     ray->resetCounters();
     ray->clearStartingInfo();
 
     // And set the new starting information
-    ray->setStart(_temp_point, _temp_elem);
-    _stepper.setupStep(*ray,
-                       _temp_velocity,
-                       ray->data()[_charge_index] / ray->data()[_mass_index],
-                       _temp_distance);
+    ray->setStart(point, elem);
+    _stepper.setupStep(
+        *ray, _temporary_velocity, ray->data()[_charge_index] / ray->data()[_mass_index], distance);
 
-    setVelocity(*ray, _temp_velocity);
+    setVelocity(*ray, _temporary_velocity);
   }
 }
 
@@ -103,21 +101,15 @@ PICStudyBase::postExecuteStudy()
 void
 PICStudyBase::getVelocity(const Ray & ray, Point & v) const
 {
-  v(0) = ray.data()[_v_x_index];
-  v(1) = ray.data()[_v_y_index];
-  v(2) = ray.data()[_v_z_index];
+  v(0) = ray.data(_v_x_index);
+  v(1) = ray.data(_v_y_index);
+  v(2) = ray.data(_v_z_index);
 }
 
 void
 PICStudyBase::setVelocity(Ray & ray, const Point & v) const
 {
-  ray.data()[_v_x_index] = v(0);
-  ray.data()[_v_y_index] = v(1);
-  ray.data()[_v_z_index] = v(2);
-}
-
-const std::vector<std::shared_ptr<Ray>> &
-PICStudyBase::getBankedRays() const
-{
-  return _banked_rays;
+  ray.data(_v_x_index) = v(0);
+  ray.data(_v_y_index) = v(1);
+  ray.data(_v_z_index) = v(2);
 }

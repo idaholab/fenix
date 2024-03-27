@@ -33,4 +33,16 @@
     allow_test_objects = true
     requirement = 'The system shall be capable of applying a linear impluse from a force field parallel to a particles velocity'
   []
+  [errors]
+    requirement = 'The system shall report a reasonable error from the particle stepper when'
+
+    [too_few_field_components]
+      type = RunException
+      input = 'parallel_acceleration.i'
+      cli_args = "UserObjects/stepper/field_components='Ex'"
+      allow_test_objects = true
+      detail = 'the user does not provide 3 components of the force field'
+      expect_err = 'You must provide 3 components representing the force field'
+    []
+  []
 []

@@ -21,7 +21,7 @@ ParticleStepperBase::validParams()
 }
 
 ParticleStepperBase::ParticleStepperBase(const InputParameters & parameters)
-  : GeneralUserObject(parameters), _dim(_fe_problem.mesh().dimension())
+  : GeneralUserObject(parameters), _mesh_dimension(_fe_problem.mesh().dimension())
 {
 }
 
@@ -29,6 +29,9 @@ void
 ParticleStepperBase::setMaxDistanceAndDirection(Ray & ray, const Point & v, const Real dt) const
 {
 
+  // if the particle velocity is the zero vector the ray needs to be explicitly
+  // made stationary otherwise a zero velocity will create a divide by zero
+  // when trying to compute the unit direction vector
   if (v.absolute_fuzzy_equals(Point(0, 0, 0)))
   {
     ray.setStationary();
@@ -37,13 +40,13 @@ ParticleStepperBase::setMaxDistanceAndDirection(Ray & ray, const Point & v, cons
   // temporary point to store the new velocity as we work on it
   Point velocity = Point(0, 0, 0);
 
-  if (_dim >= 1)
+  if (_mesh_dimension >= 1)
     velocity(0) = v(0);
 
-  if (_dim >= 2)
+  if (_mesh_dimension >= 2)
     velocity(1) = v(1);
 
-  if (_dim == 3)
+  if (_mesh_dimension == 3)
     velocity(2) = v(2);
 
   // max distance is v^2 dt
