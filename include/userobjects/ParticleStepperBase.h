@@ -10,10 +10,11 @@
 
 #pragma once
 
-#include "Ray.h"
 #include "GeneralUserObject.h"
+
 #include "VariableSampler.h"
-#include "RayTracingStudy.h"
+
+class Ray;
 
 class ParticleStepperBase : public GeneralUserObject
 {
