@@ -10,7 +10,6 @@
 
 #pragma once
 
-// MOOSE Includes
 #include "ParticleStepperBase.h"
 #include "VariableSampler.h"
 
@@ -30,7 +29,7 @@ public:
                          const Real distance = 0) const override final;
 
 private:
-  /// the variable names for each componet of the force vector
+  /// the variable names for each component of the force vector
   const std::vector<VariableName> _field_vars;
   /// the samplers for sampling each force component at the point of a particle
   std::vector<FENIX::VariableSampler> _field_samplers;

@@ -2,19 +2,19 @@
 
 !syntax description /UserObjects/LeapFrogStepper
 
-On the first step that a particle takes the particle velocity is updated with a 1/2 time step
+On the first step that a particle takes the particle velocity is updated with a 1/2 time step as
 
 \begin{equation}
   \vec{v}_{1/2} = \vec{v}_0 + \frac{q}{m} \vec{F} \frac{dt}{2}
 \end{equation}
 
-The particle position is then updated with a full time step
+The particle position is then updated with a full time step as
 
 \begin{equation}
   \vec{r}_{1} = \vec{r}_0 + \vec{v}_{1/2} dt
 \end{equation}
 
-For every other time step, n, after the initial both are updated with a full time step and
+For every other time step, $n$, after the initial both are updated with a full time step and
 
 \begin{equation}
   \vec{v}_{n + 1/2} = \vec{v}_{n - 1/2} + \frac{q}{m} \vec{F} dt

@@ -10,7 +10,6 @@
 
 #pragma once
 
-// MOOSE Includes
 #include "ParticleStepperBase.h"
 #include "VariableSampler.h"
 

@@ -16,13 +16,13 @@ BorisStepper::validParams()
 {
   auto params = ParticleStepperBase::validParams();
   params.addClassDescription(
-      "Electromagnetic particle stepper method implementing the Boris Algorithm");
+      "Electromagnetic particle stepper method implementing the Boris Algorithm.");
   params.addRequiredParam<std::vector<VariableName>>(
       "efield_components",
-      "A list of 3 variables which represent the 3 componets of the electric field");
+      "A list of 3 variables which represent the 3 components of the electric field");
   params.addRequiredParam<std::vector<VariableName>>(
       "bfield_components",
-      "A list of 3 variables which represent the 3 componets of the electric field");
+      "A list of 3 variables which represent the 3 components of the electric field");
   return params;
 }
 
@@ -34,12 +34,12 @@ BorisStepper::BorisStepper(const InputParameters & parameters)
   if (_efield_vars.size() != 3)
     mooseError("BorisStepper with name ",
                name(),
-               ": You must provide 3 componets representing the electric field!");
+               ": You must provide 3 components representing the electric field!");
 
   if (_bfield_vars.size() != 3)
     mooseError("BorisStepper with name ",
                name(),
-               ": You must provide 3 componets representing the magnetic field!");
+               ": You must provide 3 components representing the magnetic field!");
 
   for (int i = 0; i < 3; ++i)
   {
@@ -54,10 +54,10 @@ BorisStepper::setupStep(Ray & ray, Point & v, const Real q_m_ratio, const Real d
 
   Real dt = _dt;
   // if it is the particles first step we need to take a half step
-  // other wise we take a full step
+  // otherwise we take a full step
   if (distance == 0)
     dt /= 2;
-  // lets sample the fields at the ray location so we can upate the velocity properly
+  // let's sample the fields at the ray location so we can update the velocity properly
   Point E = sampleField(_efield_samplers, ray);
   Point B = sampleField(_bfield_samplers, ray);
   // calculate v^-

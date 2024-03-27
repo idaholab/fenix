@@ -19,7 +19,7 @@ LeapFrogStepper::validParams()
                              "the velocity and position are updated with a 1/2 dt offset.");
   params.addRequiredParam<std::vector<VariableName>>(
       "field_components",
-      "A list of 3 variables which represent the 3 componets of the force field acting on "
+      "A list of 3 variables which represent the 3 components of the force field acting on "
       "particles");
   return params;
 }
@@ -31,7 +31,7 @@ LeapFrogStepper::LeapFrogStepper(const InputParameters & parameters)
   if (_field_vars.size() != 3)
     mooseError("LeapFrogStepper with name ",
                name(),
-               ": You must provide 3 componets representing the force field!");
+               ": You must provide 3 components representing the force field!");
 
   for (int i = 0; i < 3; ++i)
   {
@@ -47,12 +47,7 @@ LeapFrogStepper::setupStep(Ray & ray, Point & v, const Real q_m_ratio, const Rea
   // for the velocity other wise we take a full step
   Point F = sampleField(_field_samplers, ray);
 
-  if (distance == 0)
-  {
-    v = linearImpulse(v, F, q_m_ratio, _dt / 2);
-    setMaxDistanceAndDirection(ray, v, _dt);
-    return;
-  }
-  v = linearImpulse(v, F, q_m_ratio, _dt);
-  setMaxDistanceAndDirection(ray, v, _dt);
+  const auto dt = distance == 0 ? _dt / 2 : _dt;
+  v = linearImpulse(v, F, q_m_ratio, dt);
+  setMaxDistanceAndDirection(ray, v, dt);
 }

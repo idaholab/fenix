@@ -2,16 +2,15 @@
 
 !syntax description /UserObjects/BorisStepper
 
-The equations of motion for a charged particle in an electric and magnetic field are
-
-\begin{equation}
-  \frac{d\vec{r}}{dt}
+In magnetized (or electromagnetic) PIC simulations, the de facto standard particle stepping algorithm is commonly known as the Boris algorithm [!cite](boris1970relativistic,Birdsall_Langdon_1991, qin2013boris). This algorithm is similar to a [Leap Frog method](userobjects/LeapFrogStepper.md) and has second order accuracy in time when solving the equations of motion for a charged particle, given by
+\begin{equation} \label{eq:pos}
+  \diff{\vec{r}}{t}
   =
   \vec{v}
 \end{equation}
-
-\begin{equation}
-  \frac{d\vec{v}}{dt}
+and 
+\begin{equation} \label{eq:vel}
+  \diff{\vec{v}}{t}
   =
   \frac{q}{m}
   \left[
@@ -22,10 +21,10 @@ The equations of motion for a charged particle in an electric and magnetic field
     \vec{B}
   \right]
 \end{equation}
+where $q$ is the particle's charge, $m$ is the particle's mass, and  $\vec{E}$ and $\vec{B}$ are the electric and magnetic fields that the particle is subject to, respectively.
 
-In the boris algorithm the acceleration due to the electric and magnetic fields are seperated and approximated with a central finite difference scheme. For time step, $n$, the velocity update scheme is given by
-
-\begin{equation}
+In the Boris algorithm, \cref{eq:pos,eq:vel} are discretized with a central difference scheme and the acceleration due to the electric field and magnetic field are separated. First, half of the impulse due to the electric field is applied to the particle, as  
+\begin{equation} \label{eq:e_half1}
   \vec{v}^{\,-}
   =
   \vec{v}_{n}
@@ -34,18 +33,18 @@ In the boris algorithm the acceleration due to the electric and magnetic fields 
   \vec{E}_n
   \frac{\Delta t}{2}
 \end{equation}
-
-\begin{equation}
+where $\vec{v}^{\,-}$ is an intermediate particle velocity, $\vec{v}_{n}$ is the particle velocity at step $n$, and $\vec{E}_{n}$ is the electric field at step $n$. The velocity of the particle after rotation due to the magnetic field is derived as
+\begin{equation} \label{eq:boris_v_plus}
   \vec{v}^{\,+}
   =
   \vec{v}^{\,-}
   +
   \vec{v}^{\,'}
   \times
-  \vec{s}
+  \vec{s},
 \end{equation}
-
-\begin{equation}
+with 
+\begin{equation} \label{eq:boris_v_prime}
   \vec{v}^{\,'}
   =
   \vec{v}^{\,-}
@@ -54,22 +53,22 @@ In the boris algorithm the acceleration due to the electric and magnetic fields 
   \times
   \vec{l}
 \end{equation}
-
-\begin{equation}
+where 
+\begin{equation} \label{eq:boris_t}
   \vec{l} =
   \frac{q}{m}
   \vec{B}_n
-  \Delta t
+  \Delta t,
 \end{equation}
-
-\begin{equation}
+which accounts for the effect of $\vec{B}_n$, the magnetic field at step $n$. $\vec{s}$ is defined as
+\begin{equation} \label{eq:boris_s}
   \vec{s} =
   \frac{2 \vec{l}}{
     1 + \vec{l} \cdot \vec{l}
-  }
+  }.
 \end{equation}
-
-\begin{equation}
+Finally, the rotation due to the presence of the magnetic field is then applied with
+\begin{equation} \label{eq:mag_step}
   \frac{
     \vec{v}^{\,+}
     -
@@ -83,22 +82,20 @@ In the boris algorithm the acceleration due to the electric and magnetic fields 
     \vec{v}^{\,-}
   \right)
   \times
-  \vec{B}_n
+  \vec{B}_n,
 \end{equation}
-
-\begin{equation}
+and the final impulse due to the electric field is then applied to the particle using 
+\begin{equation} \label{eq:e_half2}
   \vec{v}_{n+1}
   =
   \vec{v}^{\,+}
   +
   \frac{q}{m}
   \vec{E}_n
-  \frac{\Delta t}{2}
+  \frac{\Delta t}{2}.
 \end{equation}
+The implementation of the Boris algorithm was verified using several single particle motion tests: constant electric field, cyclotron motion ([/cyclotron_motion.i]), and $\vec{E} \times \vec{B}$ drift motion ([/e_cross_b.i]).
 
-More details about the Boris algorithm can be found in
-
-!bibtex list bib_files=boris.bib
 
 # Example Input Syntax
 
@@ -109,3 +106,5 @@ More details about the Boris algorithm can be found in
 !syntax inputs /UserObjects/BorisStepper
 
 !syntax children /UserObjects/BorisStepper
+
+!bibtex bibliography
