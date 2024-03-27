@@ -51,7 +51,7 @@ protected:
    * @param v the new ray velocity
    * @param dt the time step used to set the maximum distance
    */
-  virtual void setMaxDistanceAndDirection(Ray & ray, const Point & v, const Real dt) const;
+  virtual void setMaxDistanceAndDirection(Ray & ray, const Point & v, const Real dt) const final;
 
   /**
    * Used for sampling each component of a finite element field variable
