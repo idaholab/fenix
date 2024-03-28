@@ -32,4 +32,6 @@ private:
 
   /// The starting velocities
   const std::vector<Point> & _start_velocities;
+  const Real _mass;
+  const Real _charge;
 };
