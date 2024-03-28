@@ -2,6 +2,8 @@
 
 !syntax description /UserObjects/BorisStepper
 
+Results of the verification of the BorisStepper can be found in [!cite](gall2024verification).
+
 In magnetized (or electromagnetic) PIC simulations, the de facto standard particle stepping algorithm is commonly known as the Boris algorithm [!cite](boris1970relativistic,Birdsall_Langdon_1991, qin2013boris). This algorithm is similar to a [Leap Frog method](userobjects/LeapFrogStepper.md) and has second order accuracy in time when solving the equations of motion for a charged particle, given by
 
 \begin{equation} \label{eq:pos}
@@ -112,7 +114,7 @@ and the final impulse due to the electric field is then applied to the particle 
   \frac{\Delta t}{2}.
 \end{equation}
 
-The implementation of the Boris algorithm was verified using several single particle motion tests: constant electric field ([/boris_parallel_acceleration.i], [/boris_projectile_motion.i]), cyclotron motion ([/cyclotron_motion.i]), and $\vec{E} \times \vec{B}$ drift motion ([/e_cross_b.i]). Results of these verification tests can be found in [!cite](gall2024verification).
+The implementation of the Boris algorithm was verified using several single particle motion tests: constant electric field ([/boris_parallel_acceleration.i], [/boris_projectile_motion.i]), cyclotron motion ([/cyclotron_motion.i]), and $\vec{E} \times \vec{B}$ drift motion ([/e_cross_b.i]).
 
 # Example Input Syntax
 
