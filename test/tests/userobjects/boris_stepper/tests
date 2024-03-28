@@ -34,6 +34,39 @@
     requirement = 'The system shall be capable of accurately capturing the path of charged particles in a perpendicular magnetic field'
   []
 
+  [projectile_motion]
+    type = 'Exodiff'
+    input = 'boris_projectile_motion.i'
+    exodiff = 'projectile_motion_rays.e
+               projectile_motion_rays.e-s0001
+               projectile_motion_rays.e-s0002
+               projectile_motion_rays.e-s0003
+               projectile_motion_rays.e-s0004
+               projectile_motion_rays.e-s0005
+               projectile_motion_rays.e-s0006
+               projectile_motion_rays.e-s0007
+               projectile_motion_rays.e-s0008
+               projectile_motion_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'The system shall be capable of applying a linear impluse from a force field perpendicular to a particles initial velocity using the boris stepper when there is 0 magnetic field'
+  []
+  [parallel_acceleration]
+    type = 'Exodiff'
+    input = 'boris_parallel_acceleration.i'
+    exodiff = 'parallel_acceleration_rays.e
+               parallel_acceleration_rays.e-s0001
+               parallel_acceleration_rays.e-s0002
+               parallel_acceleration_rays.e-s0003
+               parallel_acceleration_rays.e-s0004
+               parallel_acceleration_rays.e-s0005
+               parallel_acceleration_rays.e-s0006
+               parallel_acceleration_rays.e-s0007
+               parallel_acceleration_rays.e-s0008
+               parallel_acceleration_rays.e-s0009'
+    allow_test_objects = true
+    requirement = 'The system shall be capable of applying a linear impluse from a force field parallel to a particles velocity using the boris stepper when there is 0 magnetic field'
+  []
+
   [errors]
     requirement = 'The system shall report a reasonable error from the particle stepper when'
 
