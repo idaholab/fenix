@@ -10,7 +10,6 @@
 
 #pragma once
 
-// MOOSE Includes
 #include "ParticleStepperBase.h"
 
 class TestSimpleStepper : public ParticleStepperBase
@@ -21,7 +20,7 @@ public:
   static InputParameters validParams();
 
   /**
-   * A simple particle stepper which will not modify the velocity of the paritcle
+   * A simple particle stepper which will not modify the velocity of the particle
    * it will simply update the velocity with the rule v^2 * dt
    */
   virtual void

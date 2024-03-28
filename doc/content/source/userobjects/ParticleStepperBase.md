@@ -6,7 +6,7 @@
   d_\text{max} = \vec{v} \cdot \vec{v} \: dt,
 \end{equation}
 
-Where $d_\text{max}$ is maximum distance the particle is allowed to travel during the nex time step, and $\vec{v}$ is the particles' velocity.
+where $d_\text{max}$ is maximum distance the particle is allowed to travel during the next time step, and $\vec{v}$ is the particles' velocity.
 
 However, only the components of the velocity data corresponding to the dimension of the mesh will be used in the calculation. If the mesh is 2D then only the first 2 components of velocity will be used for this calculation. This calculation is performed with `ParticleStepperBase::setupStep`. This function takes an argument of the ray that needs its velocity updated, the new velocity of the ray and a time step to be used for the maximum distance calculation to allow flexibility for particle pushing methods.
 
