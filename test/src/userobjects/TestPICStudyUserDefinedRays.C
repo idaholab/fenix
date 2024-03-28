@@ -25,8 +25,8 @@ TestPICStudyUserDefinedRays::validParams()
   params.addRequiredParam<std::vector<Point>>(
       "start_velocities",
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
-  params.addParam<Real>("mass", 0, "The mass of the particles used for during a test");
-  params.addParam<Real>("charge", 0, "The charge of the particles used for during a test");
+  params.addParam<Real>("mass", 0, "The mass of the particles used for a test");
+  params.addParam<Real>("charge", 0, "The charge of the particles used for a test");
   return params;
 }
 

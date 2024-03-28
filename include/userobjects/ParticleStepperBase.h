@@ -11,7 +11,9 @@
 #pragma once
 
 #include "GeneralUserObject.h"
+
 #include "VariableSampler.h"
+
 class Ray;
 
 class ParticleStepperBase : public GeneralUserObject
