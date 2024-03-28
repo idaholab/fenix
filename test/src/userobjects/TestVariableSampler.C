@@ -1,6 +1,6 @@
 #include "TestVariableSampler.h"
 
-registerMooseObject("FenixApp", TestVariableSampler);
+registerMooseObject("FenixTestApp", TestVariableSampler);
 
 InputParameters
 TestVariableSampler::validParams()

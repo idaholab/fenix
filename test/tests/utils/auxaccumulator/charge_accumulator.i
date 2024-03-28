@@ -16,7 +16,7 @@
 
 [UserObjects]
   [stepper]
-    type = VelocityUpdaterBase
+    type = TestSimpleStepper
   []
 
   [study]

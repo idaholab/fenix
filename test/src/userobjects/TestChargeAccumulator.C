@@ -9,7 +9,7 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "TestChargeAccumulator.h"
-#include "VelocityUpdaterBase.h"
+#include "ParticleStepperBase.h"
 
 registerMooseObject("FenixTestApp", TestChargeAccumulator);
 

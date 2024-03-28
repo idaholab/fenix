@@ -9,7 +9,7 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "PICStudyBase.h"
-#include "VelocityUpdaterBase.h"
+#include "ParticleStepperBase.h"
 
 InputParameters
 PICStudyBase::validParams()
@@ -38,7 +38,10 @@ PICStudyBase::PICStudyBase(const InputParameters & parameters)
     _v_y_index(registerRayData("v_y")),
     _v_z_index(registerRayData("v_z")),
     _weight_index(registerRayData("weight")),
-    _velocity_updater(getUserObject<VelocityUpdaterBase>("velocity_updater")),
+    _charge_index(registerRayData("charge")),
+    _mass_index(registerRayData("mass")),
+    _species_index(registerRayData("species")),
+    _stepper(getUserObject<ParticleStepperBase>("velocity_updater")),
     _has_generated(declareRestartableData<bool>("has_generated", false))
 {
 }
@@ -70,15 +73,20 @@ PICStudyBase::reinitializeParticles()
   {
     // Store off the ray's info before we reset it
     const auto elem = ray->currentElem();
-    const auto start_point = ray->currentPoint();
+    const auto point = ray->currentPoint();
+    const auto distance = ray->distance();
 
+    getVelocity(*ray, _temporary_velocity);
     // Reset it (this is required to reuse a ray)
     ray->resetCounters();
     ray->clearStartingInfo();
 
     // And set the new starting information
-    ray->setStart(start_point, elem);
-    _velocity_updater.updateVelocity(*ray, getVelocity(*ray), _dt);
+    ray->setStart(point, elem);
+    _stepper.setupStep(
+        *ray, _temporary_velocity, ray->data()[_charge_index] / ray->data()[_mass_index], distance);
+
+    setVelocity(*ray, _temporary_velocity);
   }
 }
 
@@ -90,8 +98,18 @@ PICStudyBase::postExecuteStudy()
   _banked_rays = rayBank();
 }
 
-Point
-PICStudyBase::getVelocity(const Ray & ray) const
+void
+PICStudyBase::getVelocity(const Ray & ray, Point & v) const
 {
-  return Point(ray.data()[_v_x_index], ray.data()[_v_y_index], ray.data()[_v_z_index]);
+  v(0) = ray.data(_v_x_index);
+  v(1) = ray.data(_v_y_index);
+  v(2) = ray.data(_v_z_index);
+}
+
+void
+PICStudyBase::setVelocity(Ray & ray, const Point & v) const
+{
+  ray.data(_v_x_index) = v(0);
+  ray.data(_v_y_index) = v(1);
+  ray.data(_v_z_index) = v(2);
 }

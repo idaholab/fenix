@@ -31,7 +31,7 @@
 
 [UserObjects]
   [stepper]
-    type = VelocityUpdaterBase
+    type = TestSimpleStepper
   []
 
   [study]
@@ -73,7 +73,7 @@
   [rays]
     type = RayTracingExodus
     study = study
-    output_data = true
+    output_data_names='v_x v_y v_z weight field_value'
     execute_on = TIMESTEP_BEGIN
   []
   exodus = true
