@@ -15,7 +15,7 @@
                projectile_motion_rays.e-s0008
                projectile_motion_rays.e-s0009'
     allow_test_objects = true
-    requirement = 'The system shall be capable of applying a linear impluse from a force field perpendicular to a particles initial velocity'
+    requirement = 'The system shall be capable of applying a linear impulse from a force field perpendicular to a particle's initial velocity'
   []
   [parallel_acceleration]
     type = 'Exodiff'
