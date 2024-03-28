@@ -21,11 +21,8 @@ ResidualAccumulator::ResidualAccumulator(FEProblemBase & problem,
                                          const unsigned int nl_sys_num)
   : AccumulatorBase(problem),
     TaggingInterface(object),
-    _var(dynamic_cast<MooseVariableField<Real> &>(
-        _problem.getVariable(_tid,
-                             variable,
-                             Moose::VarKindType::VAR_NONLINEAR,
-                             Moose::VarFieldType::VAR_FIELD_STANDARD))),
+    _var(dynamic_cast<MooseVariableField<Real> &>(_problem.getVariable(
+        _tid, variable, Moose::VarKindType::VAR_SOLVER, Moose::VarFieldType::VAR_FIELD_STANDARD))),
     _assembly(_problem.assembly(_tid, nl_sys_num)),
     _test(_var.phi())
 {
