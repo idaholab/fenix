@@ -5,7 +5,6 @@
   xmax = 1
 []
 
-
 [Problem]
   extra_tag_vectors = dump_value
 []
@@ -30,7 +29,6 @@
   boundary = 'left right'
   preset = false
 []
-
 
 [AuxVariables/dump_value]
 []

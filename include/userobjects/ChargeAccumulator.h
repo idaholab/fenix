@@ -29,10 +29,10 @@ public:
   ///@}
 
   /**
-   * the execute method will get all of the particles that are being tracked
+   * The execute method will get all of the particles that are being tracked
    * by the PIC study once they have finished tracing and then map the charge from
-   * the particles to the residuals of a finite element variable
-   * this is computing the inner product of the point source charge density
+   * the particles to the residuals of a finite element variable.
+   * This is computing the inner product of the point source charge density
    */
   virtual void execute() override;
 
