@@ -61,6 +61,8 @@ The second term of the weak form of Poisson's equation can then be evaluated as
 
 where $M$ is the number of particles which exist on the subdomain where the $j^\text{th}$ test function $\psi_j$ is non-zero. This objects evaluates this source term directly and accumulates the result directly into the residual of the variable representing $\phi$.
 
+This object was verified with the test case found in [/simple_potential_solve.i]. This is the same verification case as presented in [!cite](gall2024verification) only the inner product of the charge density source term and the finite element test function is evaluated directly.
+
 !alert note
 This representation of the charge density means that direct knowledge of the charge density is lost and only the inner product can be evaluated.
 
