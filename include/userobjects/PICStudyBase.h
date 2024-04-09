@@ -23,6 +23,12 @@ public:
 
   virtual void generateRays() override;
 
+  /**
+   * Method for getting the rays after they have finished tracing
+   * useful for looking at the rays data if needed by another object
+   */
+  const std::vector<std::shared_ptr<Ray>> & getBankedRays() const;
+
 protected:
   /// The banked rays to be used on the next timestep (restartable)
   std::vector<std::shared_ptr<Ray>> & _banked_rays;
