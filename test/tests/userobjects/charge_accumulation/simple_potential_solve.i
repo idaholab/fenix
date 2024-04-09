@@ -70,7 +70,6 @@
     type = ChargeAccumulator
     study = study
     variable = phi
-    execute_on = PRE_KERNELS
     extra_vector_tags = dump_value
   []
 []

@@ -67,7 +67,7 @@ This object was verified with the test case found in [/simple_potential_solve.i]
 This representation of the charge density means that direct knowledge of the charge density is lost and only the inner product can be evaluated.
 
 !alert note
-This object should be set to execute on `PRE_KERNELS` so that the residual contribution from the charge density source term is computed correctly.
+The `execute_on` parameter of this object is set to `PRE_KERNELS` and is not available to be set by the user.
 
 !listing test/tests/userobjects/charge_accumulation/simple_potential_solve.i block=UserObjects
 
