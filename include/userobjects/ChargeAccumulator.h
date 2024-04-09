@@ -10,8 +10,9 @@
 
 #pragma once
 #include "GeneralUserObject.h"
-#include "ResidualAccumulator.h"
-#include "PICStudyBase.h"
+// including ray for RayDataIndex
+#include "Ray.h"
+class PICStudyBase;
 
 class ChargeAccumulator : public GeneralUserObject
 {

@@ -1,5 +1,6 @@
 #include "ChargeAccumulator.h"
-
+#include "ResidualAccumulator.h"
+#include "PICStudyBase.h"
 #include "MooseMesh.h"
 
 registerMooseObject("FenixApp", ChargeAccumulator);
@@ -20,7 +21,8 @@ ChargeAccumulator::validParams()
   params.set<ExecFlagEnum>("execute_on") = EXEC_PRE_KERNELS;
   // making this input parameter private so the user cannot use the object incorrectly
   params.suppressParameter<ExecFlagEnum>("execute_on");
-  params.addRequiredParam<NonlinearVariableName>("variable", "The variable to contribute to the residual of");
+  params.addRequiredParam<NonlinearVariableName>("variable",
+                                                 "The variable to contribute to the residual of");
   return params;
 }
 
