@@ -7,30 +7,11 @@
 
 
 [UserObjects]
-  [stepper]
-    type = TestSimpleStepper
-  []
-
   [study]
     type = OneDPIC
-    velocity_updater = stepper
   []
 []
 
-
-[RayKernels]
-  [null]
-    type = NullRayKernel
-  []
-[]
-
-[RayBCs]
-  [reflect]
-    type = ReflectRayBC
-    boundary = 'left right'
-    study = study
-  []
-[]
 
 [Executioner]
   type = Steady

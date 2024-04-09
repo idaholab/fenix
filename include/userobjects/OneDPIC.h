@@ -10,19 +10,23 @@
 
 #pragma once
 
-#include "PICStudyBase.h"
+#include "GeneralUserObject.h"
 
-/**
- * Test study for generating rays for a basic particle-in-cell capability,
- * where Rays have propagate a bit each time step
- */
-class OneDPIC : public PICStudyBase
+
+
+class OneDPIC : public GeneralUserObject
 {
 public:
   OneDPIC(const InputParameters & parameters);
 
   static InputParameters validParams();
+  /**
+   * Unused methods
+   */
+  ///@{
+  virtual void initialize() override final {}
+  virtual void finalize() override final {}
+  virtual void execute() override;
+  ///@}
 
-protected:
-  virtual void initializeParticles() override final;
 };
