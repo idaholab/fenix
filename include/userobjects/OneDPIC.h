@@ -20,6 +20,7 @@ public:
   OneDPIC(const InputParameters & parameters);
 
   static InputParameters validParams();
+
   /**
    * Unused methods
    */
@@ -29,4 +30,6 @@ public:
   virtual void execute() override;
   ///@}
 
+protected:
+  Sampler & _sampler;
 };
