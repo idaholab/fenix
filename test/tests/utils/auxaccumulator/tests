@@ -23,4 +23,18 @@
     allow_test_objects = true
     requirement = 'The system shall support mapping data from rays to an aux variable and reset the aux variable to 0 on each time step'
   []
+  [charge_mapping2D]
+    type = 'Exodiff'
+    input = 'charge_accumulator2D.i'
+    exodiff = 'charge_accumulator2D_out.e'
+    allow_test_objects = true
+    requirement = 'The system shall support mapping data from rays to an aux variable and reset the aux variable to 0 on each time step on a 2 dimensional mesh'
+  []
+  [simple_potential_solve_aux]
+    type = 'Exodiff'
+    input = 'simple_potential_solve_aux.i'
+    exodiff = 'simple_potential_solve_aux_out.e'
+    allow_test_objects = true
+    requirement = 'The system shall support mapping data from rays to an aux variable and then solve differential equations based on the data mapped from rays'
+  []
 []

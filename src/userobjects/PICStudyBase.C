@@ -113,3 +113,9 @@ PICStudyBase::setVelocity(Ray & ray, const Point & v) const
   ray.data(_v_y_index) = v(1);
   ray.data(_v_z_index) = v(2);
 }
+
+const std::vector<std::shared_ptr<Ray>> &
+PICStudyBase::getBankedRays() const
+{
+  return _banked_rays;
+}
