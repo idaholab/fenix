@@ -24,7 +24,8 @@ Documents:
     software_library_list: sqa/fenix_sll.md
     communication_and_contact_information: sqa/fenix_cci.md
     software_coding_standards: sqa/fenix_scs.md
-    log_default: WARNING
+    user_manual: sqa/user_manual.md
+    theory_manual: sqa/theory_manual.md
     show_warning: false
     working_dirs:
         - ${ROOT_DIR}/doc/content
