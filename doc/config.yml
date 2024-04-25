@@ -47,6 +47,11 @@ Extensions:
     MooseDocs.extensions.acronym:
         acronyms:
             framework: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+            fenix:
+                FENIX: Fusion ENergy Integrated multiphys-X
+                PIC: particle-in-cell
+                CFD: computational fluid dynamics
+                CAD: computer-aided design
     MooseDocs.extensions.sqa:
         active: true
         categories:
