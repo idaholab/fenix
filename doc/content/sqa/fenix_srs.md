@@ -50,7 +50,7 @@ documentation for those individual objects.
 - +Developers+: These are scientists or engineers that modify or add capabilities to [!ac]({{app}})
   for their own purposes, which may include research or extending its capabilities. They will typically
   have a background in fusion energy sciences, plasma physics, tritium migration, radiation transport,
-  heat conduction,  and/or material science as well as in modeling and simulation techniques, but may have
+  heat conduction, and/or material science as well as in modeling and simulation techniques, but may have
   more limited background in code development using the C++ language. In many cases, these developers
   will be encouraged to contribute code back to [!ac]({{app}}).
 - +Analysts+: These are users that run [!ac]({{app}}) to run simulations, but do not develop code.
