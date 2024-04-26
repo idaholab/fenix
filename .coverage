@@ -6,7 +6,5 @@
 # - warn_new: Warns below this percentage of coverage for new lines added
 
 [default]
-# very low for now, but that's because there is no content in this app yet.
-# this should be upped as we add content.
-require_total = 87
+require_total = 90
 warn_new = 90
