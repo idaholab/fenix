@@ -1,6 +1,6 @@
 Verification, validation, and example cases list cases showcasing FENIX's capabilities and ensuring its accuracy.
 
-For [software quality assurance](sqa/index.md) purposes, FENIX undergoes verification and validation.
+For [software quality assurance](content/sqa/index.md) purposes, FENIX undergoes verification and validation.
 Verification consists of comparing FENIX predictions against analytical solutions in different conditions, which are often simple cases.
 Validation consists of comparing FENIX predictions against experimental data.
 
@@ -18,7 +18,7 @@ Note that codes couples with FENIX, such as [TMAP8](https://mooseframework.inl.g
 
 !alert note title=Under development - no verification cases are available yet
 FENIX is under active development and does not currently have any verification cases fully documented for users.
-However, several verification cases are already available in the [test/tests] folder.
+However, several verification cases are already available in the [fenix/test/tests] folder.
 
 # List of validation cases
 

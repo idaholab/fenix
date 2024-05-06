@@ -12,8 +12,8 @@ your work should be included on this list, please create an issue on
 
 !! ## Technical Reports
 
-!! !bibtex list bib_files=tmap8_technical_reports.bib
+!! !bibtex list bib_files=fenix_technical_reports.bib
 
 !! ## Theses and Dissertations
 
-!! !bibtex list bib_files=tmap8_theses_and_dissertations.bib
+!! !bibtex list bib_files=fenix_theses_and_dissertations.bib

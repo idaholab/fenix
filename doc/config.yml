@@ -38,12 +38,11 @@ Extensions:
                 FENIX on HPC: getting_started/hpc.md
                 Using FENIX: getting_started/using_FENIX.md
                 User Notes: getting_started/user_notes.md
-                Contributing to FENIX: /sqa/contributing.md
+                Contributing to FENIX: sqa/contributing.md
             Documentation:
                 FENIX-only Syntax: syntax/fenix_only.md
                 Complete Code Syntax: syntax/index.md
-                V&V: /verification_and_validation/index.md
-                Examples: /examples/index.md
+                V&V and Examples: /verification_validation_example/index.md
                 Publications using FENIX: publications.md
             Software Quality:
                 Software Quality Assurance (SQA) Information: /sqa/index.md
