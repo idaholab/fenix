@@ -1,5 +1,5 @@
 # FENIX
-Fusion ENergy Integrated multiphys-X (FENIX Framwwork)
+Fusion ENergy Integrated multiphys-X (FENIX) Framework
 =====
 
 FENIX is an application for performing system-level, engineering scale (i.e., at the scale of
