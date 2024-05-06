@@ -36,20 +36,19 @@ Extensions:
             Getting Started:
                 Installation: getting_started/installation.md
                 FENIX on HPC: getting_started/hpc.md
-                Using FENIX: getting_started/using_FENIX.md
+                Using FENIX: getting_started/using_fenix.md
                 User Notes: getting_started/user_notes.md
                 Contributing to FENIX: sqa/contributing.md
             Documentation:
                 FENIX-only Syntax: syntax/fenix_only.md
                 Complete Code Syntax: syntax/index.md
-                V&V and Examples: /verification_validation_example/index.md
+                V&V and Examples: /verification_validation_examples/index.md
                 Publications using FENIX: publications.md
             Software Quality:
                 Software Quality Assurance (SQA) Information: /sqa/index.md
                 Code Standards: sqa/fenix_scs.md
             Help:
               FENIX Issues Page: https://github.com/idaholab/FENIX/issues
-              FENIX Discussion Forum: https://github.com/idaholab/FENIX/discussions
               MOOSE FAQ page: https://mooseframework.inl.gov/help/faq/index.html
               MOOSE Discussion Forum: https://github.com/idaholab/moose/discussions
     MooseDocs.extensions.appsyntax:

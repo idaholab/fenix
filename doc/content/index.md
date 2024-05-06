@@ -1,6 +1,8 @@
 !config navigation breadcrumbs=False scrollspy=False
 
-!media figures/FENIX_logo_blue.png style=display:block;margin-left:auto;margin-right:auto;width:60%;
+&nbsp;
+
+!media figures/FENIX_logo_blue.png style=display:block;margin-left:auto;margin-right:auto;width:40%;
 
 # Fusion ENergy Integrated multiphysi-X (FENIX) class=center style=font-weight:200;font-size:200%
 
