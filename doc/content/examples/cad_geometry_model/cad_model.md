@@ -1,6 +1,7 @@
 # CAD-based Geometry Workflow for Multiphysics Fusion Problems Using OpenMC and MOOSE
 
-This demonstration describes a workflow for modeling fusion problems in OpenMC and MOOSE.
+This demonstration describes a workflow for modeling fusion problems in OpenMC and MOOSE using a computer aided design (CAD)-based geometry workflow.
+It is based on the work published in [!cite](Eltawila2004_PNBC). 
 
 !figures transfers.png
   id=transfers
@@ -9,49 +10,49 @@ This demonstration describes a workflow for modeling fusion problems in OpenMC a
 
 In this example, you'll learn how to:
 
-- Couple OpenMC, and MOOSE using Cardinal for fixed source Monte Carlo calculations.
+- Couple OpenMC and MOOSE using Cardinal for fixed source Monte Carlo calculations.
 - Use Cardinal to tally values of interest such as tritium production and heating which would be used in MOOSE to solve for the temperature distribution
 
 An extremely simplified tokamak was modeled in CAD and was considered for this example. The meshed geometry was prepared using direct accelerated geometry Monte Carlo (DAGMC) for particle transport, and a volumetric mesh was also prepared to be used in MOOSE’s finite element solver and to tally OpenMC results for heat source distribution and tritium production. Cardinal was used to run OpenMC Monte Carlo particle transport within MOOSE framework. The data transfer system transfered heat source and temperature distribution between OpenMC and MOOSE, with coupling between neutron transport and heat conduction achieved via Picard iteration.
 
-### Generating the meshes
+## Generating the meshes
 
 The CAD model was first developed in FUSION360 and was imported into Cubit to assign blocks, materials, and side sets and generate the mesh (tmesh_1.e). A corresponding DAGMC surface mesh (tmesh_1.h5m) was exported directly from the meshed geometry in Cubit (by loading the volumetric meshed geometry in Cubit and exporting a DAGMC surface mesh).
 
-In this example, tmesh_1.e is the finite element mesh used in MOOSE on which the heat conduction physics is solved. tmesh_1.h5m is the DAGMC surface mesh used for particle transport in OpenMC (which bounds the surfaces between different materials). Cardinal also allows for mesh tallying for tallying OpenMC results directly on the mesh overlayed on the OpenMC geometry  which tmesh_1.e could be used for as well as an unstructered volume mesh. This could be used by changing the tally type and adding a mesh template (tally_type = mesh, mesh_template = tmesh_1.e).
+In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which the heat conduction physics is solved. `tmesh_1.h5m` is the DAGMC surface mesh used for particle transport in OpenMC (which bounds the surfaces between different materials). Cardinal also allows for mesh tallying for tallying OpenMC results directly on the mesh overlayed on the OpenMC geometry  which `tmesh_1.e` could be used for as well as an unstructered volume mesh. This could be used by changing the tally type and adding a mesh template (`tally_type = mesh`, `mesh_template = tmesh_1.e`).
 
 !figures mesh_1.png
   id=volumetric_mesh
-  caption=Volumetric mesh
+  caption=Volumetric mesh [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !figures d1.png
   id=dagmc
-  caption=DAGMC surface mesh
+  caption=DAGMC surface mesh [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
 
-### OpenMC
+## OpenMC
 
 !listing /input_files/model.py language=python
 
-### Cardinal
+## Cardinal
 
 !listing /input_files/openmc.i
 
-### MOOSE Heat transfer
+## MOOSE Heat transfer
 
 !listing /input_files/solid.i
 
-### Results
+## Results
 
 !figures Temps.png
   id=temps
-  caption=Temperature distribution
+  caption=Temperature distribution [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !figures tritium_production.png
   id=h3production
-  caption=Tritium production rate density
+  caption=Tritium production rate density [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !table id=results caption=Results summary
