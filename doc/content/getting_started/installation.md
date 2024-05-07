@@ -68,7 +68,7 @@ git submodule update --init moose
 
 !alert! tip title=Thermochimica library (optional)
 To have access to the optional thermochemistry library Thermochimica [!cite](piro2013) provided within
-the MOOSE [moose/modules/chemical_reactions/index.md], check out the corresponding submodule by performing
+the MOOSE [chemical_reactions/index.md], check out the corresponding submodule by performing
 the following before building:
 
 ```bash
