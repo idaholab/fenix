@@ -72,11 +72,25 @@ FENIX started as a project lead by Idaho National laboratory in collaboration wi
 
 !media large_media/framework/inl_blue.png style=display:block;margin-left:auto;margin-right:auto;width:30%;
 
-!media figures/ncstate-brick-2x2-red.png style=float:left;width:20%;margin-left:9%;margin-top:50px;
+!row! style=display:inline-flex;
+!col! small=12 medium=4 large=2
 
-!media figures/University-Wordmark-Full-Color-RGB.png dark_src=figures/University-Wordmark-Reversed-Orange-RGB.png style=float:left;width:20%;margin-left:10%;margin-top:75px;
+!media figures/ncstate-brick-2x2-red.png style=width:100%;display:block;
 
-!media figures/University-Wordmark-Full-Color-RGB.png dark_src=figures/UK-AEA_WHITE_SML_AW.png style=float:left;width:15%;margin-left:12%;margin-top:15px;
+!col-end!
+
+!col! small=12 medium=4 large=2
+
+!media figures/University-Wordmark-Full-Color-RGB.png dark_src=figures/University-Wordmark-Reversed-Orange-RGB.png style=width:100%;display:block;
+
+!col-end!
+
+!col! small=12 medium=4 large=2
+
+!media figures/UK_Atomic_Energy_Authority_logo.svg dark_src=figures/UK-AEA_WHITE_SML_AW.png style=width:100%;display:block;
+
+!col-end!
+!row-end!
 
 
 
