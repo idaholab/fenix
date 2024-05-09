@@ -11,7 +11,7 @@ you do not need to follow the steps from the section titled "Cloning MOOSE" and 
 return to this page and continue with Step Two.
 
 - [Linux and MacOS](https://mooseframework.inl.gov/getting_started/installation/conda.html)
-- [Windows 10 (experimental)](https://mooseframework.inl.gov/getting_started/installation/windows10.html)
+- [Windows (experimental)](https://mooseframework.inl.gov/getting_started/installation/windows.html)
 
 Advanced manual installation instructions for this environment are available
 [via the MOOSE website](https://mooseframework.inl.gov/getting_started/installation/index.html).
@@ -65,17 +65,6 @@ Then navigate to the FENIX clone directory and download the MOOSE submodule:
 cd ~/projects/FENIX
 git submodule update --init moose
 ```
-
-!alert! tip title=Thermochimica library (optional)
-To have access to the optional thermochemistry library Thermochimica [!cite](piro2013) provided within
-the MOOSE [chemical_reactions/index.md], check out the corresponding submodule by performing
-the following before building:
-
-```bash
-cd ~/projects/FENIX/moose
-git submodule update --init --checkout modules/chemical_reactions/contrib/thermochimica
-```
-!alert-end!
 
 !alert note
 The copy of MOOSE provided with FENIX has been fully tested against the current

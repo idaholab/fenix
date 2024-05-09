@@ -2,12 +2,12 @@
 
 &nbsp;
 
-!media figures/FENIX_logo_blue.png style=display:block;margin-left:auto;margin-right:auto;width:40%;
+!media figures/FENIX_logo_blue.png dark_src=figures/FENIX_logo_white.png style=display:block;margin-left:auto;margin-right:auto;width:40%;
 
 # Fusion ENergy Integrated multiphysi-X (FENIX) class=center style=font-weight:200;font-size:200%
 
 !style halign=center
-FENIX is designed as an open-source, fully integrated, multiphysics, multiscale, Nuclear Quality Assurance, level 1 (NQA-1) compliant framework facilitating 3D, high-fidelity fusion system modeling.
+FENIX is designed as an open-source, fully integrated, multiphysics, multiscale, Nuclear Quality Assurance Level 1 (NQA-1) compliant framework facilitating 3D, high-fidelity fusion system modeling.
 
 !style halign=center
 FENIX is an application based on the

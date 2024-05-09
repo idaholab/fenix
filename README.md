@@ -6,7 +6,7 @@ FENIX is an application for performing system-level, engineering scale (i.e., at
 centimeters and meters), and microstructure-scale (i.e., at the scale of microns) multiphysics
 calculations related to fusion energy systems.
 These models often include highly coupled systems of equations related to plasma physics,
-electromagnetics, heat conduction, scalar transport, thermal hydraulics, [!ac](CFD),
+electromagnetics, heat conduction, scalar transport, thermal hydraulics, computational fluid dynamics,
 and thermomechanics, amongst others.
 Interfaces to other MOOSE-based codes, including tritium transport ([TMAP8](https://mooseframework.inl.gov/tmap8))
 and neutronics ([Cardinal](https://cardinal.cels.anl.gov/)) are also included to support FENIX simulations.

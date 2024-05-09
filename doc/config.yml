@@ -7,8 +7,6 @@ Content:
         root_dir: ${MOOSE_DIR}/modules/electromagnetics/doc/content
     ray_tracing:
         root_dir: ${MOOSE_DIR}/modules/ray_tracing/doc/content
-    chemical_reactions:
-        root_dir: ${MOOSE_DIR}/modules/chemical_reactions/doc/content
     modules:
         root_dir: ${MOOSE_DIR}/modules/doc/content
         content:
@@ -49,6 +47,7 @@ Extensions:
             Software Quality:
                 Software Quality Assurance (SQA) Information: /sqa/index.md
                 Code Standards: sqa/fenix_scs.md
+                Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
             Help:
               FENIX Issues Page: https://github.com/idaholab/FENIX/issues
               MOOSE FAQ page: https://mooseframework.inl.gov/help/faq/index.html

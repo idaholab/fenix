@@ -36,7 +36,7 @@ like [Paraview](http://www.paraview.org/download/).
 In general the input files for verification, validation, and example cases located within the `test/tests` directory are meant
 to be a showcase of "production" FENIX capability. Users are encouraged to start there
 when learning to use FENIX and setting up new simulations. Documentation for the verification, validation, and example
-cases can be found [on the FENIX verification, validation, and example page](verification_validation_examples/index.md)
+cases can be found [on the FENIX verification, validation, and example page](verification_validation_examples/index.md).
 
 The `test/tests` directory holds *all* FENIX regression, verification, validation, and example
 tests for both complete and in-progress capability. These files *should not* be modified,
@@ -45,6 +45,7 @@ tests, verification and validation cases, or examples is desired, their input fi
 
 ## Contributing to FENIX
 
+!style halign=left
 As FENIX is developed and more capabilities are added, the tests directory will continue to
 grow. If you feel that you have added important new functionality, please create a test or example for
 it, such that any future changes will not break that capability.
