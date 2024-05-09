@@ -50,6 +50,7 @@ Extensions:
                 Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
             Help:
               FENIX Issues Page: https://github.com/idaholab/FENIX/issues
+              FENIX Discussion Forum: https://github.com/idaholab/fenix/discussions
               MOOSE FAQ page: https://mooseframework.inl.gov/help/faq/index.html
               MOOSE Discussion Forum: https://github.com/idaholab/moose/discussions
     MooseDocs.extensions.appsyntax:
