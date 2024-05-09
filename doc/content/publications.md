@@ -10,7 +10,7 @@ your work should be included on this list, please create an issue on
 
 ## Conference Proceedings
 
-!bibtex list bib_files=articles_using_fenix.bib
+!bibtex list bib_files=proceedings_using_fenix.bib
 
 !! ## Technical Reports
 

@@ -53,8 +53,6 @@ that permits the solution of coupled physics problems of varying size and dimens
 These can be solved using computer hardware appropriate for the model size, ranging from
 laptops and workstations to large high performance computers.
 
-!media large_media/framework/inl_blue.png style=float:right;width:20%;margin-left:30px;
-
 Code reliability is a central principle in code development, and this project
 employs a well-defined development and testing strategy.  Code changes are only
 merged into the repository after both a manual code review and the automated
@@ -67,8 +65,18 @@ including the [United States Department of Energy](http://energy.gov).  Developm
 of these codes is ongoing at [INL](https://www.inl.gov) and by collaborators
 throughout the world.
 
-## Utilities
+## FENIX results from a collaboration across several institutions style=clear:both;
 
-- [AuxAccumulator.md] - Accumulates pointwise data akin to a point source into an auxiliary field
+!style halign=left
+FENIX started as a project lead by Idaho National laboratory in collaboration with North Carolina State University, the University of Illinois Urbana-Champaign, and the United Kingdom Atomic Energy Authority. We are always looking for new collaborations and encourage everyone to [get started](getting_started/installation.html) and start [contributing](sqa/contributing.html).
 
-- [VariableSampler.md] - Samples a variable at a given point in space
+!media large_media/framework/inl_blue.png style=display:block;margin-left:auto;margin-right:auto;width:30%;
+
+!media figures/ncstate-brick-2x2-red.png style=float:left;width:20%;margin-left:9%;margin-top:50px;
+
+!media figures/University-Wordmark-Full-Color-RGB.png dark_src=figures/University-Wordmark-Reversed-Orange-RGB.png style=float:left;width:20%;margin-left:10%;margin-top:75px;
+
+!media figures/University-Wordmark-Full-Color-RGB.png dark_src=figures/UK-AEA_WHITE_SML_AW.png style=float:left;width:15%;margin-left:12%;margin-top:15px;
+
+
+
