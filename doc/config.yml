@@ -47,7 +47,7 @@ Extensions:
             Software Quality:
                 Software Quality Assurance (SQA) Information: /sqa/index.md
                 Code Standards: sqa/fenix_scs.md
-                Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
+                #Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
             Help:
               FENIX Issues Page: https://github.com/idaholab/FENIX/issues
               FENIX Discussion Forum: https://github.com/idaholab/fenix/discussions
