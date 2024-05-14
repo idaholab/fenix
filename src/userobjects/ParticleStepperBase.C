@@ -1,4 +1,4 @@
-//* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
+ //* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
 //*
