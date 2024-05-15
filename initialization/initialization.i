@@ -1,23 +1,49 @@
 [Mesh/gmg]
   type = GeneratedMeshGenerator
   dim = 1
-  nx = 2
+  nx = 20
   xmax = 1
 []
 
+[Problem]
+  extra_tag_vectors = dump_value
+[]
+
 [Variables]
-  [Ex]
+  [phi]
   []
-  [Ey]
+[]
+
+[Kernels]
+  [poissons]
+    type = ADMatDiffusion
+    diffusivity = 1
+    variable = phi
   []
-  [Ez]
-  []
+[]
+
+[BCs/zero]
+  type = DirichletBC
+  variable = phi
+  value = 0
+  boundary = 'left right'
+  preset = false
+[]
+
+[AuxVariables/dump_value]
+[]
+
+[AuxKernels/dump_value]
+  type = TagVectorAux
+  variable = dump_value
+  vector_tag = dump_value
+  v = phi
 []
 
 [Distributions]
   [uniform]
     type = Uniform
-    lower_bound = 0
+    lower_bound = -1
     upper_bound = 1
   []
 []
@@ -34,24 +60,32 @@
   []
 []
 
+
 [UserObjects]
   [stepper]
-    type = LeapFrogStepper
-    field_components = 'Ex Ey Ez'
+    type = TestSimpleStepper
   []
 
   [study]
     type = OneDPIC
     sampler = sampler
-    execute_on = 'INITIAL'
     always_cache_traces = true
     data_on_cache_traces = true
     mass = 1
     charge = 1
+    charge_density = 2
+    particles_per_element = 200
     velocity_updater = stepper
+    execute_on=TIMESTEP_BEGIN
+  []
+
+  [accumulator]
+    type = ChargeAccumulator
+    study = study
+    variable = phi
+    extra_vector_tags = dump_value
   []
 []
-
 
 [RayKernels]
   [null]
@@ -69,24 +103,27 @@
 
 [Executioner]
   type = Transient
-  num_steps = 2
-  # type = Transient
-  # dt = 1e-2
-  # num_steps = 10
+  num_steps = 1
+  dt=1
 []
 
-
-
 [Problem]
-  solve = false
   kernel_coverage_check = false
 []
 
+[Outputs]
+  exodus = true
+  [rays]
+    type = RayTracingExodus
+    study = study
+    output_data_names = 'v_x v_y v_z weight'
+    execute_on = TIMESTEP_END
+  []
+[]
 
-[Outputs/rays]
-  type = RayTracingExodus
+[Postprocessors/ray_distance]
+  type = RayTracingStudyResult
   study = study
-  output_data = true
-  # output_data_names='v_x v_y v_z charge mass'
-  execute_on = TIMESTEP_END
+  result = total_rays_started
+  execute_on = 'TIMESTEP_END'
 []

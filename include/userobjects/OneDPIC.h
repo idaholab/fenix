@@ -30,6 +30,7 @@ protected:
 private:
   const Real _mass;
   const Real _charge;
+  const Real _charge_density;
   const Real _particles_per_element;
   int _num_local_elements;
   Sampler * _sampler;
