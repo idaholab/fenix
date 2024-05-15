@@ -1,7 +1,7 @@
 [Mesh/gmg]
   type = GeneratedMeshGenerator
   dim = 1
-  nx = 20
+  nx = 50
   xmax = 1
 []
 
@@ -12,6 +12,9 @@
 [Variables]
   [phi]
   []
+
+  [n]
+  []
 []
 
 [Kernels]
@@ -20,17 +23,28 @@
     diffusivity = 1
     variable = phi
   []
+
+  [projection]
+    type = ProjectionKernel
+    variable = n
+  []
 []
 
-[BCs/zero]
+[BCs]
+  [zero]
   type = DirichletBC
   variable = phi
   value = 0
   boundary = 'left right'
   preset = false
+  []
 []
 
-[AuxVariables/dump_value]
+[AuxVariables]
+  [dump_value]
+  []
+  [density_test]
+  []
 []
 
 [AuxKernels/dump_value]
@@ -50,12 +64,13 @@
 
 [Samplers]
   [sampler]
-    type = LatinHypercube
+    # type = LatinHypercube
+    type = MonteCarlo
     distributions = 'uniform'
     # this needs to be _max_num_local_elems * _num_processors * _particles_per_elem
     # 270 for 3 processes with 10 particles per element
     # num_rows = 540000
-    num_rows = 5000
+    num_rows = 50000000
     seed = 10
   []
 []
@@ -69,8 +84,8 @@
   [study]
     type = OneDPIC
     sampler = sampler
-    always_cache_traces = true
-    data_on_cache_traces = true
+    # always_cache_traces = true
+    # data_on_cache_traces = true
     mass = 1
     charge = 1
     charge_density = 2
@@ -84,6 +99,12 @@
     study = study
     variable = phi
     extra_vector_tags = dump_value
+  []
+
+  [density_accumulator]
+    type = ChargeAccumulator
+    study = study
+    variable = n
   []
 []
 
@@ -111,19 +132,38 @@
   kernel_coverage_check = false
 []
 
-[Outputs]
-  exodus = true
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data_names = 'v_x v_y v_z weight'
-    execute_on = TIMESTEP_END
+
+[VectorPostprocessors]
+  [potential]
+    type = LineValueSampler
+    variable = phi
+    start_point = '0.0 0.0 0.0'
+    end_point = '1.0 0.0 0.0'
+    sort_by = x
+    num_points = 1000
+  []
+
+  [density]
+    type = LineValueSampler
+    variable = n
+    start_point = '0.0 0.0 0.0'
+    end_point = '1.0 0.0 0.0'
+    sort_by = x
+    num_points = 1000
   []
 []
 
-[Postprocessors/ray_distance]
-  type = RayTracingStudyResult
-  study = study
-  result = total_rays_started
-  execute_on = 'TIMESTEP_END'
+[Outputs]
+  exodus = true
+
+  [csv]
+    type = CSV
+    execute_on = 'TIMESTEP_END'
+  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data_names = 'v_x v_y v_z weight'
+  #   execute_on = TIMESTEP_END
+  # []
 []

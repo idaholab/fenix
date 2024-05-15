@@ -97,6 +97,7 @@ OneDPIC::initializeParticles()
       rays[ray_count]->data(_v_z_index) = 0.0;
       rays[ray_count]->data(_mass_index) = _mass;
       rays[ray_count]->data(_charge_index) = _charge * weight;
+      rays[ray_count]->data(_weight_index) = weight;
       ray_count++;
     }
   }
