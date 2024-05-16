@@ -9,13 +9,13 @@ supress_output = False
 
 
 
-num_elems = [1, 10, 100, 1000]
+num_elems = [10, 100, 1000]
 
 
 num_seeds = 10
 
 for i in range(num_seeds):
-     curr_dir = f"run_{num_seeds + i:d}"
+     curr_dir = f"10000ppe/run_{i:d}"
      os.mkdir(curr_dir)
 
      for n in num_elems:

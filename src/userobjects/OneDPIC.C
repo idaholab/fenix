@@ -74,8 +74,6 @@ OneDPIC::initializeParticles()
   unsigned int ray_count = 0;
   for (auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
-    // std::cout << "New element" << std::endl << std::endl;
-
     for (int i = 0; i < _particles_per_element; ++i)
     {
       auto data = _sampler->getNextLocalRow();

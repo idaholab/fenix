@@ -9,7 +9,7 @@ supress_output = False
 
 
 
-num_particles = [10, 100, 1000, 10000]
+num_particles = [1, 10, 100, 1000]
 
 num_seeds = 10
 

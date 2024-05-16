@@ -89,7 +89,7 @@
     mass = 1
     charge = 1
     charge_density = 2
-    particles_per_element = 200
+    particles_per_element = 10000
     velocity_updater = stepper
     execute_on=TIMESTEP_BEGIN
   []
