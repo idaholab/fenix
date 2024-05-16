@@ -89,7 +89,7 @@
     mass = 1
     charge = 1
     charge_density = 2
-    particles_per_element = 10000
+    particles_per_element = 1000
     velocity_updater = stepper
     execute_on=TIMESTEP_BEGIN
   []
@@ -122,43 +122,72 @@
   []
 []
 
+# [Executioner]
+#   type = Transient
+#   num_steps = 1
+#   dt=1
+# []
+
+
 [Executioner]
   type = Transient
-  num_steps = 1
+  solve_type = NEWTON
+  petsc_options_iname = '-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver'
+  petsc_options_value = 'lu NONZERO 1.e-9 superlu_dists'
+  line_search = 'none'
+  nl_max_its = 15
+  l_max_its = 300
+  scheme = 'bdf2'
+  automatic_scaling = true
+  compute_scaling_once = false
   dt=1
+  num_steps = 1
 []
+
+
 
 [Problem]
   kernel_coverage_check = false
 []
 
 
-[VectorPostprocessors]
+[Functions]
   [potential]
-    type = LineValueSampler
-    variable = phi
-    start_point = '0.0 0.0 0.0'
-    end_point = '1.0 0.0 0.0'
-    sort_by = x
-    num_points = 1000
+    type = ParsedFunction
+    expression = 'x * (1 - x)'
   []
 
   [density]
-    type = LineValueSampler
+    type = ParsedFunction
+    expression = 2
+  []
+[]
+
+[Postprocessors]
+  [potential_l2]
+    type = ElementL2Error
+    variable = phi
+    function = potential
+  []
+
+  [density_l2]
+    type = ElementL2Error
     variable = n
-    start_point = '0.0 0.0 0.0'
-    end_point = '1.0 0.0 0.0'
-    sort_by = x
-    num_points = 1000
+    function = density
+  []
+
+  [h]
+    type = AverageElementSize
   []
 []
 
 [Outputs]
   exodus = true
-
+  # csv = true
   [csv]
     type = CSV
-    execute_on = 'TIMESTEP_END'
+    execute_on = 'FINAL'
+    file_base = 'test'
   []
   # [rays]
   #   type = RayTracingExodus
