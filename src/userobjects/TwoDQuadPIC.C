@@ -80,15 +80,12 @@ TwoDQuadPIC::initializeParticles()
       reference_points[i] = Point(data[0], data[1], 0.0);
     }
 
-    std::cout << reference_points[0] << std::endl;
-
     arbitrary_qrule.setPoints(reference_points);
     fe->reinit(elem);
 
     const auto & physical_points = fe->get_xyz();
     Real weight = _charge_density * elem->volume() / (_particles_per_element);
 
-    std::cout << physical_points[1] << std::endl;
     for (int i = 0; i < _particles_per_element; ++i)
     {
       rays[ray_count] = acquireRay();

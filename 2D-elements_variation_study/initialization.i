@@ -7,7 +7,6 @@
     xmax = 1
     ymax = 1
   []
-  uniform_refine = 0
 []
 
 [Problem]
@@ -193,10 +192,10 @@
     execute_on = 'TIMESTEP_END'
   []
 
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data_names = 'v_x v_y v_z weight'
-    execute_on = TIMESTEP_END
-  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data_names = 'v_x v_y v_z weight'
+  #   execute_on = TIMESTEP_END
+  # []
 []
