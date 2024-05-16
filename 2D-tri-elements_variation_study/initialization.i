@@ -6,7 +6,9 @@
     ny = 10
     xmax = 1
     ymax = 1
+    elem_type = TRI3
   []
+  uniform_refine = 0
 []
 
 [Problem]
@@ -60,13 +62,13 @@
 [Distributions]
   [uniform_x]
     type = Uniform
-    lower_bound = -1
+    lower_bound = 0
     upper_bound = 1
   []
 
   [uniform_y]
     type = Uniform
-    lower_bound = -1
+    lower_bound = 0
     upper_bound = 1
   []
 []
@@ -91,7 +93,7 @@
   []
 
   [study]
-    type = TwoDQuadPIC
+    type = TwoDTriPIC
     sampler = sampler
     always_cache_traces = true
     data_on_cache_traces = true
@@ -185,7 +187,7 @@
 []
 
 [Outputs]
-  exodus = true
+  # exodus = true
 
   [csv]
     type = CSV

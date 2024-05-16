@@ -11,7 +11,7 @@ supress_output = False
 
 refine_ments = [0, 1, 2, 3]
 
-ppe = 100
+ppe = 1000
 
 num_seeds = 10
 
