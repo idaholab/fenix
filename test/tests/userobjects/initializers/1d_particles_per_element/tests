@@ -1,17 +1,14 @@
 [Tests]
   design = 'ParticleStepperBase.md PICStudyBase.md'
   issues = '#4 #19'
-  requirement = "The systen shall be capable of initializing computational particles given a velocity distribution to sample from and a specified number of particles per element."
-  [particles_per_element_initialization]
-    [1D_static]
-      type = 'Exodiff'
-      input = 'initialization.i'
-      exodiff = 'initialization_rays.e
-                initialization_out.e'
-
-      allow_test_objects = true
-      detail = 'In one dimensional physical space'
-    []
+  [1d_particles_per_element]
+    type = 'Exodiff'
+    input = 'initialization.i'
+    exodiff = 'initialization_out.e
+               initialization_rays.e'
+    allow_test_objects = true
+    # requirement = "The system shall be capable of applying a linear impulse from a force field perpendicular to a particle\'s initial velocity"
+  []
   # [parallel_acceleration]
   #   type = 'Exodiff'
   #   input = 'parallel_acceleration.i'
@@ -40,5 +37,4 @@
   #     expect_err = 'You must provide 3 components representing the force field'
   #   []
   # []
-  []
 []

@@ -7,7 +7,7 @@
   type = GeneratedMeshGenerator
   dim = 1
   nx = 10
-  xmax = 10
+  xmax = 1
   []
   allow_renumbering = false
 []
@@ -39,63 +39,58 @@
 
 [BCs]
   [zero]
-  type = DirichletBC
-  variable = phi
-  value = 0
-  boundary = 'left right'
-  preset = false
+    type = DirichletBC
+    variable = phi
+    value = 0
+    boundary = 'left right'
+    preset = false
   []
 []
 
 [AuxVariables]
   [dump_value]
   []
-  [density_test]
-  []
 []
 
-[AuxKernels/dump_value]
-  type = TagVectorAux
-  variable = dump_value
-  vector_tag = dump_value
-  v = phi
+[AuxKernels]
+  [dump_value]
+    type = TagVectorAux
+    variable = dump_value
+    vector_tag = dump_value
+    v = phi
+  []
 []
 
 [Distributions]
-  [small_const]
-    type = Constant
-    value = 1e-5
-  []
-
-  [const]
+  [zero]
     type = Constant
     value = 0.0
   []
 []
 
 [UserObjects]
-  [testing]
+  [initializer]
     type = ParticlesPerElementInitializer
     mass = 1
     charge = 1
     charge_density = 2
-    velocity_distributions = 'small_const const const'
+    velocity_distributions = 'zero zero zero'
   []
 
-  [stepper]
+  [updater]
     type = TestSimpleStepper
   []
 
   [study]
     type = InitializedPICStudy
-    initializer = testing
+    initializer = initializer
+    velocity_updater = updater
     always_cache_traces = true
     data_on_cache_traces = true
-    velocity_updater = stepper
     execute_on=TIMESTEP_BEGIN
   []
 
-  [accumulator]
+  [potential_accumulator]
     type = ChargeAccumulator
     study = study
     variable = phi
@@ -135,11 +130,9 @@
   scheme = 'bdf2'
   automatic_scaling = true
   compute_scaling_once = false
-  dt=1
+  dt = 1
   num_steps = 1
 []
-
-
 
 [Problem]
   kernel_coverage_check = false
@@ -158,36 +151,12 @@
   []
 []
 
-[Postprocessors]
-  [potential_l2]
-    type = ElementL2Error
-    variable = phi
-    function = potential
-  []
-
-  [density_l2]
-    type = ElementL2Error
-    variable = n
-    function = density
-  []
-
-  [h]
-    type = AverageElementSize
-  []
-[]
-
 [Outputs]
   exodus = true
-  # csv = true
-  [csv]
-    type = CSV
-    execute_on = 'FINAL'
-    file_base = 'test'
-  []
   [rays]
     type = RayTracingExodus
     study = study
-    output_data_names = 'v_x v_y v_z weight'
+    output_data_names = 'charge weight mass'
     execute_on = TIMESTEP_END
   []
 []

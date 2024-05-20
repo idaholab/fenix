@@ -67,6 +67,7 @@ ParticlesPerElementInitializer::getParticleData() const
 
   std::vector<InitialParticleData> data = std::vector<InitialParticleData>(num_local_elements * _particles_per_element);
   // setting up this to be able to map from reference elemnts to the physical elemnts
+  // this only enables parallel consistency if the element ids are consistent across core counts
   ArbitraryQuadrature arbitrary_qrule = ArbitraryQuadrature(_mesh_dimension, FIRST);
   FEType fe_type = FEType(CONSTANT, MONOMIAL);
   UniquePtr<FEBase> fe = FEBase::build(_mesh_dimension, fe_type);
@@ -81,7 +82,7 @@ ParticlesPerElementInitializer::getParticleData() const
   {
     Real weight = _charge_density * elem->volume() / _particles_per_element;
 
-    generator.seed(elem->vertex_average().norm_sq() + _seed);
+    generator.seed(elem->id() _seed);
     std::vector<Point> reference_points = std::vector<Point>(_particles_per_element);
     auto elem_type = elem->type();
 
