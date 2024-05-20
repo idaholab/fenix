@@ -1,0 +1,44 @@
+[Tests]
+  design = 'ParticleStepperBase.md PICStudyBase.md'
+  issues = '#4 #19'
+  requirement = "The systen shall be capable of initializing computational particles given a velocity distribution to sample from and a specified number of particles per element."
+  [particles_per_element_initialization]
+    [1D_static]
+      type = 'Exodiff'
+      input = 'initialization.i'
+      exodiff = 'initialization_rays.e
+                initialization_out.e'
+
+      allow_test_objects = true
+      detail = 'In one dimensional physical space'
+    []
+  # [parallel_acceleration]
+  #   type = 'Exodiff'
+  #   input = 'parallel_acceleration.i'
+  #   exodiff = 'parallel_acceleration_rays.e
+  #              parallel_acceleration_rays.e-s0001
+  #              parallel_acceleration_rays.e-s0002
+  #              parallel_acceleration_rays.e-s0003
+  #              parallel_acceleration_rays.e-s0004
+  #              parallel_acceleration_rays.e-s0005
+  #              parallel_acceleration_rays.e-s0006
+  #              parallel_acceleration_rays.e-s0007
+  #              parallel_acceleration_rays.e-s0008
+  #              parallel_acceleration_rays.e-s0009'
+  #   allow_test_objects = true
+  #   requirement = "The system shall be capable of applying a linear impulse from a force field parallel to a particle's velocity"
+  # []
+  # [errors]
+  #   requirement = 'The system shall report a reasonable error from the particle stepper when'
+
+  #   [too_few_field_components]
+  #     type = RunException
+  #     input = 'parallel_acceleration.i'
+  #     cli_args = "UserObjects/stepper/field_components='Ex'"
+  #     allow_test_objects = true
+  #     detail = 'the user does not provide 3 components of the force field'
+  #     expect_err = 'You must provide 3 components representing the force field'
+  #   []
+  # []
+  []
+[]

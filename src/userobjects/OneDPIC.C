@@ -14,6 +14,7 @@
 #include "ParticleStepperBase.h"
 #include "ArbitraryQuadrature.h"
 #include "Sampler.h"
+#include "MooseRandom.h"
 
 registerMooseObject("FenixApp", OneDPIC);
 
@@ -46,9 +47,6 @@ OneDPIC::OneDPIC(const InputParameters & parameters)
   {
     _num_local_elements++;
   }
-
-
-
 }
 
 void
@@ -74,6 +72,7 @@ OneDPIC::initializeParticles()
   unsigned int ray_count = 0;
   for (auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
+
     for (int i = 0; i < _particles_per_element; ++i)
     {
       auto data = _sampler->getNextLocalRow();
