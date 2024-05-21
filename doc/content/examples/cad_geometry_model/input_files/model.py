@@ -98,32 +98,9 @@ settings.export_to_xml()
 
 
 
-#unstructured_mesh = openmc.UnstructuredMesh("FDD01.h5m", library='moab')
-#unstructured_mesh.output = False
-#umesh_filter = openmc.MeshFilter(unstructured_mesh)
-#
-#mesh = openmc.RegularMesh()
-#mesh.dimension = (10, 10, 100)
-#mesh.lower_left = (-9, -25.0, -100.0)
-#mesh.upper_right = (37.5, 25.0, 100.0)
-#mesh_filter = openmc.MeshFilter(mesh)
-#
-#tally1 = openmc.Tally()
-#tally1.filters = [umesh_filter]
-#tally1.scores = ['flux']
-#tally1.estimator = 'tracklength'
-#
-#tally2 = openmc.Tally()
-#tally2.filters = [mesh_filter]
-#tally2.scores = ['flux']
-#
-#tallies = openmc.Tallies([tally1, tally2])
-#tallies.export_to_xml()
 
 dagmc_univ = openmc.DAGMCUniverse(filename='torus7v2t2.h5m')
 
-# yax = openmc.Plane(a=1, b=0, c=0.0, d=0.0 ) 
-# ang30 = openmc.Plane(a=1/math.sqrt(3), b=-1, c=0.0, d=0.0) #30 degrees
 
 geometry = openmc.Geometry(root=dagmc_univ)
 geometry.export_to_xml()

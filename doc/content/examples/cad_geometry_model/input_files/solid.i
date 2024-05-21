@@ -3,20 +3,6 @@
     type = FileMeshGenerator
     file = tmesh_1.e
   []
-#  [del1]
-#    type = PlaneDeletionGenerator
-#    point = '0 0 0'
-#    normal = '10 17.32 0'
-#    input = file
-#    new_boundary = 100
-#  []
-#  [del2]
-#    type = PlaneDeletionGenerator
-#    point = '0 0 0'
-#    normal = '10 -17.32 0'
-#    input = file
-#    new_boundary = 101
-#  []
 []
 
 [Variables]
