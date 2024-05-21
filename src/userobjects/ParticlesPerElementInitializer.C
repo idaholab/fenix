@@ -82,22 +82,86 @@ ParticlesPerElementInitializer::getParticleData() const
   {
     Real weight = _charge_density * elem->volume() / _particles_per_element;
 
-    generator.seed(elem->id() _seed);
+    generator.seed(elem->id() + _seed);
     std::vector<Point> reference_points = std::vector<Point>(_particles_per_element);
-    auto elem_type = elem->type();
 
-    // case for 1D particle placement
-    // the one 1D reference element is [-1, 1]
-    if (elem_type == EDGE2 || elem_type == EDGE3 || elem_type == EDGE4)
-    {
-      for (unsigned int i = 0; i < _particles_per_element; ++i)
-      {
-        reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+    switch (elem->type()) {
+      case EDGE2: {
+        for (unsigned int i = 0; i < _particles_per_element; ++i)
+          reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+        break;
       }
-    } else {
-      mooseError("Particle Initialization has not been implemented for this element type yet");
+      // 2D trianglular element where the nodes are at
+      // [0,1], [0,0], [0, 1]
+      case TRI3:
+      {
+        for (unsigned int i = 0; i < _particles_per_element; ++i)
+        {
+          // sample on a square x = [0, 1] and y = [0, 1]
+          reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
+          // if our points are not in the triangle we mirror them into the triangle
+          if (reference_points[i](1) > 1 - reference_points[i](0))
+          {
+            Real distance = std::abs(-reference_points[i](0) - reference_points[i](1) + 1) / std::sqrt(2);
+            reference_points[i](0) = reference_points[i](0) - 2 * distance / std::sqrt(2);
+            reference_points[i](1) = reference_points[i](1) - 2 * distance / std::sqrt(2);
+          }
+        }
+        break;
+      }
+      // 2D square reference element where x = [-1, 1] and y = [-1, 1]
+      case QUAD4:
+      {
+        for (unsigned int i = 0; i < _particles_per_element; ++i)
+        {
+          reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](1) = 2.0 * generator.rand() - 1.0;
+        }
+        break;
+      }
+      case TET4:
+      {
+        for (unsigned int i = 0; i < _particles_per_element; ++i)
+        {
+          // sample on a square x = [0, 1] and y = [0, 1]
+          reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
+          // if our points are not in the triangle we mirror them into the triangle
+          if (reference_points[i](1) > 1 - reference_points[i](0))
+          {
+            Real distance =
+                std::abs(-reference_points[i](0) - reference_points[i](1) + 1) / std::sqrt(2);
+            reference_points[i](0) = reference_points[i](0) - 2 * distance / std::sqrt(2);
+            reference_points[i](1) = reference_points[i](1) - 2 * distance / std::sqrt(2);
+          }
+          // we can keep trying to get a z point until it is in the reference element
+          // it would be better to use a more clever tranformation but this is probably
+          // fine for moderate numbers of particles
+          double d = 0;
+          do {
+            reference_points[i](2) = generator.rand();
+            // calculate the distance between the z and a z that would be on the plane on the edge
+            // of element
+            d = reference_points[i](2) - (1 - reference_points[i](0) - reference_points[i](1));
+          }
+          while (d > 0);
+        }
+        break;
+      }
+      // 3D cubic basis element where x = [-1, 1] and y = [-1, 1] and z = [-1, 1]
+      case HEX8:
+      {
+        for (unsigned int i = 0; i < _particles_per_element; ++i)
+        {
+          reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](1) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](2) = 2.0 * generator.rand() - 1.0;
+        }
+        break;
+      }
+      default:
+        mooseError("Particle Initialization has not been implemented for this element type yet");
     }
-
+    // mapping our points from the reference elements to the actual physical elements
     arbitrary_qrule.setPoints(reference_points);
     fe->reinit(elem);
 

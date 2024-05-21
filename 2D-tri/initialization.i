@@ -1,3 +1,9 @@
+particles_per_element = 1000
+charge_density = 4
+[GlobalParams]
+  particles_per_element = ${particles_per_element}
+[]
+
 [Mesh]
   [gmg]
     type = GeneratedMeshGenerator
@@ -5,10 +11,10 @@
     nx = 10
     ny = 10
     xmax = 1
-    ymax = 1
+    ymax=1
     elem_type = TRI3
   []
-  uniform_refine = 0
+  allow_renumbering = false
 []
 
 [Problem]
@@ -45,67 +51,51 @@
   []
 []
 
+
 [AuxVariables]
   [dump_value]
   []
-  [density_test]
-  []
 []
 
-[AuxKernels/dump_value]
-  type = TagVectorAux
-  variable = dump_value
-  vector_tag = dump_value
-  v = phi
+[AuxKernels]
+  [dump_value]
+    type = TagVectorAux
+    variable = dump_value
+    vector_tag = dump_value
+    v = phi
+  []
 []
 
 [Distributions]
-  [uniform_x]
-    type = Uniform
-    lower_bound = 0
-    upper_bound = 1
-  []
-
-  [uniform_y]
-    type = Uniform
-    lower_bound = 0
-    upper_bound = 1
+  [zero]
+    type = Constant
+    value = 0.0
   []
 []
-
-[Samplers]
-  [sampler]
-    # type = LatinHypercube
-    type = MonteCarlo
-    distributions = 'uniform_x uniform_y'
-    # this needs to be _max_num_local_elems * _num_processors * _particles_per_elem
-    # 270 for 3 processes with 10 particles per element
-    # num_rows = 540000
-    num_rows = 50000000
-    seed = 10
-  []
-[]
-
 
 [UserObjects]
-  [stepper]
+  [initializer]
+    type = ParticlesPerElementInitializer
+    mass = 1
+    charge = 1
+    charge_density = ${charge_density}
+    velocity_distributions = 'zero zero zero'
+  []
+
+  [updater]
     type = TestSimpleStepper
   []
 
   [study]
-    type = TwoDTriPIC
-    sampler = sampler
-    always_cache_traces = true
-    data_on_cache_traces = true
-    mass = 1
-    charge = 1
-    charge_density = 4
-    particles_per_element = 100
-    velocity_updater = stepper
+    type = InitializedPICStudy
+    initializer = initializer
+    velocity_updater = updater
+    # always_cache_traces = true
+    # data_on_cache_traces = true
     execute_on=TIMESTEP_BEGIN
   []
 
-  [accumulator]
+  [potential_accumulator]
     type = ChargeAccumulator
     study = study
     variable = phi
@@ -133,6 +123,7 @@
   []
 []
 
+
 [Executioner]
   type = Transient
   solve_type = NEWTON
@@ -144,8 +135,12 @@
   scheme = 'bdf2'
   automatic_scaling = true
   compute_scaling_once = false
-  dt=1
+  dt = 1
   num_steps = 1
+[]
+
+[Problem]
+  kernel_coverage_check = false
 []
 
 
@@ -157,14 +152,8 @@
 
   [density]
     type = ParsedFunction
-    expression = 4
+    expression = ${charge_density}
   []
-[]
-
-
-[Problem]
-  kernel_coverage_check = false
-  # solve = false
 []
 
 
@@ -181,23 +170,26 @@
     function = density
   []
 
+  [particles_per_element]
+    type = ConstantPostprocessor
+    value = ${particles_per_element}
+  []
+
   [h]
     type = AverageElementSize
   []
 []
 
 [Outputs]
-  exodus = true
-
+  # exodus = true
   [csv]
     type = CSV
     execute_on = 'TIMESTEP_END'
   []
-
   # [rays]
   #   type = RayTracingExodus
   #   study = study
-  #   output_data_names = 'v_x v_y v_z weight'
+  #   output_data_names = 'charge weight mass'
   #   execute_on = TIMESTEP_END
   # []
 []
