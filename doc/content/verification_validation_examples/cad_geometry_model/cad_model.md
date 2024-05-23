@@ -3,7 +3,7 @@
 This demonstration describes a workflow for modeling fusion problems in OpenMC and MOOSE using a computer aided design (CAD)-based geometry workflow.
 It is based on the work published in [!cite](Eltawila2004_PNBC). 
 
-!figures transfers.png
+!media figures/transfers.png
   id=transfers
   caption=OpenMC and MOOSE Coupling
   style=width:60%;margin-left:auto;margin-right:auto
@@ -21,12 +21,12 @@ The CAD model was first developed in FUSION360 and was imported into Cubit to as
 
 In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which the heat conduction physics is solved. `tmesh_1.h5m` is the DAGMC surface mesh used for particle transport in OpenMC (which bounds the surfaces between different materials). Cardinal also allows for mesh tallying for tallying OpenMC results directly on the mesh overlayed on the OpenMC geometry  which `tmesh_1.e` could be used for as well as an unstructered volume mesh. This could be used by changing the tally type and adding a mesh template (`tally_type = mesh`, `mesh_template = tmesh_1.e`).
 
-!figures mesh_1.png
+!media figures/mesh_1.png
   id=volumetric_mesh
   caption=Volumetric mesh [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
   
-!figures d1.png
+!media figures/d1.png
   id=dagmc
   caption=DAGMC surface mesh [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
@@ -45,12 +45,12 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 
 ## Results
 
-!figures Temps.png
+!media figures/Temps.png
   id=temps
   caption=Temperature distribution [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
   
-!figures tritium_production.png
+!media figures/tritium_production.png
   id=h3production
   caption=Tritium production rate density [!citep](Eltawila2004_PNBC).
   style=width:60%;margin-left:auto;margin-right:auto
