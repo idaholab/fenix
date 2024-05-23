@@ -70,8 +70,6 @@ px.color_by = 'material'
 plots = openmc.Plots([pz,px])
 plots.export_to_xml()
 
-
-
 settings = openmc.Settings()
 settings.dagmc = True
 settings.batches = 100
@@ -96,11 +94,7 @@ source.space=spatial_dist
 settings.source = source
 settings.export_to_xml()
 
-
-
-
 dagmc_univ = openmc.DAGMCUniverse(filename='torus7v2t2.h5m')
-
 
 geometry = openmc.Geometry(root=dagmc_univ)
 geometry.export_to_xml()
