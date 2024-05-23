@@ -17,6 +17,7 @@ class Ray;
 struct InitialParticleData {
   Point position;
   Point velocity;
+  std::string species;
   Real weight;
   Real charge;
   Real mass;
@@ -40,6 +41,9 @@ public:
   virtual void finalize() override final {}
   virtual void execute() override final {}
 protected:
+  const Real _mass;
+  const Real _charge;
+  const std::string & _species;
   const unsigned int _seed;
   const Real _mesh_dimension;
 };

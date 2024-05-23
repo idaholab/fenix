@@ -11,6 +11,8 @@
 #include "ParticlesPerElementInitializer.h"
 #include "ArbitraryQuadrature.h"
 #include "libmesh/enum_to_string.h"
+#include "MooseRandom.h"
+#include "Distribution.h"
 
  registerMooseObject("FenixApp", ParticlesPerElementInitializer);
 
@@ -28,16 +30,12 @@
        "velocity_distributions",
        "The distribution names to be sampled when initializing the velocity of each particle");
 
-   params.addParam<Real>("mass", 1, "The mass of the particles used for a test");
-   params.addParam<Real>("charge", 1, "The charge of the particles used for a test");
    params.addRequiredParam<Real>("charge_density", "The charge density you want to initalize to");
    return params;
 }
 
 ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParameters & parameters)
   : InitializerBase(parameters),
-    _mass(getParam<Real>("mass")),
-    _charge(getParam<Real>("charge")),
     _charge_density(getParam<Real>("charge_density")),
     _particles_per_element(getParam<unsigned int>("particles_per_element")),
     _distribution_names(getParam<std::vector<DistributionName>>("velocity_distributions"))
@@ -65,6 +63,8 @@ std::vector<InitialParticleData>
 ParticlesPerElementInitializer::getParticleData() const
 {
 
+  // counting the number of elements this process is responsible for
+  // this will allow us to allocated data structures of the appropriate length
   unsigned int num_local_elements = 0;
   for ([[maybe_unused]] const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
@@ -78,23 +78,19 @@ ParticlesPerElementInitializer::getParticleData() const
   std::vector<InitialParticleData> data = std::vector<InitialParticleData>(num_local_elements * _particles_per_element);
 
   // setting up this to be able to map from reference elemnts to the physical elemnts
-  // this only enables parallel consistency if the element ids are consistent across core counts
   ArbitraryQuadrature arbitrary_qrule = ArbitraryQuadrature(_mesh_dimension, FIRST);
   FEType fe_type = FEType(CONSTANT, MONOMIAL);
   UniquePtr<FEBase> fe = FEBase::build(_mesh_dimension, fe_type);
   fe->attach_quadrature_rule(&arbitrary_qrule);
   fe->get_xyz();
   // random number generator to be reseeded on each element
+  // this only enables parallel consistency if the element ids are consistent across processes
   MooseRandom generator;
-
-  unsigned int elem_count = 0;
-  unsigned int particle_index;
-  Point p = Point();
 
   // so long as p is a point sampled from a cube with dimensions
   // [-1, 1] x [-1, 1] x [-1, 1]
   // this lambda will put the point inside of the libmesh reference pyramid
-  auto put_particle_in_pyramid = [&p]()
+  auto put_particle_in_pyramid = [](Point & p)
   {
     // if the point is not in the pyramids along the x axis
     // we need to find which one it is is in
@@ -128,6 +124,9 @@ ParticlesPerElementInitializer::getParticleData() const
     else
       p(2) = 1 + p(2);
   };
+
+  unsigned int elem_count = 0;
+  unsigned int particle_index;
 
   for (const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
@@ -186,13 +185,11 @@ ParticlesPerElementInitializer::getParticleData() const
       {
         for (unsigned int i = 0; i < _particles_per_element; ++i)
         {
-          p(0) = 2.0 * generator.rand() - 1.0;
-          p(1) = 2.0 * generator.rand() - 1.0;
-          p(2) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](1) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](2) = 2.0 * generator.rand() - 1.0;
 
-          put_particle_in_pyramid();
-
-          reference_points[i] = p;
+          put_particle_in_pyramid(reference_points[i]);
         }
         break;
       }
@@ -202,33 +199,32 @@ ParticlesPerElementInitializer::getParticleData() const
       {
         for (unsigned int i = 0; i < _particles_per_element; ++i)
         {
-          p(0) = 2.0 * generator.rand() - 1.0;
-          p(1) = 2.0 * generator.rand() - 1.0;
-          p(2) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](0) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](1) = 2.0 * generator.rand() - 1.0;
+          reference_points[i](2) = 2.0 * generator.rand() - 1.0;
 
-          put_particle_in_pyramid();
+          put_particle_in_pyramid(reference_points[i]);
 
           // now we are going to fold the pyramid into a single tet
-          if (p(0) < 0.0)
-            p(0) *= -1;
+          if (reference_points[i](0) < 0.0)
+            reference_points[i](0) *= -1;
 
-          if (p(1) < 0.0)
-            p(1) *= -1;
+          if (reference_points[i](1) < 0.0)
+            reference_points[i](1) *= -1;
 
           // at this point we have two tetrahedrons and we need to reflect on of them
           // over the line y = x if they are not in the selected tet
-          if (p(1) > p(0))
+          if (reference_points[i](1) > reference_points[i](0))
           {
-            auto distance = (p(1) - p(0)) / std::sqrt(2);
-            p(0) += 2 * distance / std::sqrt(2);
-            p(1) -= 2 * distance / std::sqrt(2);
+            auto distance = (reference_points[i](1) - reference_points[i](0)) / std::sqrt(2);
+            reference_points[i](0) += 2 * distance / std::sqrt(2);
+            reference_points[i](1) -= 2 * distance / std::sqrt(2);
           }
 
           // now all of our points are in a tet that is bounded by
           // (0,0,0), (1,0,0), (1,1,0), (0,0,1)
           // to make this our reference tet we perform an affine tranformation
-          p(0) -= p(1);
-          reference_points[i] = p;
+          reference_points[i](0) -= reference_points[i](1);
         }
         break;
       }
@@ -263,6 +259,7 @@ ParticlesPerElementInitializer::getParticleData() const
       particle_index = elem_count * _particles_per_element + i;
       data[particle_index].elem = elem;
       data[particle_index].weight = weight;
+      data[particle_index].species = _species;
       data[particle_index].mass = _mass * weight;
       data[particle_index].charge = _charge * weight;
       data[particle_index].position = physical_points[i];

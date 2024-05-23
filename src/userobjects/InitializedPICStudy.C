@@ -38,16 +38,21 @@ void
 InitializedPICStudy::initializeParticles()
 {
   auto initial_data = _initializer.getParticleData();
-  // incase there are no rays on this processor
+  // incase there are no rays on this processor, do nothing
   if (initial_data.size() == 0)
     return;
 
   std::vector<std::shared_ptr<Ray>> rays(initial_data.size());
 
+  // keeping track of the current element so we can base
+  // ray ids off of the element id
+  // this makes it parallel consistent if `allow_renumbering = false`
   _curr_elem_id = initial_data[0].elem->id();
+  // this counter will be used to incriment the ray id on a per element basis
   _curr_elem_ray_count = 0;
   for (unsigned int i = 0; i < initial_data.size(); ++i)
   {
+    // if we have moved onto a new element reset the counter and switch to the new element
     if (_curr_elem_id != initial_data[i].elem->id())
     {
       _curr_elem_id = initial_data[i].elem->id();

@@ -14,8 +14,10 @@
 
 class InitializerBase;
 /**
- * Test study for generating rays for a basic particle-in-cell capability,
- * where Rays have propagate a bit each time step
+ * Test study of initializing rays with an initializer that will
+ * give all of the data needed for rays and ensure that results are parallel consistent
+ * assuming that element ids do not change as a function of the number processes being
+ * used to solve this
  */
 class InitializedPICStudy : public PICStudyBase
 {
@@ -29,11 +31,13 @@ protected:
   virtual RayID generateUniqueRayID(const THREAD_ID tid) override;
 
   virtual void initializeParticles() override final;
-
+  /// the object that will supply initial data needed for rays
   const InitializerBase & _initializer;
+  /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
-
+  /// the element id of the element that we are putting rays in
   dof_id_type _curr_elem_id;
+  /// the number of rays that we have put into the current element
   unsigned int _curr_elem_ray_count;
 
 };
