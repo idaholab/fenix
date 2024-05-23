@@ -38,8 +38,11 @@ void
 InitializedPICStudy::initializeParticles()
 {
   auto initial_data = _initializer.getParticleData();
-  std::vector<std::shared_ptr<Ray>> rays(initial_data.size());
+  // incase there are no rays on this processor
+  if (initial_data.size() == 0)
+    return;
 
+  std::vector<std::shared_ptr<Ray>> rays(initial_data.size());
 
   _curr_elem_id = initial_data[0].elem->id();
   _curr_elem_ray_count = 0;

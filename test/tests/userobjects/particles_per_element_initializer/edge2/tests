@@ -1,0 +1,22 @@
+[Tests]
+  design = 'ParticleStepperBase.md PICStudyBase.md'
+  issues = '#4 #19'
+  [edge2]
+    requirement = "The system shall be capable of placing particles s"
+    [exodus]
+      input = 'initialization.i'
+      type = 'Exodiff'
+      should_execute = False
+      exodiff = 'initialization_out.e
+                initialization_rays.e'
+      allow_test_objects = true
+    []
+    [csv]
+      input = 'initialization.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = initialization_csv.csv
+      prereq = edge2/exodus
+    []
+  []
+[]

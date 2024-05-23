@@ -1,0 +1,20 @@
+[Tests]
+  design = 'ParticleStepperBase.md PICStudyBase.md'
+  issues = '#4 #19'
+  [errors]
+    requirement = "The system return a useful error when"
+    [unsupported_element_edge3]
+      type = 'RunException'
+      input = 'errors.i'
+      allow_test_objects = true
+      cli_args = 'Mesh/gmg/elem_type=EDGE3'
+      epect_err = ''
+    []
+    [unsupported_element_edge4]
+      type = 'RunException'
+      input = 'errors.i'
+      allow_test_objects = true
+      cli_args = 'Mesh/gmg/elem_type=EDGE4'
+    []
+  []
+[]
