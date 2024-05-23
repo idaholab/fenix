@@ -22,9 +22,11 @@ charge_density = 2
 
 [Variables]
   [phi]
+    order = SECOND
   []
 
   [n]
+    order = SECOND
   []
 []
 
@@ -53,6 +55,7 @@ charge_density = 2
 
 [AuxVariables]
   [dump_value]
+    order = SECOND
   []
 []
 
@@ -167,15 +170,15 @@ charge_density = 2
 []
 
 [Outputs]
-  exodus = true
+  # exodus = true
   [csv]
     type = CSV
     execute_on = TIMESTEP_END
   []
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data_names = 'charge weight mass'
-    execute_on = TIMESTEP_END
-  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data_names = 'charge weight mass'
+  #   execute_on = TIMESTEP_END
+  # []
 []

@@ -9,12 +9,12 @@ executeable="../fenix-opt"
 supress_output = False
 
 
-refine_levels=[0, 1, 2, 3]
-particles_per_element = 100
+
+particles_per_element = [10, 100, 1000]
 
 num_trials=10
-
-top_folder = "element_study"
+mpi=24
+top_folder = "particle_study"
 
 if not os.path.exists(top_folder):
   os.mkdir(top_folder)
@@ -25,16 +25,14 @@ for i in range(num_trials):
      if not os.path.exists(curr_dir):
           os.mkdir(curr_dir)
 
-     for level in refine_levels:
+     for n in particles_per_element:
           a = ["-i", input_file,
                "--allow-test-objects",
-               f"Mesh/uniform_refine={level:n}",
-               f"Outputs/csv/file_base={curr_dir}/{level:d}_refinement",
+               "Mesh/gmg/nx=5",
+               "Mesh/gmg/ny=5",
+               "Mesh/gmg/nz=5",
+               f"Outputs/csv/file_base={curr_dir}/{n:d}_ppe",
                f"UserObjects/initializer/seed={randint(0,1329408):d}",
-               f"GlobalParams/particles_per_element={particles_per_element:d}"
+               f"GlobalParams/particles_per_element={n:d}"
                ]
-          if level > 1:
-               mpi = 20
-          else:
-               mpi = 8
           mooseutils.run_executable(executeable, *a, mpi=mpi, suppress_output=supress_output)

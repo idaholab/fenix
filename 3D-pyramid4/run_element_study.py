@@ -28,7 +28,10 @@ for i in range(num_trials):
      for level in refine_levels:
           a = ["-i", input_file,
                "--allow-test-objects",
-               f"Mesh/uniform_refine={level:n}",
+               f"Mesh/gmg/nx={2 * 2**level}",
+               f"Mesh/gmg/ny={2 * 2**level}",
+               f"Mesh/gmg/nz={2 * 2**level}",
+               # f"Mesh/uniform_refine={level:n}",
                f"Outputs/csv/file_base={curr_dir}/{level:d}_refinement",
                f"UserObjects/initializer/seed={randint(0,1329408):d}",
                f"GlobalParams/particles_per_element={particles_per_element:d}"

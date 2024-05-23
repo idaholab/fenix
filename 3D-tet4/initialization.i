@@ -183,15 +183,15 @@ charge_density = 6
 []
 
 [Outputs]
-  exodus = true
+  # exodus = true
   [csv]
     type = CSV
     execute_on = 'TIMESTEP_END'
   []
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data_names = 'charge weight mass'
-    execute_on = TIMESTEP_END
-  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data_names = 'charge weight mass'
+  #   execute_on = TIMESTEP_END
+  # []
 []

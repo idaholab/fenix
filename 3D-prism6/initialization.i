@@ -8,12 +8,13 @@ charge_density = 6
   [gmg]
   type = GeneratedMeshGenerator
   dim = 3
-  nx = 2
-  ny = 2
-  nz = 2
+  nx = 1
+  ny = 1
+  nz = 1
   xmax = 1
   ymax=1
   zmax=1
+  elem_type = PRISM6
   []
   allow_renumbering = false
 []
@@ -91,8 +92,8 @@ charge_density = 6
     type = InitializedPICStudy
     initializer = initializer
     velocity_updater = updater
-    # always_cache_traces = true
-    # data_on_cache_traces = true
+    always_cache_traces = true
+    data_on_cache_traces = true
     execute_on=TIMESTEP_BEGIN
   []
 
