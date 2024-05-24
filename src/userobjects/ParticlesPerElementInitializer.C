@@ -21,8 +21,8 @@
  {
    auto params = InitializerBase::validParams();
    params.addClassDescription(
-       "PIC particle initializer that uniformly distributes a specified number of particles per "
-       "element and calculates the corrisponding particle weight");
+       "Particle initializer that uniformly distributes a specified number of particles per "
+       "element and calculates the corrisponding particle weight based on the requested number density, particles per element and the elements \"volume\"");
    params.addRequiredParam<unsigned int>(
        "particles_per_element",
        "The number of computational particles that should be placed in each element");

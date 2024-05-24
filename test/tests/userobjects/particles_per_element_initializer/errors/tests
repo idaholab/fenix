@@ -1,6 +1,6 @@
 [Tests]
-  design = 'ParticleStepperBase.md PICStudyBase.md'
-  issues = '#4 #19'
+  design = 'InitializerBase.md ParticlesPerElementInitializer.md'
+  issues = '#36'
   [errors]
     requirement = "The system return a useful error when the user"
     [unsupported_element]

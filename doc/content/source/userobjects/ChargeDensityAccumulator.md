@@ -5,7 +5,11 @@
 In FENIX the charge density $\rho$ is defined as
 
 \begin{equation} \label{eq:charge_density}
-  \rho =
+  \rho
+  \left(
+    \vec{r}\,
+  \right)
+   =
   \sum_{i=1}^N
   q_i
   w_i \delta
