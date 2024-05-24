@@ -33,7 +33,7 @@ public:
 
 protected:
   /// The uniform charge density that the particle weights will be based off
-  const Real _charge_density;
+  const Real _number_density;
   /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
   /// the distributions that will be used for set the initial particle velocities

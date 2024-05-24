@@ -1,0 +1,160 @@
+[Tests]
+  design = 'InitializerBase.md ParticlesPerElementInitializer.md'
+  issues = '#36'
+  requirement = "The system shall be capable of placing particles"
+  [edge2]
+    detail = "inside of EDGE2 elements uniformly"
+    [exodus]
+      input = '1d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=EDGE2
+                  Outputs/file_base=edge2_out
+                  Outputs/rays/file_base=edge2_rays'
+      exodiff = 'edge2_out.e
+                 edge2_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = 'edge2.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = edge2_out.csv
+      prereq = edge2/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [quad4]
+    detail = "inside of QUAD4 elements uniformly"
+    [exodus]
+      input = '2d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=QUAD4
+                  Outputs/file_base=quad4_out
+                  Outputs/rays/file_base=quad4_rays'
+      exodiff = 'quad4_out.e
+                 quad4_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '2d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = quad4_out.csv
+      prereq = quad4/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [tri3]
+    detail = "inside of TRI4 elements uniformly"
+    [exodus]
+      input = '2d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=TRI3
+                  Outputs/file_base=tri3_out
+                  Outputs/rays/file_base=tri3_rays'
+      exodiff = 'tri3_out.e
+                 tri3_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '2d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = tri3_out.csv
+      prereq = tri3/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [hex8]
+    detail = "inside of HEX8 elements uniformly"
+    [exodus]
+      input = '3d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=HEX8
+                  Outputs/file_base=hex8_out
+                  Outputs/rays/file_base=hex8_rays'
+      exodiff = 'hex8_out.e
+                 hex8_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '3d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = hex8_out.csv
+      prereq = hex8/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [prism6]
+    detail = "inside of PRISM6 elements uniformly"
+    [exodus]
+      input = '3d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=PRISM6
+                  Outputs/file_base=prism6_out
+                  Outputs/rays/file_base=prism6_rays'
+      exodiff = 'prism6_out.e
+                 prism6_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '3d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = prism6_out.csv
+      prereq = prism6/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [pyramid5]
+    detail = "inside of PYRAMID5 elements uniformly"
+    [exodus]
+      input = '3d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=PYRAMID5
+                  Outputs/file_base=pyramid5_out
+                  Outputs/rays/file_base=pyramid5_rays'
+      exodiff = 'pyramid5_out.e
+                 pyramid5_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '3d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = pyramid5_out.csv
+      prereq = pyramid5/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+  [tet4]
+    detail = "inside of TET4 elements uniformly"
+    [exodus]
+      input = '3d.i'
+      type = 'Exodiff'
+      cli_args = 'Mesh/gmg/elem_type=TET4
+                  Outputs/file_base=tet4_out
+                  Outputs/rays/file_base=tet4_rays'
+      exodiff = 'tet4_out.e
+                 tet4_rays.e'
+      allow_test_objects = true
+      detail = "and solve an electrostatic potenteial based on the particle positions"
+    []
+    [csv]
+      input = '3d.i'
+      type = 'CSVDiff'
+      should_execute = False
+      csvdiff = tet4_out.csv
+      prereq = tet4/exodus
+      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+    []
+  []
+[]
+

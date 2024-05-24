@@ -25,7 +25,7 @@
     type = ParticlesPerElementInitializer
     mass = 1
     charge = 1
-    charge_density = 2
+    number_density = 2
     velocity_distributions = 'zero zero zero'
   []
 
@@ -34,7 +34,7 @@
   []
 
   [study]
-    type = InitializedPICStudy
+    type = TestInitializedPICStudy
     initializer = initializer
     velocity_updater = velocity_updater
     always_cache_traces = true
@@ -43,14 +43,14 @@
   []
 
   [potential_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = phi
     extra_vector_tags = dump_value
   []
 
   [density_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = n
   []

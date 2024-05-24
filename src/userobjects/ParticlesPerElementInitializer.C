@@ -30,21 +30,21 @@
        "velocity_distributions",
        "The distribution names to be sampled when initializing the velocity of each particle");
 
-   params.addRequiredParam<Real>("charge_density", "The charge density you want to initalize to");
+   params.addRequiredParam<Real>("number_density", "The number density of particles you want to represent");
    return params;
 }
 
 ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParameters & parameters)
   : InitializerBase(parameters),
-    _charge_density(getParam<Real>("charge_density")),
+    _number_density(getParam<Real>("number_density")),
     _particles_per_element(getParam<unsigned int>("particles_per_element")),
     _distribution_names(getParam<std::vector<DistributionName>>("velocity_distributions"))
 {
   if (_particles_per_element <= 0)
     paramError("particles_per_element", "The number of particles in each element must be >= 0");
 
-  if (_charge_density == 0.0)
-    paramError("charge_density", "The prodivded charge density cannot be zero.");
+  if (_number_density == 0.0)
+    paramError("number_density", "The requested number density cannot be zero.");
 }
 
 void
@@ -138,7 +138,6 @@ ParticlesPerElementInitializer::getParticleData() const
     generator.seed(elem->id() + _seed);
     switch (elem->type()) {
       // 1D reference elements x = [-1, 1]
-      case EDGE3:
       case EDGE2:
       {
         for (unsigned int i = 0; i < _particles_per_element; ++i)
@@ -250,7 +249,9 @@ ParticlesPerElementInitializer::getParticleData() const
       }
       default:
         mooseError("Particle Initialization has not been implemented for elements of type " +
-                   Utility::enum_to_string(elem->type()) + ".");
+                   Utility::enum_to_string(elem->type()) + ".\n" +
+                   "If your problem requires this element type please reach out to us at\n" +
+                   "https://github.com/idaholab/fenix/discussions");
     }
     // mapping our points from the reference elements to the actual physical elements
     arbitrary_qrule.setPoints(reference_points);
@@ -259,7 +260,7 @@ ParticlesPerElementInitializer::getParticleData() const
     // now that all of the particle locations have been placed we need to
     // set up the data they will need to be made into actual rays
     const auto & physical_points = fe->get_xyz();
-    Real weight = _charge_density * elem->volume() / (_charge * _particles_per_element);
+    Real weight = _number_density * elem->volume() / (_particles_per_element);
     for (unsigned int i = 0; i < _particles_per_element; ++i)
     {
       particle_index = elem_count * _particles_per_element + i;

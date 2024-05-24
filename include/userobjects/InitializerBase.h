@@ -14,13 +14,21 @@
 
 class Ray;
 
+/** This struct stores all of the data needed to create a ray representing a computational particle*/
 struct InitialParticleData {
+  /// the location where the particle will be placed
   Point position;
+  /// the velocity that the particle will be given
   Point velocity;
+  /// the type of physical particle this particle represents
   std::string species;
+  /// the number of physical particles that this particle represents
   Real weight;
+  /// the charge of the physical particle this computational particle represents
   Real charge;
+  /// the mass of the physical particle this computational particle represents
   Real mass;
+  /// the element that this particle will be placed into
   const Elem * elem;
 };
 
@@ -47,3 +55,4 @@ protected:
   const unsigned int _seed;
   const Real _mesh_dimension;
 };
+
