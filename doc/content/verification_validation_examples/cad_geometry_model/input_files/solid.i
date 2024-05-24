@@ -7,7 +7,7 @@
 
 [Variables]
   [temp]
-    initial_condition = 800.0
+    initial_condition = 800.0 # [K]
   []
 []
 
@@ -35,26 +35,26 @@
     type = DirichletBC
     variable = temp
     boundary = 1
-    value = 800.0
+    value = 800.0 # [K]
   []
 []
 
 [Materials]
   [k_1]
     type = GenericConstantMaterial
-    prop_values = '1.64'
+    prop_values = '1.64' # [W/m.K]
     prop_names = 'thermal_conductivity'
     block = 'Armour'
   []
   [k_2]
     type = GenericConstantMaterial
-    prop_values = '0.45'
+    prop_values = '0.45'  # [W/m.K]
     prop_names = 'thermal_conductivity'
     block = 'FW'
   []
   [k_3]
     type = GenericConstantMaterial
-    prop_values = '0.65'
+    prop_values = '0.65'  # [W/m.K]
     prop_names = 'thermal_conductivity'
     block = 'BM'
   []
