@@ -225,7 +225,7 @@ ParticlesPerElementInitializer::getParticleData() const
 
           // now all of our points are in a tet that is bounded by
           // (0,0,0), (1,0,0), (1,1,0), (0,0,1)
-          // to make this our reference tet we perform an affine tranformation
+          // to make this our refcerence tet we perform an affine tranformation
           reference_points[i](0) -= reference_points[i](1);
         }
         break;
