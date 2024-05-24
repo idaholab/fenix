@@ -39,7 +39,7 @@ FENIX is under active development and does not currently have any benchmarking c
 ## [CAD-based geometry workflow example](cad_geometry_model/cad_model.md) class=center style=font-weight:200;font-size:150%;
 
 !style halign=center
-CAD-based geometry workflow example for Fusion problems using OpenMC and MOOSE.
+CAD-based geometry workflow example for fusion problems using OpenMC and MOOSE based on [!cite](Eltawila2024PBNC).
 !col-end!
 !row-end!
 

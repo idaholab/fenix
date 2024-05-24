@@ -1,7 +1,7 @@
 # CAD-based Geometry Workflow for Multiphysics Fusion Problems Using OpenMC and MOOSE
 
 This demonstration describes a workflow for modeling fusion problems in OpenMC and MOOSE using a computer aided design (CAD)-based geometry workflow.
-It is based on the work published in [!cite](Eltawila2004_PNBC). 
+It is based on the work published in [!cite](Eltawila2024PBNC). 
 
 !media figures/transfers.png
   id=transfers
@@ -23,12 +23,12 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 
 !media figures/mesh_1.png
   id=volumetric_mesh
-  caption=Volumetric mesh [!citep](Eltawila2004_PNBC).
+  caption=Volumetric mesh [!citep](Eltawila2024PBNC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !media figures/d1.png
   id=dagmc
-  caption=DAGMC surface mesh [!citep](Eltawila2004_PNBC).
+  caption=DAGMC surface mesh [!citep](Eltawila2024PBNC).
   style=width:60%;margin-left:auto;margin-right:auto
 
 ## OpenMC
@@ -47,12 +47,12 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 
 !media figures/Temps.png
   id=temps
-  caption=Temperature distribution [!citep](Eltawila2004_PNBC).
+  caption=Temperature distribution [!citep](Eltawila2024PBNC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !media figures/tritium_production.png
   id=h3production
-  caption=Tritium production rate density [!citep](Eltawila2004_PNBC).
+  caption=Tritium production rate density [!citep](Eltawila2024PBNC).
   style=width:60%;margin-left:auto;margin-right:auto
   
 !table id=results caption=Results summary
