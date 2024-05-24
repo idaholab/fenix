@@ -27,8 +27,16 @@ public:
   static InputParameters validParams();
 
 protected:
+  /**
+   * Overridenn in order to base ray indexes on element ids if
+   * allow_renumbering=false then this allows for consistent
+   * ray ids across a range of processor counts
+   */
   virtual RayID generateUniqueRayID(const THREAD_ID tid) override;
-
+  /**
+   * This implementation simply gets particles based on the initializer
+   * and then creates the ray objects which represent the particles
+   */
   virtual void initializeParticles() override final;
   /// the object that will supply initial data needed for rays
   const InitializerBase & _initializer;

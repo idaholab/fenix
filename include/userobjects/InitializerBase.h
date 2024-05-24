@@ -39,8 +39,8 @@ public:
   static InputParameters validParams();
 
   /**
-   * This method will be called by PIC studies to give them all of the data needed to create and place particles
-   * on the finite element mesh
+   * This method will be called by PIC studies to give them all of the data needed to create and
+   * place particles on the finite element mesh
    * */
   virtual std::vector<InitialParticleData> getParticleData() const = 0;
 

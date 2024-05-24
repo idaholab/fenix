@@ -32,7 +32,10 @@ private:
 
   /// The starting velocities
   const std::vector<Point> & _start_velocities;
+  /// the mass of the particles being placed
   const Real _mass;
+  /// the charge of the particles being placed
   const Real _charge;
+  /// the weight of the particles being placed
   const Real _weight;
 };

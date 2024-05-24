@@ -22,10 +22,20 @@ public:
 
   Constant(const InputParameters & parameters);
 
+  /**
+   * Unused and not implemented methods
+   */
+  ///@{
   virtual Real pdf(const Real & x) const override final;
   virtual Real cdf(const Real & x) const override final;
+  ///@}
+
+  /**
+   * Called when random sampling this will only ever return the chosen value
+   */
   virtual Real quantile(const Real & y) const override final;
 
 protected:
+  /// the constant value this distribution will return
   const Real _value;
 };
