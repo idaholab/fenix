@@ -7,6 +7,8 @@ Content:
         root_dir: ${MOOSE_DIR}/modules/electromagnetics/doc/content
     ray_tracing:
         root_dir: ${MOOSE_DIR}/modules/ray_tracing/doc/content
+    stochastic_tools:
+        root_dir: ${MOOSE_DIR}/modules/stochastic_tools/doc/content
     modules:
         root_dir: ${MOOSE_DIR}/modules/doc/content
         content:

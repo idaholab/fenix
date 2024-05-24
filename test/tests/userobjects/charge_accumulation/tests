@@ -1,5 +1,5 @@
 [Tests]
-  design = 'ChargeAccumulator.md'
+  design = 'ChargeDensityAccumulator.md'
   issues = '#25'
   [simple_potential_solve]
     type = 'Exodiff'
