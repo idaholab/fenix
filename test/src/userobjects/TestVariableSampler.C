@@ -23,6 +23,6 @@ TestVariableSampler::postExecuteStudy()
   TestPICStudyUserDefinedRays::postExecuteStudy();
   for (auto & ray : _banked_rays)
   {
-    ray->data()[_field_idx] = _sampler.sampleVariable(ray->currentPoint(), ray->currentElem());
+    ray->data(_field_idx) = _sampler.sampleVariable(ray->currentPoint(), ray->currentElem());
   }
 }

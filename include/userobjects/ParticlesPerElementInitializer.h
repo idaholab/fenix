@@ -36,10 +36,8 @@ protected:
   const Real _charge_density;
   /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
-
   /// the distributions that will be used for set the initial particle velocities
   std::vector<Distribution const *> _velocity_distributions;
-
   /// Velocity distribution names
   const std::vector<DistributionName> & _distribution_names;
 };

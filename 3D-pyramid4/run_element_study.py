@@ -34,7 +34,7 @@ for i in range(num_trials):
                # f"Mesh/uniform_refine={level:n}",
                f"Outputs/csv/file_base={curr_dir}/{level:d}_refinement",
                f"UserObjects/initializer/seed={randint(0,1329408):d}",
-               f"GlobalParams/particles_per_element={particles_per_element:d}"
+               f"particles_per_element={particles_per_element:d}"
                ]
           if level > 1:
                mpi = 20

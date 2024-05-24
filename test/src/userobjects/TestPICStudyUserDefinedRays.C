@@ -27,6 +27,7 @@ TestPICStudyUserDefinedRays::validParams()
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
   params.addParam<Real>("mass", 0, "The mass of the particles used for a test");
   params.addParam<Real>("charge", 0, "The charge of the particles used for a test");
+  params.addParam<Real>("weight", 0, "The number of physical particles a computational particle represents");
   return params;
 }
 
@@ -35,7 +36,8 @@ TestPICStudyUserDefinedRays::TestPICStudyUserDefinedRays(const InputParameters &
     _start_points(getParam<std::vector<Point>>("start_points")),
     _start_velocities(getParam<std::vector<Point>>("start_velocities")),
     _mass(getParam<Real>("mass")),
-    _charge(getParam<Real>("charge"))
+    _charge(getParam<Real>("charge")),
+    _weight(getParam<Real>("weight"))
 {
   if (_start_points.size() != _start_velocities.size())
     paramError("start_velocities", "Must be the same size as 'start_points'");
@@ -60,11 +62,12 @@ TestPICStudyUserDefinedRays::initializeParticles()
     rays[i] = acquireReplicatedRay();
     rays[i]->setStart(_start_points[i]);
     // saving the inital velocities so we can have 3v (1d or 2d)
-    rays[i]->data()[_v_x_index] = _start_velocities[i](0);
-    rays[i]->data()[_v_y_index] = _start_velocities[i](1);
-    rays[i]->data()[_v_z_index] = _start_velocities[i](2);
-    rays[i]->data()[_mass_index] = _mass;
-    rays[i]->data()[_charge_index] = _charge;
+    rays[i]->data(_v_x_index) = _start_velocities[i](0);
+    rays[i]->data(_v_y_index) = _start_velocities[i](1);
+    rays[i]->data(_v_z_index) = _start_velocities[i](2);
+    rays[i]->data(_mass_index) = _mass;
+    rays[i]->data(_charge_index) = _charge;
+    rays[i]->data(_weight_index) = _weight;
     // lets set the particle up for its first timestep
   }
 

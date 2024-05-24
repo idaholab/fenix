@@ -127,15 +127,18 @@ ParticlesPerElementInitializer::getParticleData() const
 
   unsigned int elem_count = 0;
   unsigned int particle_index;
-
+  // This will store the uniformly distributed points within the reference elements
+  std::vector<Point> reference_points = std::vector<Point>(_particles_per_element);
   for (const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
-    Real weight = _charge_density * elem->volume() / _particles_per_element;
-
+    // reseeding with the element id with an additional
+    // user selected seed for consistency
+    // note that this is only consistent across process counts when element ids are
+    // also consistent across processor counts which in general is not the case
     generator.seed(elem->id() + _seed);
-    std::vector<Point> reference_points = std::vector<Point>(_particles_per_element);
     switch (elem->type()) {
       // 1D reference elements x = [-1, 1]
+      case EDGE3:
       case EDGE2:
       {
         for (unsigned int i = 0; i < _particles_per_element; ++i)
@@ -253,15 +256,18 @@ ParticlesPerElementInitializer::getParticleData() const
     arbitrary_qrule.setPoints(reference_points);
     fe->reinit(elem);
 
+    // now that all of the particle locations have been placed we need to
+    // set up the data they will need to be made into actual rays
     const auto & physical_points = fe->get_xyz();
+    Real weight = _charge_density * elem->volume() / (_charge * _particles_per_element);
     for (unsigned int i = 0; i < _particles_per_element; ++i)
     {
       particle_index = elem_count * _particles_per_element + i;
       data[particle_index].elem = elem;
       data[particle_index].weight = weight;
       data[particle_index].species = _species;
-      data[particle_index].mass = _mass * weight;
-      data[particle_index].charge = _charge * weight;
+      data[particle_index].mass = _mass;
+      data[particle_index].charge = _charge;
       data[particle_index].position = physical_points[i];
       data[particle_index].velocity = Point(_velocity_distributions[0]->quantile(generator.rand()),
                                             _velocity_distributions[1]->quantile(generator.rand()),

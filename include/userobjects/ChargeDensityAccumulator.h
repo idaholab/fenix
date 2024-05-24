@@ -14,12 +14,12 @@
 #include "Ray.h"
 class PICStudyBase;
 
-class ChargeAccumulator : public GeneralUserObject
+class ChargeDensityAccumulator : public GeneralUserObject
 {
 public:
   static InputParameters validParams();
 
-  ChargeAccumulator(const InputParameters & params);
+  ChargeDensityAccumulator(const InputParameters & params);
 
   /**
    * Unused methods
@@ -34,6 +34,7 @@ public:
    * by the PIC study once they have finished tracing and then map the charge from
    * the particles to the residuals of a finite element variable.
    * This is computing the inner product of the point source charge density
+   * and the finite element basis functions
    */
   virtual void execute() override;
 
@@ -44,4 +45,6 @@ protected:
   const PICStudyBase & _study;
   /// the ray data index where the charge of a particle is stored
   const RayDataIndex _charge_index;
+  /// the ray data index where the weight of the particle is stored
+  const RayDataIndex _weight_index;
 };

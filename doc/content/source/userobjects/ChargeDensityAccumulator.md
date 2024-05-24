@@ -1,19 +1,20 @@
-# ChargeAccumulator
+# ChargeDensityAccumulator
 
-!syntax description /UserObjects/ChargeAccumulator
+!syntax description /UserObjects/ChargeDensityAccumulator
 
 In FENIX the charge density $\rho$ is defined as
 
 \begin{equation} \label{eq:charge_density}
   \rho =
   \sum_{i=1}^N
-  q_i \delta
+  q_i
+  w_i \delta
   \left(
     \vec{r} - \vec{r}_i
   \right),
 \end{equation}
 
-where $N$ is the number of computational particles in the simulation, $q_i$ is the charge of the $i^\text{th}$ particle, and $\vec{r}_i$ is the position at which the $i^\text{th}$ computational particle exists.
+where $N$ is the number of computational particles in the simulation, $q_i$ is the charge of the $i^\text{th}$ particle, $w_i$ is the weight of the $i^\text{th}$ particle, and $\vec{r}_i$ is the position at which the $i^\text{th}$ computational particle exists.
 
 ## Electrostatic PIC
 
@@ -71,8 +72,8 @@ The `execute_on` parameter of this object is set to `PRE_KERNELS` and is not ava
 
 !listing test/tests/userobjects/charge_accumulation/simple_potential_solve.i block=UserObjects
 
-!syntax parameters /UserObjects/ChargeAccumulator
+!syntax parameters /UserObjects/ChargeDensityAccumulator
 
-!syntax inputs /UserObjects/ChargeAccumulator
+!syntax inputs /UserObjects/ChargeDensityAccumulator
 
-!syntax children /UserObjects/ChargeAccumulator
+!syntax children /UserObjects/ChargeDensityAccumulator

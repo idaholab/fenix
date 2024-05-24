@@ -95,14 +95,14 @@ charge_density = 2
   []
 
   [potential_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = phi
     extra_vector_tags = dump_value
   []
 
   [density_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = n
   []
@@ -167,15 +167,15 @@ charge_density = 2
 []
 
 [Outputs]
-  exodus = true
+  # exodus = true
   [csv]
     type = CSV
     execute_on = TIMESTEP_END
   []
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data_names = 'charge weight mass'
-    execute_on = TIMESTEP_END
-  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data_names = 'charge weight mass'
+  #   execute_on = TIMESTEP_END
+  # []
 []

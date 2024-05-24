@@ -34,4 +34,5 @@ private:
   const std::vector<Point> & _start_velocities;
   const Real _mass;
   const Real _charge;
+  const Real _weight;
 };

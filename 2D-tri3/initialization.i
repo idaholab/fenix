@@ -96,14 +96,14 @@ charge_density = 4
   []
 
   [potential_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = phi
     extra_vector_tags = dump_value
   []
 
   [density_accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = n
   []
