@@ -26,20 +26,20 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 !row! style=display:inline-flex;
 !col! small=12 medium=4 large=3
 
-!media figures/mesh_1.png style=width:100%;display:block;
-  id=volumetric_mesh
+!media figures/mesh_1.png style=width:130%;display:block;
+  id=volumetric_mesh caption=a
 
 !col-end!
 
 !col! small=12 medium=4 large=3
 
-!media figures/d1.png style=width:100%;display:block;
-  id=dagmc
+!media figures/d1.png style=width:130%;display:block;
+  id=dagmc caption=b
 
 !col-end!
 !row-end!
 
-**Figure 2:** Volumetric mesh (left) and DAGMC surface mesh (right) [!citep](Eltawila2024PBNC).
+**Figure:** Volumetric mesh (a) and DAGMC surface mesh (b) [!citep](Eltawila2024PBNC).
 
 ## OpenMC
 
@@ -61,29 +61,29 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 !col! small=12 medium=4 large=3
 
 !media figures/Temps.png style=width:130%;display:block;
-  id=temps
+  id=temps caption=a
 
 !col-end!
 
 !col! small=12 medium=4 large=3
 
 !media figures/tritium_production.png style=width:130%;display:block;
-  id=h3production
+  id=h3production caption=b
 
 !col-end!
 !row-end!
 
-**Figure 3:** Temperature distribution (left) and Tritium production rate density (right) [!citep](Eltawila2024PBNC).
+**Figure:** Temperature distribution (a) and Tritium production rate density (b) [!citep](Eltawila2024PBNC).
 
 &nbsp;
 
 !table id=results caption=Results summary
 | Parameter | Value |
 | :- | :- |
-| Armor Max. Temp. [K]         | 1062.4                   |
-| First Wall Max. Temp. [K]    | 1057.6                   |
-| Breeder Max. Temp. [K]       | 987.4                    |
-| Heat Source [W]              | 2.44 × 10^5 ± 3 × 10^3   |
-| Tritium Production [atoms/s] | 4.70 × 10^13 ± 8 × 10^11 |
+| Armor Max. Temp. (K)         | 1062.4                   |
+| First Wall Max. Temp. (K)    | 1057.6                   |
+| Breeder Max. Temp. (K)       | 987.4                    |
+| Heat Source (W)              | 2.44 × 10^5^ ± 3 × 10^3   |
+| Tritium Production (atoms/s) | 4.70 × 10^13^ ± 8 × 10^11 |
 
 &nbsp;
