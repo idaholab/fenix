@@ -15,14 +15,15 @@ InputParameters
 Constant::validParams()
 {
   InputParameters params = Distribution::validParams();
-  params.addClassDescription("Distribution that returns a constant for all random numbers sampled, pdf and cdf are not intended to be used");
-  params.addRequiredParam<Real>("value", "the constant that will be returned when the quantile method is called");
+  params.addClassDescription("Distribution that returns a constant for all random numbers sampled, "
+                             "pdf and cdf are not intended to be used");
+  params.addRequiredParam<Real>(
+      "value", "the constant that will be returned when the quantile method is called");
   return params;
 }
 
 Constant::Constant(const InputParameters & parameters)
-  : Distribution(parameters),
-  _value(getParam<Real>("value"))
+  : Distribution(parameters), _value(getParam<Real>("value"))
 {
 }
 

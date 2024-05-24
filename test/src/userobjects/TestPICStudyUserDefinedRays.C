@@ -27,7 +27,8 @@ TestPICStudyUserDefinedRays::validParams()
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
   params.addParam<Real>("mass", 0, "The mass of the particles used for a test");
   params.addParam<Real>("charge", 0, "The charge of the particles used for a test");
-  params.addParam<Real>("weight", 0, "The number of physical particles a computational particle represents");
+  params.addParam<Real>(
+      "weight", 0, "The number of physical particles a computational particle represents");
   return params;
 }
 

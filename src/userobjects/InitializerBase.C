@@ -1,4 +1,4 @@
- //* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
+//* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
 //*
@@ -35,4 +35,3 @@ InitializerBase::InitializerBase(const InputParameters & parameters)
   if (_mass <= 0.0)
     paramError("mass", "The mass of particles must be >= 0.0");
 }
-

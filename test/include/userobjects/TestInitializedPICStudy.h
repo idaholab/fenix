@@ -27,7 +27,6 @@ public:
   static InputParameters validParams();
 
 protected:
-
   virtual RayID generateUniqueRayID(const THREAD_ID tid) override;
 
   virtual void initializeParticles() override final;
@@ -39,5 +38,4 @@ protected:
   dof_id_type _curr_elem_id;
   /// the number of rays that we have put into the current element
   unsigned int _curr_elem_ray_count;
-
 };

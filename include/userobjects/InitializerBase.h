@@ -14,8 +14,10 @@
 
 class Ray;
 
-/** This struct stores all of the data needed to create a ray representing a computational particle*/
-struct InitialParticleData {
+/** This struct stores all of the data needed to create a ray representing a computational
+ * particle*/
+struct InitialParticleData
+{
   /// the location where the particle will be placed
   Point position;
   /// the velocity that the particle will be given
@@ -48,6 +50,7 @@ public:
   virtual void initialize() override final {}
   virtual void finalize() override final {}
   virtual void execute() override final {}
+
 protected:
   const Real _mass;
   const Real _charge;
@@ -55,4 +58,3 @@ protected:
   const unsigned int _seed;
   const Real _mesh_dimension;
 };
-

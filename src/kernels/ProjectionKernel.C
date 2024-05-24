@@ -22,8 +22,7 @@ ProjectionKernel::validParams()
   return params;
 }
 
-ProjectionKernel::ProjectionKernel(const InputParameters & parameters)
-  : ADKernelValue(parameters)
+ProjectionKernel::ProjectionKernel(const InputParameters & parameters) : ADKernelValue(parameters)
 {
 }
 

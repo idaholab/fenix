@@ -1,4 +1,4 @@
- //* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
+//* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
 //*
@@ -14,24 +14,26 @@
 #include "MooseRandom.h"
 #include "Distribution.h"
 
- registerMooseObject("FenixApp", ParticlesPerElementInitializer);
+registerMooseObject("FenixApp", ParticlesPerElementInitializer);
 
- InputParameters
- ParticlesPerElementInitializer::validParams()
- {
-   auto params = InitializerBase::validParams();
-   params.addClassDescription(
-       "Particle initializer that uniformly distributes a specified number of particles per "
-       "element and calculates the corrisponding particle weight based on the requested number density, particles per element and the elements \"volume\"");
-   params.addRequiredParam<unsigned int>(
-       "particles_per_element",
-       "The number of computational particles that should be placed in each element");
-   params.addRequiredParam<std::vector<DistributionName>>(
-       "velocity_distributions",
-       "The distribution names to be sampled when initializing the velocity of each particle");
+InputParameters
+ParticlesPerElementInitializer::validParams()
+{
+  auto params = InitializerBase::validParams();
+  params.addClassDescription(
+      "Particle initializer that uniformly distributes a specified number of particles per "
+      "element and calculates the corrisponding particle weight based on the requested number "
+      "density, particles per element and the elements \"volume\"");
+  params.addRequiredParam<unsigned int>(
+      "particles_per_element",
+      "The number of computational particles that should be placed in each element");
+  params.addRequiredParam<std::vector<DistributionName>>(
+      "velocity_distributions",
+      "The distribution names to be sampled when initializing the velocity of each particle");
 
-   params.addRequiredParam<Real>("number_density", "The number density of particles you want to represent");
-   return params;
+  params.addRequiredParam<Real>("number_density",
+                                "The number density of particles you want to represent");
+  return params;
 }
 
 ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParameters & parameters)
@@ -58,7 +60,6 @@ ParticlesPerElementInitializer::initialSetup()
                "You must provide 3 distributions, one for each velocity component.");
 }
 
-
 std::vector<InitialParticleData>
 ParticlesPerElementInitializer::getParticleData() const
 {
@@ -75,7 +76,8 @@ ParticlesPerElementInitializer::getParticleData() const
   if (num_local_elements == 0)
     return {};
 
-  std::vector<InitialParticleData> data = std::vector<InitialParticleData>(num_local_elements * _particles_per_element);
+  std::vector<InitialParticleData> data =
+      std::vector<InitialParticleData>(num_local_elements * _particles_per_element);
 
   // setting up this to be able to map from reference elemnts to the physical elemnts
   ArbitraryQuadrature arbitrary_qrule = ArbitraryQuadrature(_mesh_dimension, FIRST);
@@ -136,7 +138,8 @@ ParticlesPerElementInitializer::getParticleData() const
     // note that this is only consistent across process counts when element ids are
     // also consistent across processor counts which in general is not the case
     generator.seed(elem->id() + _seed);
-    switch (elem->type()) {
+    switch (elem->type())
+    {
       // 1D reference elements x = [-1, 1]
       case EDGE2:
       {
@@ -155,7 +158,8 @@ ParticlesPerElementInitializer::getParticleData() const
           // if our points are not in the triangle we mirror them into the triangle
           if (reference_points[i](1) > 1 - reference_points[i](0))
           {
-            Real distance = std::abs(-reference_points[i](0) - reference_points[i](1) + 1) / std::sqrt(2);
+            Real distance =
+                std::abs(-reference_points[i](0) - reference_points[i](1) + 1) / std::sqrt(2);
             reference_points[i](0) = reference_points[i](0) - 2 * distance / std::sqrt(2);
             reference_points[i](1) = reference_points[i](1) - 2 * distance / std::sqrt(2);
           }
@@ -273,7 +277,6 @@ ParticlesPerElementInitializer::getParticleData() const
       data[particle_index].velocity = Point(_velocity_distributions[0]->quantile(generator.rand()),
                                             _velocity_distributions[1]->quantile(generator.rand()),
                                             _velocity_distributions[2]->quantile(generator.rand()));
-
     }
     elem_count++;
   }

@@ -27,6 +27,5 @@ public:
   virtual Real quantile(const Real & y) const override final;
 
 protected:
-
   const Real _value;
 };

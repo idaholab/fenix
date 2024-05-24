@@ -20,8 +20,10 @@ InputParameters
 TestInitializedPICStudy::validParams()
 {
   auto params = PICStudyBase::validParams();
-  params.addRequiredParam<UserObjectName>("initializer", "The initializer that will place particles");
-  params.addRequiredParam<unsigned int>("particles_per_element", "The number of particles that will be placed in each element");
+  params.addRequiredParam<UserObjectName>("initializer",
+                                          "The initializer that will place particles");
+  params.addRequiredParam<unsigned int>(
+      "particles_per_element", "The number of particles that will be placed in each element");
 
   return params;
 }
@@ -32,7 +34,6 @@ TestInitializedPICStudy::TestInitializedPICStudy(const InputParameters & paramet
     _particles_per_element(getParam<unsigned int>("particles_per_element"))
 {
 }
-
 
 void
 TestInitializedPICStudy::initializeParticles()
