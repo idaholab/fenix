@@ -11,14 +11,12 @@
 
 registerMooseObject("FenixApp", ProjectionKernel);
 
-/**
- * This macro defines the valid parameters for
- * this Kernel and their default values
- */
+
 InputParameters
 ProjectionKernel::validParams()
 {
   InputParameters params = ADKernelValue::validParams();
+  params..addClassDescription("Kernel for projecting discrete particle quantities onto the finite element mesh");
   return params;
 }
 

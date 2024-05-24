@@ -11,9 +11,6 @@
 #pragma once
 
 #include "GeneralUserObject.h"
-
-class Ray;
-
 /** This struct stores all of the data needed to create a ray representing a computational
  * particle*/
 struct InitialParticleData
@@ -41,6 +38,10 @@ public:
 
   static InputParameters validParams();
 
+  /**
+   * This method will be called by PIC studies to give them all of the data needed to create and place particles
+   * on the finite element mesh
+   * */
   virtual std::vector<InitialParticleData> getParticleData() const = 0;
 
   /**
@@ -52,9 +53,14 @@ public:
   virtual void execute() override final {}
 
 protected:
+  /// the mass of the particles being created
   const Real _mass;
+  /// the charge of the particles being created
   const Real _charge;
+  /// the type of particle being created
   const std::string & _species;
+  /// a user specified seed for changing random number generator seeds
   const unsigned int _seed;
+  /// the dimension of the finite element mesh
   const Real _mesh_dimension;
 };
