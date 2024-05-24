@@ -21,15 +21,25 @@ The CAD model was first developed in FUSION360 and was imported into Cubit to as
 
 In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which the heat conduction physics is solved. `tmesh_1.h5m` is the DAGMC surface mesh used for particle transport in OpenMC (which bounds the surfaces between different materials). Cardinal also allows for mesh tallying for tallying OpenMC results directly on the mesh overlayed on the OpenMC geometry  which `tmesh_1.e` could be used for as well as an unstructered volume mesh. This could be used by changing the tally type and adding a mesh template (`tally_type = mesh`, `mesh_template = tmesh_1.e`).
 
-!media figures/mesh_1.png
+&nbsp;
+
+!row! style=display:inline-flex;
+!col! small=12 medium=4 large=3
+
+!media figures/mesh_1.png style=width:35%;display:block;
   id=volumetric_mesh
   caption=Volumetric mesh [!citep](Eltawila2024PBNC).
-  style=width:35%;margin-left:auto;margin-right:auto
-  
-!media figures/d1.png
+
+!col-end!
+
+!col! small=12 medium=4 large=3
+
+!media figures/d1.png style=width:35%;display:block;
   id=dagmc
   caption=DAGMC surface mesh [!citep](Eltawila2024PBNC).
-  style=width:35%;margin-left:auto;margin-right:auto
+
+!col-end!
+!row-end!
 
 ## OpenMC
 
@@ -44,18 +54,30 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 !listing /input_files/solid.i
 
 ## Results
+  
+&nbsp;
 
-!media figures/Temps.png
+!row! style=display:inline-flex;
+!col! small=12 medium=4 large=3
+
+!media figures/Temps.png style=width:35%;display:block;
   id=temps
   caption=Temperature distribution [!citep](Eltawila2024PBNC).
-  style=width:35%;margin-left:auto;margin-right:auto
-  
-!media figures/tritium_production.png
+
+!col-end!
+
+!col! small=12 medium=4 large=3
+
+!media figures/tritium_production.png style=width:35%;display:block;
   id=h3production
   caption=Tritium production rate density [!citep](Eltawila2024PBNC).
-  style=width:35%;margin-left:auto;margin-right:auto
-  
-!table id=results caption=Results summary
+
+!col-end!
+!row-end!
+
+&nbsp;
+
+!table id=results caption=Results summary.
 | Armor Max. Temp. [K]| 1062.4 |
 | First Wall Max. Temp. [K]| 1057.6 |
 | Breeder Max. Temp. [K]| 987.4 |
