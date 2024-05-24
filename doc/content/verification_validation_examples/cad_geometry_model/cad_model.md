@@ -28,7 +28,6 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 
 !media figures/mesh_1.png style=width:100%;display:block;
   id=volumetric_mesh
-  caption=(a)
 
 !col-end!
 
@@ -36,12 +35,11 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 
 !media figures/d1.png style=width:100%;display:block;
   id=dagmc
-  caption=(b)
 
 !col-end!
 !row-end!
 
-__Figure 2:__ Volumetric mesh and DAGMC surface mesh [!citep](Eltawila2024PBNC).
+**Figure 2:** Volumetric mesh (left) and DAGMC surface mesh (right) [!citep](Eltawila2024PBNC).
 
 ## OpenMC
 
@@ -62,27 +60,26 @@ __Figure 2:__ Volumetric mesh and DAGMC surface mesh [!citep](Eltawila2024PBNC).
 !row! style=display:inline-flex;
 !col! small=12 medium=4 large=3
 
-!media figures/Temps.png style=width:100%;display:block;
+!media figures/Temps.png style=width:130%;display:block;
   id=temps
-  caption=(a)
 
 !col-end!
 
 !col! small=12 medium=4 large=3
 
-!media figures/tritium_production.png style=width:100%;display:block;
+!media figures/tritium_production.png style=width:130%;display:block;
   id=h3production
-  caption=(b)
 
 !col-end!
 !row-end!
 
-__Figure 3:__ Temperature distribution (a) and Tritium production rate density (b) [!citep](Eltawila2024PBNC).
+**Figure 3:** Temperature distribution (left) and Tritium production rate density (right) [!citep](Eltawila2024PBNC).
 
 &nbsp;
 
-__Results summary__
-
+!table id=results caption=Results summary
+| Parameter | Value |
+| :- | :- |
 | Armor Max. Temp. [K]         | 1062.4                   |
 | First Wall Max. Temp. [K]    | 1057.6                   |
 | Breeder Max. Temp. [K]       | 987.4                    |
