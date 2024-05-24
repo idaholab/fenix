@@ -24,12 +24,12 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 !media figures/mesh_1.png
   id=volumetric_mesh
   caption=Volumetric mesh [!citep](Eltawila2024PBNC).
-  style=width:60%;margin-left:auto;margin-right:auto
+  style=width:35%;margin-left:auto;margin-right:auto
   
 !media figures/d1.png
   id=dagmc
   caption=DAGMC surface mesh [!citep](Eltawila2024PBNC).
-  style=width:60%;margin-left:auto;margin-right:auto
+  style=width:35%;margin-left:auto;margin-right:auto
 
 ## OpenMC
 
@@ -48,12 +48,12 @@ In this example, `tmesh_1.e` is the finite element mesh used in MOOSE on which t
 !media figures/Temps.png
   id=temps
   caption=Temperature distribution [!citep](Eltawila2024PBNC).
-  style=width:60%;margin-left:auto;margin-right:auto
+  style=width:35%;margin-left:auto;margin-right:auto
   
 !media figures/tritium_production.png
   id=h3production
   caption=Tritium production rate density [!citep](Eltawila2024PBNC).
-  style=width:60%;margin-left:auto;margin-right:auto
+  style=width:35%;margin-left:auto;margin-right:auto
   
 !table id=results caption=Results summary
 | Armor Max. Temp. [K]| 1062.4 |
