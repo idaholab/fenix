@@ -41,15 +41,15 @@ In this example, `tmesh_1.e` (Figure 2) is the finite element mesh used in MOOSE
 
 ## OpenMC
 
-!listing /input_files/model.py language=python
+!listing /test/tests/cad_geometry_example/model.py language=python
 
 ## Cardinal
 
-!listing /input_files/openmc.i
+!listing /test/tests/cad_geometry_example/openmc.i
 
 ## MOOSE Heat transfer
 
-!listing /input_files/solid.i
+!listing /test/tests/cad_geometry_example/solid.i
 
 ## Execution
 
