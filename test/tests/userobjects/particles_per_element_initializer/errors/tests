@@ -33,6 +33,7 @@
       allow_test_objects = true
       cli_args = "UserObjects/initializer/velocity_distributions='zero zero'"
       expect_err = 'You must provide 3 distributions, one for each velocity component.'
+      detail = 'does not provide enough distributions to sample for velocity initialization.'
     []
     [zero_particles_per_element_requested]
       type = 'RunException'
@@ -40,13 +41,23 @@
       allow_test_objects = true
       cli_args = "UserObjects/initializer/particles_per_element=0"
       expect_err = 'The number of particles in each element must be >= 0'
+      detail = 'tries to put 0 particles in each element.'
     []
-    [zero_charge_density_requested]
+    [zero_number_density_requested]
       type = 'RunException'
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/number_density=0"
-      expect_err = 'The requested number density cannot be zero.'
+      expect_err = 'The requested number density must be >= 0.'
+      detail = 'tries to request that a particle type be initialized with zero number density'
+    []
+    [negative_number_density_requested]
+      type = 'RunException'
+      input = 'errors.i'
+      allow_test_objects = true
+      cli_args = "UserObjects/initializer/number_density=-1"
+      expect_err = 'The requested number density must be >= 0.'
+      detail = 'tries to request that a particle type be initialized with a negative number density'
     []
   []
 []

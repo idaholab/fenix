@@ -43,10 +43,10 @@ ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParame
     _distribution_names(getParam<std::vector<DistributionName>>("velocity_distributions"))
 {
   if (_particles_per_element <= 0)
-    paramError("particles_per_element", "The number of particles in each element must be >= 0");
+    paramError("particles_per_element", "The number of particles in each element must be >= 0.");
 
-  if (_number_density == 0.0)
-    paramError("number_density", "The requested number density cannot be zero.");
+  if (_number_density <= 0.0)
+    paramError("number_density", "The requested number density must be >= 0.");
 }
 
 void

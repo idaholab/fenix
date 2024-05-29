@@ -1,9 +1,8 @@
 [Tests]
   design = 'InitializerBase.md ParticlesPerElementInitializer.md'
   issues = '#36'
-  requirement = "The system shall be capable of placing particles"
   [edge2]
-    detail = "inside of EDGE2 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of EDGE2 elements uniformly"
     [fields]
       input = '1d.i'
       type = 'Exodiff'
@@ -32,7 +31,7 @@
     []
   []
   [quad4]
-    detail = "inside of QUAD4 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of QUAD4 elements uniformly"
     [fields]
       input = '2d.i'
       type = 'Exodiff'
@@ -60,7 +59,7 @@
     []
   []
   [tri3]
-    detail = "inside of TRI4 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of TRI3 elements uniformly"
     [fields]
       input = '2d.i'
       type = 'Exodiff'
@@ -89,7 +88,7 @@
     []
   []
   [hex8]
-    detail = "inside of HEX8 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of HEX8 elements uniformly"
     [fields]
       input = '3d.i'
       type = 'Exodiff'
@@ -118,7 +117,7 @@
     []
   []
   [prism6]
-    detail = "inside of PRISM6 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of PRISM6 elements uniformly"
     [fields]
       input = '3d.i'
       type = 'Exodiff'
@@ -147,7 +146,7 @@
     []
   []
   [pyramid5]
-    detail = "inside of PYRAMID5 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of PYRAMID5 elements uniformly"
     [fields]
       input = '3d.i'
       type = 'Exodiff'
@@ -179,7 +178,7 @@
     []
   []
   [tet4]
-    detail = "inside of TET4 elements uniformly"
+    requirement = "The system shall be capable of placing particles inside of TET4 elements uniformly"
     [fields]
       input = '3d.i'
       type = 'Exodiff'
