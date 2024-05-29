@@ -79,7 +79,7 @@ ParticlesPerElementInitializer::getParticleData() const
   std::vector<InitialParticleData> data =
       std::vector<InitialParticleData>(num_local_elements * _particles_per_element);
 
-  // setting up this to be able to map from reference elemnts to the physical elemnts
+  // setting up this to be able to map from reference elements to the physical elements
   ArbitraryQuadrature arbitrary_qrule = ArbitraryQuadrature(_mesh_dimension, FIRST);
   FEType fe_type = FEType(CONSTANT, MONOMIAL);
   UniquePtr<FEBase> fe = FEBase::build(_mesh_dimension, fe_type);
@@ -95,7 +95,7 @@ ParticlesPerElementInitializer::getParticleData() const
   auto put_particle_in_pyramid = [](Point & p)
   {
     // if the point is not in the pyramids along the x axis
-    // we need to find which one it is is in
+    // we need to find which one it is in
     if (!((p(0) - std::abs(p(2)) < 0.0) && (-p(0) - std::abs(p(2)) < 0.0) &&
           (p(1) - std::abs(p(2)) < 0.0) && (-p(1) - std::abs(p(2)) < 0.0)))
     {
@@ -104,18 +104,18 @@ ParticlesPerElementInitializer::getParticleData() const
       if (((p(0) - p(1) > 0.0) && (-p(0) - p(1) > 0.0)) ||
           ((p(0) + p(1) > 0.0) && (-p(0) + p(1) > 0.0)))
       {
-        auto temp = p(1);
+        auto temporary = p(1);
         p(1) = p(2);
-        p(2) = temp;
+        p(2) = temporary;
       }
       // all the rest of the points are pyramids with the
       // the y axis going through the center
       else
       {
-        auto temp = p(0);
+        auto temporary = p(0);
         p(0) = p(1);
         p(1) = p(2);
-        p(2) = temp;
+        p(2) = temporary;
       }
     }
     // now we have all of the pyramids oriented
