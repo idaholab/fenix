@@ -85,6 +85,9 @@ This will run both MOOSE and OpenMC (with Cardinal) with 2 MPI processes and 2 O
 &nbsp;
 
 The results of this simulation are shown in [temps], [h3production], and [results]. More information - including a mesh sensitivity study and results from a finer mesh - is available in [!cite](Eltawila2024PBNC).
+
+&nbsp;
+
 !row! style=display:inline-flex;
 !col! small=12 medium=4 large=3
 
