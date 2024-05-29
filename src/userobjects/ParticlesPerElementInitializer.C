@@ -157,7 +157,6 @@ ParticlesPerElementInitializer::getParticleData() const
         {
           // sample on a square x = [0, 1] and y = [0, 1]
           reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
-          std::cout << reference_points[i] << std::endl;
           // if our points are not in the triangle we mirror them into the triangle
           if (reference_points[i](1) > 1 - reference_points[i](0))
           {
@@ -259,6 +258,10 @@ ParticlesPerElementInitializer::getParticleData() const
                    Utility::enum_to_string(elem->type()) + ".\n" +
                    "If your problem requires this element type please reach out to us at\n" +
                    "https://github.com/idaholab/fenix/discussions");
+    }
+    for (const auto p: reference_points)
+    {
+      std::cout << p << std::endl;
     }
     // mapping our points from the reference elements to the actual physical elements
     arbitrary_qrule.setPoints(reference_points);
