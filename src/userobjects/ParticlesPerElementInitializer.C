@@ -139,6 +139,7 @@ ParticlesPerElementInitializer::getParticleData() const
     // note that this is only consistent across process counts when element ids are
     // also consistent across processor counts which in general is not the case
     generator.seed(elem->id() + _seed);
+    std::cout << std::endl << "Reference Points" << std::endl;
     switch (elem->type())
     {
       // 1D reference elements x = [-1, 1]
@@ -156,6 +157,7 @@ ParticlesPerElementInitializer::getParticleData() const
         {
           // sample on a square x = [0, 1] and y = [0, 1]
           reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
+          std::cout << reference_points[i] << std::endl;
           // if our points are not in the triangle we mirror them into the triangle
           if (reference_points[i](1) > 1 - reference_points[i](0))
           {
@@ -261,13 +263,14 @@ ParticlesPerElementInitializer::getParticleData() const
     // mapping our points from the reference elements to the actual physical elements
     arbitrary_qrule.setPoints(reference_points);
     fe->reinit(elem);
-
     // now that all of the particle locations have been placed we need to
     // set up the data they will need to be made into actual rays
+    std::cout << std::endl << "Physical Points" << std::endl;
     const auto & physical_points = fe->get_xyz();
     Real weight = _number_density * elem->volume() / (_particles_per_element);
     for (unsigned int i = 0; i < _particles_per_element; ++i)
     {
+      std::cout << physical_points[i] << std::endl;
       particle_index = elem_count * _particles_per_element + i;
       data[particle_index].elem = elem;
       data[particle_index].weight = weight;
