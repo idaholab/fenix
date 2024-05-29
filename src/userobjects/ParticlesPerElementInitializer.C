@@ -156,7 +156,9 @@ ParticlesPerElementInitializer::getParticleData() const
         for (unsigned int i = 0; i < _particles_per_element; ++i)
         {
           // sample on a square x = [0, 1] and y = [0, 1]
-          reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
+          reference_points[i](0) = generator.rand();
+          reference_points[i](1) = generator.rand();
+          // , generator.rand(), 0.0);
           std::cout << reference_points[i] << std::endl;
           // if our points are not in the triangle we mirror them into the triangle
           if (reference_points[i](1) > 1 - reference_points[i](0))
