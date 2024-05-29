@@ -40,7 +40,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/particles_per_element=0"
-      expect_err = 'The number of particles in each element must be >= 0'
+      expect_err = 'The number of particles in each element must be > 0'
       detail = 'tries to put 0 particles in each element.'
     []
     [zero_number_density_requested]

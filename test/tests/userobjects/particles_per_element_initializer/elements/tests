@@ -8,7 +8,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=EDGE2
                   Outputs/file_base=edge2_out
-                  Outputs/rays/file_base=edge2_rays'
+                  Outputs/rays/file_base=edge2_rays
+                  charge_density=2'
       exodiff = 'edge2_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -37,7 +38,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=QUAD4
                   Outputs/file_base=quad4_out
-                  Outputs/rays/file_base=quad4_rays'
+                  Outputs/rays/file_base=quad4_rays
+                  charge_density=4'
       exodiff = 'quad4_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -65,7 +67,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=TRI3
                   Outputs/file_base=tri3_out
-                  Outputs/rays/file_base=tri3_rays'
+                  Outputs/rays/file_base=tri3_rays
+                  charge_density=4'
       exodiff = 'tri3_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -94,7 +97,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=HEX8
                   Outputs/file_base=hex8_out
-                  Outputs/rays/file_base=hex8_rays'
+                  Outputs/rays/file_base=hex8_rays
+                  charge_density=6'
       exodiff = 'hex8_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -123,7 +127,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=PRISM6
                   Outputs/file_base=prism6_out
-                  Outputs/rays/file_base=prism6_rays'
+                  Outputs/rays/file_base=prism6_rays
+                  charge_density=6'
       exodiff = 'prism6_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -152,7 +157,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=PYRAMID5
                   Outputs/file_base=pyramid5_out
-                  Outputs/rays/file_base=pyramid5_rays'
+                  Outputs/rays/file_base=pyramid5_rays
+                  charge_density=6'
       exodiff = 'pyramid5_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"
@@ -184,7 +190,8 @@
       type = 'Exodiff'
       cli_args = 'Mesh/gmg/elem_type=TET4
                   Outputs/file_base=tet4_out
-                  Outputs/rays/file_base=tet4_rays'
+                  Outputs/rays/file_base=tet4_rays
+                  charge_density=6'
       exodiff = 'tet4_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potential based on the particle positions"

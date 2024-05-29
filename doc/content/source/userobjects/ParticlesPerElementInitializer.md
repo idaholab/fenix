@@ -2,6 +2,8 @@
 
 !syntax description /UserObjects/ParticlesPerElementInitializer
 
+## Overview
+
 Because the charge density in FENIX is defined by Dirac delta functions and each computational particle represents some number of physical particles, computational particles are assigned a weight $\omega_i$. In cartesian geometry this weight represents the number of physical particles per \[m$^{3-d}$\] where $d$ is the dimension of the problem.
 
 !alert warning Using Non-Cartesian Geometries
