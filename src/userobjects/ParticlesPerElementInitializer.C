@@ -46,7 +46,7 @@ ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParame
     paramError("particles_per_element", "The number of particles in each element must be > 0.");
 
   if (_number_density <= 0.0)
-    paramError("number_density", "The requested number density must be >= 0.");
+    paramError("number_density", "The requested number density must be > 0.");
 }
 
 void

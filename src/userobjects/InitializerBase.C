@@ -33,5 +33,5 @@ InitializerBase::InitializerBase(const InputParameters & parameters)
     _mesh_dimension(_fe_problem.mesh().dimension())
 {
   if (_mass <= 0.0)
-    paramError("mass", "The mass of particles must be >= 0.0");
+    paramError("mass", "The mass of particles must be > 0.0");
 }

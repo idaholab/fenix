@@ -16,7 +16,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = 'UserObjects/initializer/mass=0'
-      expect_err = 'The mass of particles must be >= 0.0'
+      expect_err = 'The mass of particles must be > 0.0'
       detail = 'tries to give particles zero mass'
     []
     [negative_mass_requested]
@@ -24,7 +24,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = 'UserObjects/initializer/mass=-1'
-      expect_err = 'The mass of particles must be >= 0.0'
+      expect_err = 'The mass of particles must be > 0.0'
       detail = 'tries to give particles a negative mass'
     []
     [too_few_distributions]
@@ -48,7 +48,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/number_density=0"
-      expect_err = 'The requested number density must be >= 0.'
+      expect_err = 'The requested number density must be > 0.'
       detail = 'tries to request that a particle type be initialized with zero number density'
     []
     [negative_number_density_requested]
@@ -56,7 +56,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/number_density=-1"
-      expect_err = 'The requested number density must be >= 0.'
+      expect_err = 'The requested number density must be > 0.'
       detail = 'tries to request that a particle type be initialized with a negative number density'
     []
   []
