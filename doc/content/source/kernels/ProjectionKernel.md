@@ -2,6 +2,8 @@
 
 !syntax description /Kernels/ProjectionKernel
 
+## Overview
+
 In general the projection of a function onto finite element basis functions is defined by
 
 \begin{equation}
@@ -28,7 +30,9 @@ Where $f$ is the function being projected onto the finite element mesh, $f_h$ is
     = 0
 \end{equation}
 
-This kernel represent the first term in the above equation and in FENIX is generally used for solving for the project of discrete, on particle, quantities onto the finite element mesh.
+This kernel represent the first term in the above equation and in FENIX is generally used for solving for the projection of discrete - on particle - quantities onto the finite element mesh.
+
+## Example Input Syntax
 
 !listing test/tests/userobjects/particles_per_element_initializer/elements/1d.i block=Kernels
 

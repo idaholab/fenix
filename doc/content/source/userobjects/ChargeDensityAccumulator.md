@@ -2,6 +2,8 @@
 
 !syntax description /UserObjects/ChargeDensityAccumulator
 
+## Overview
+
 In FENIX the charge density $\rho$ is defined as
 
 \begin{equation} \label{eq:charge_density}
@@ -73,6 +75,8 @@ This representation of the charge density means that direct knowledge of the cha
 
 !alert note
 The `execute_on` parameter of this object is set to `PRE_KERNELS` and is not available to be set by the user.
+
+## Example Input Syntax
 
 !listing test/tests/userobjects/charge_accumulation/simple_potential_solve.i block=UserObjects
 
