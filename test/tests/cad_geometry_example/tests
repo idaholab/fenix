@@ -1,0 +1,18 @@
+[Tests]
+  design = 'cad_model.md'
+  issues = '#30'
+  [solid_diff]
+    type = Exodiff
+    input = 'solid.i'
+    exodiff = solid_out.e
+    requirement = "The system shall be able to solve for the temperature distribution."
+    required_objects = 'OpenMCCellAverageProblem'
+  []
+  [openmc_diff]
+    type = Exodiff
+    input = 'solid.i'
+    exodiff = solid_out_openmc0.e
+    requirement = "The system shall be able to solve for the heat source and tritium production."
+    required_objects = 'OpenMCCellAverageProblem'
+  []
+[] 

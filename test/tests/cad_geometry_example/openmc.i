@@ -48,7 +48,7 @@
     type = MoabSkinner
     temperature_min = 800
     temperature_max = 1100
-    n_temperature_bins = 100
+    n_temperature_bins = 10
     temperature = temp
     build_graveyard = true
   []

@@ -36,7 +36,7 @@ Helium = openmc.Material(name="Helium")
 Helium.add_element('He', 1.0)
 Helium.set_density("kg/m3", 0.166)
 
-mat2 = openmc.Material.mix_materials([eurofer, Helium], [0.65, 0.35], 'ao')
+mat2 = openmc.Material.mix_materials([eurofer, Helium], [0.65, 0.35], 'ao', name="mat2")
 
 beryllium = openmc.Material(name="beryllium")
 beryllium.add_element('Be', 1.0)
@@ -48,7 +48,7 @@ Li4SiO4.add_element('Si', 1.0)
 Li4SiO4.add_element('O', 4.0)
 Li4SiO4.set_density("g/cm3", 2.39)
 
-mat3 = openmc.Material.mix_materials([eurofer, beryllium, Li4SiO4, Helium], [0.1, 0.37, 0.15, 0.38], 'ao')
+mat3 = openmc.Material.mix_materials([eurofer, beryllium, Li4SiO4, Helium], [0.1, 0.37, 0.15, 0.38], 'ao',name="mat3")
 
 mats = openmc.Materials([mat1, eurofer, Helium,  mat2, beryllium, Li4SiO4,  mat3])
 mats.export_to_xml()
@@ -94,7 +94,7 @@ source.space=spatial_dist
 settings.source = source
 settings.export_to_xml()
 
-dagmc_univ = openmc.DAGMCUniverse(filename='torus7v2t2.h5m')
+dagmc_univ = openmc.DAGMCUniverse(filename='tmesh_1.h5m')
 
 geometry = openmc.Geometry(root=dagmc_univ)
 geometry.export_to_xml()

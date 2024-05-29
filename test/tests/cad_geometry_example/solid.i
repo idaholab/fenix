@@ -71,6 +71,7 @@
   exodus = true
   print_linear_residuals = false
   perf_graph = true
+  csv = true
 []
 
 [MultiApps]
