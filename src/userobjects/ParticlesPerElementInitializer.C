@@ -69,6 +69,7 @@ ParticlesPerElementInitializer::getParticleData() const
   unsigned int num_local_elements = 0;
   for ([[maybe_unused]] const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
+    std::cout << comm().rank() << " " << elem->id() << " " << elem->vertex_average() << std::endl;
     num_local_elements++;
   }
 
