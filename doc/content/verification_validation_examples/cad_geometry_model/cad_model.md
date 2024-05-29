@@ -53,7 +53,13 @@ In this example, `tmesh_1.e` (Figure 2) is the finite element mesh used in MOOSE
 
 ## Execution
 
-To run the coupled calculation:
+To generate OpenMC xml files, run:
+
+```
+python model.py
+```
+
+Then to run the coupled calculation:
 
 ```
 mpiexec -np 2 cardinal-opt -i solid.i --n-threads=2
