@@ -35,5 +35,5 @@ FENIX is under active development and does not currently have any benchmarking c
 
 # List of example cases
 
-[CAD-based geometry workflow example](cad_geometry_model/cad_model.md)
+- [CAD-based geometry workflow example for fusion problems using OpenMC in FENIX](cad_geometry_model/cad_model.md) based on [!cite](Eltawila2024PBNC).
 

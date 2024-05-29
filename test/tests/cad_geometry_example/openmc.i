@@ -26,7 +26,7 @@
   lowest_cell_level = 0
   temperature_blocks = '1 2 3'
   check_tally_sum = false
-  source_strength = 1e18   # Particles/sec.
+  source_strength = 1e18 # Particles/s.
   volume_calculation = vol
   tally_score = 'heating_local H3_production'
   tally_trigger = 'rel_err none'
