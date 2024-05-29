@@ -157,6 +157,9 @@
       exodiff = 'pyramid5_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potenteial based on the particle positions"
+      # this is set because these global element ids are not consistent when using a distributed mesh
+      # this is despite the fact that allow_renumber = false in the input file
+      mesh_mode = 'REPLICATED'
     []
     [rays]
       input = '3d.i'
@@ -186,6 +189,9 @@
       exodiff = 'tet4_out.e'
       allow_test_objects = true
       detail = "and solve an electrostatic potenteial based on the particle positions"
+      # this is set because these global element ids are not consistent when using a distributed mesh
+      # this is despite the fact that allow_renumber = false in the input file
+      mesh_mode = 'REPLICATED'
     []
     [rays]
       input = '3d.i'
