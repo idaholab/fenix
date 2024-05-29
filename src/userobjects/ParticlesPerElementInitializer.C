@@ -22,8 +22,8 @@ ParticlesPerElementInitializer::validParams()
   auto params = InitializerBase::validParams();
   params.addClassDescription(
       "Particle initializer that uniformly distributes a specified number of particles per "
-      "element and calculates the corrisponding particle weight based on the requested number "
-      "density, particles per element and the elements \"volume\"");
+      "element and calculates the corresponding particle weight based on the requested number "
+      "density, particles per element, and the elements \"volume\".");
   params.addRequiredParam<unsigned int>(
       "particles_per_element",
       "The number of computational particles that should be placed in each element");
@@ -72,7 +72,7 @@ ParticlesPerElementInitializer::getParticleData() const
     num_local_elements++;
   }
 
-  // in case there are no elements for this processor do nothing
+  // if there are no elements for this processor: do nothing
   if (num_local_elements == 0)
     return {};
 
