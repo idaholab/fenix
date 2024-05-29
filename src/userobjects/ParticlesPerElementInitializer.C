@@ -139,7 +139,7 @@ ParticlesPerElementInitializer::getParticleData() const
     // note that this is only consistent across process counts when element ids are
     // also consistent across processor counts which in general is not the case
     generator.seed(elem->id() + _seed);
-    std::cout << std::endl << "Reference Points" << std::endl;
+    std::cout << "Random Points" << std::endl << std::endl;
     switch (elem->type())
     {
       // 1D reference elements x = [-1, 1]
@@ -157,6 +157,7 @@ ParticlesPerElementInitializer::getParticleData() const
         {
           // sample on a square x = [0, 1] and y = [0, 1]
           reference_points[i] = Point(generator.rand(), generator.rand(), 0.0);
+          std::cout << reference_points[i] << std::endl;
           // if our points are not in the triangle we mirror them into the triangle
           if (reference_points[i](1) > 1 - reference_points[i](0))
           {
@@ -259,6 +260,8 @@ ParticlesPerElementInitializer::getParticleData() const
                    "If your problem requires this element type please reach out to us at\n" +
                    "https://github.com/idaholab/fenix/discussions");
     }
+    std::cout << std::endl << "Reference Points" << std::endl;
+
     for (const auto p: reference_points)
     {
       std::cout << p << std::endl;
