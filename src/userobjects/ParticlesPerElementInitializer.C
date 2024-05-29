@@ -120,7 +120,7 @@ ParticlesPerElementInitializer::getParticleData() const
     }
     // now we have all of the pyramids oriented
     // along the x axis but we need to put them in
-    // the correct orientataion to match the reference element
+    // the correct orientation to match the reference element
     if (p(2) > 0)
       p(2) = 1 - p(2);
     else
@@ -201,7 +201,7 @@ ParticlesPerElementInitializer::getParticleData() const
         }
         break;
       }
-      // 3D elements with all trianglular faces with nodes at
+      // 3D elements with all triangular faces with nodes at
       // (0,0,0), (1,0,0), (0,1,0), (0,0,1)
       case TET4:
       {
@@ -211,6 +211,7 @@ ParticlesPerElementInitializer::getParticleData() const
           reference_points[i](1) = 2.0 * generator.rand() - 1.0;
           reference_points[i](2) = 2.0 * generator.rand() - 1.0;
 
+          // start by folding the cube into a pyramid
           put_particle_in_pyramid(reference_points[i]);
 
           // now we are going to fold the pyramid into a single tet
@@ -220,7 +221,7 @@ ParticlesPerElementInitializer::getParticleData() const
           if (reference_points[i](1) < 0.0)
             reference_points[i](1) *= -1;
 
-          // at this point we have two tetrahedrons and we need to reflect on of them
+          // at this point we have two tetrahedrons and we need to reflect one of them
           // over the line y = x if they are not in the selected tet
           if (reference_points[i](1) > reference_points[i](0))
           {
@@ -231,7 +232,7 @@ ParticlesPerElementInitializer::getParticleData() const
 
           // now all of our points are in a tet that is bounded by
           // (0,0,0), (1,0,0), (1,1,0), (0,0,1)
-          // to make this our refcerence tet we perform an affine tranformation
+          // to make this our reference tet we perform an affine transformation
           reference_points[i](0) -= reference_points[i](1);
         }
         break;

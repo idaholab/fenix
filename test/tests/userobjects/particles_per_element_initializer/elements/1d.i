@@ -7,11 +7,11 @@ charge_density = 2
 
 [Mesh]
   [gmg]
-  type = GeneratedMeshGenerator
-  dim = 1
-  nx = 10
-  xmax = 1
-  elem_type = EDGE2
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 10
+    xmax = 1
+    elem_type = EDGE2
   []
   allow_renumbering = false
 []

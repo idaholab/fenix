@@ -11,7 +11,7 @@
                   Outputs/rays/file_base=edge2_rays'
       exodiff = 'edge2_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
     []
     [rays]
       input = '1d.i'
@@ -27,7 +27,7 @@
       should_execute = False
       csvdiff = 'edge2_out.csv'
       prereq = edge2/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [quad4]
@@ -40,7 +40,7 @@
                   Outputs/rays/file_base=quad4_rays'
       exodiff = 'quad4_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
     []
     [rays]
       input = '2d.i'
@@ -55,7 +55,7 @@
       should_execute = False
       csvdiff = quad4_out.csv
       prereq = quad4/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [tri3]
@@ -68,7 +68,7 @@
                   Outputs/rays/file_base=tri3_rays'
       exodiff = 'tri3_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
     []
     [rays]
       input = '2d.i'
@@ -84,7 +84,7 @@
       should_execute = False
       csvdiff = tri3_out.csv
       prereq = tri3/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [hex8]
@@ -97,7 +97,7 @@
                   Outputs/rays/file_base=hex8_rays'
       exodiff = 'hex8_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
     []
     [rays]
       input = '3d.i'
@@ -113,7 +113,7 @@
       should_execute = False
       csvdiff = hex8_out.csv
       prereq = hex8/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [prism6]
@@ -126,7 +126,7 @@
                   Outputs/rays/file_base=prism6_rays'
       exodiff = 'prism6_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
     []
     [rays]
       input = '3d.i'
@@ -142,7 +142,7 @@
       should_execute = False
       csvdiff = prism6_out.csv
       prereq = prism6/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [pyramid5]
@@ -155,7 +155,7 @@
                   Outputs/rays/file_base=pyramid5_rays'
       exodiff = 'pyramid5_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
       # this is set because these global element ids are not consistent when using a distributed mesh
       # this is despite the fact that allow_renumber = false in the input file
       mesh_mode = 'REPLICATED'
@@ -174,7 +174,7 @@
       should_execute = False
       csvdiff = pyramid5_out.csv
       prereq = pyramid5/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
   [tet4]
@@ -187,7 +187,7 @@
                   Outputs/rays/file_base=tet4_rays'
       exodiff = 'tet4_out.e'
       allow_test_objects = true
-      detail = "and solve an electrostatic potenteial based on the particle positions"
+      detail = "and solve an electrostatic potential based on the particle positions"
       # this is set because these global element ids are not consistent when using a distributed mesh
       # this is despite the fact that allow_renumber = false in the input file
       mesh_mode = 'REPLICATED'
@@ -206,7 +206,7 @@
       should_execute = False
       csvdiff = tet4_out.csv
       prereq = tet4/fields
-      detail = "and compute the error between an exact electrostic potential and the finite element solution"
+      detail = "and compute the error between an exact electrostatic potential and the finite element solution"
     []
   []
 []

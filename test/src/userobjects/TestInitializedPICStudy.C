@@ -39,7 +39,7 @@ void
 TestInitializedPICStudy::initializeParticles()
 {
   auto initial_data = _initializer.getParticleData();
-  // incase there are no rays on this processor, do nothing
+  // if there are no rays on this processor: do nothing
   if (initial_data.size() == 0)
     return;
 
@@ -49,7 +49,7 @@ TestInitializedPICStudy::initializeParticles()
   // ray ids off of the element id
   // this makes it parallel consistent if `allow_renumbering = false`
   _curr_elem_id = initial_data[0].elem->id();
-  // this counter will be used to incriment the ray id on a per element basis
+  // this counter will be used to increment the ray id on a per element basis
   _curr_elem_ray_count = 0;
   for (unsigned int i = 0; i < initial_data.size(); ++i)
   {
