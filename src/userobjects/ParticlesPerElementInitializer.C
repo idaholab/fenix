@@ -67,10 +67,10 @@ ParticlesPerElementInitializer::getParticleData() const
   // counting the number of elements this process is responsible for
   // this will allow us to allocated data structures of the appropriate length
   unsigned int num_local_elements = 0;
+  // c++ note [[maybe_unused]] tells the compiler not to give a warning
+  // that the variable elem is not used in this loop
   for ([[maybe_unused]] const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
-  {
     num_local_elements++;
-  }
 
   // if there are no elements for this processor: do nothing
   if (num_local_elements == 0)
