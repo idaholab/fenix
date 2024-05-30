@@ -4,3 +4,6 @@
 [submodule "tmap8"]
 	path = tmap8
 	url = ../../idaholab/tmap8.git
+[submodule "cardinal"]
+	path = cardinal
+	url = ../../neams-th-coe/cardinal.git
