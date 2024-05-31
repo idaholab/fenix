@@ -1,12 +1,12 @@
-#include "ChargeAccumulator.h"
+#include "ChargeDensityAccumulator.h"
 #include "ResidualAccumulator.h"
 #include "PICStudyBase.h"
 #include "MooseMesh.h"
 
-registerMooseObject("FenixApp", ChargeAccumulator);
+registerMooseObject("FenixApp", ChargeDensityAccumulator);
 
 InputParameters
-ChargeAccumulator::validParams()
+ChargeDensityAccumulator::validParams()
 {
   auto params = GeneralUserObject::validParams();
   params.addClassDescription(
@@ -15,7 +15,7 @@ ChargeAccumulator::validParams()
   params.addRequiredParam<UserObjectName>("study", "The PICStudy that owns the charged particles");
   // These parameters are necessary when using ResidualAccumulator
   params += TaggingInterface::validParams();
-  // This exec flag is necessary for the ChargeAccumulator to contribute to residuals
+  // This exec flag is necessary for the ChargeDensityAccumulator to contribute to residuals
   ExecFlagEnum & exec_enum = params.set<ExecFlagEnum>("execute_on", true);
   exec_enum.addAvailableFlags(EXEC_PRE_KERNELS);
   params.set<ExecFlagEnum>("execute_on") = EXEC_PRE_KERNELS;
@@ -26,16 +26,17 @@ ChargeAccumulator::validParams()
   return params;
 }
 
-ChargeAccumulator::ChargeAccumulator(const InputParameters & params)
+ChargeDensityAccumulator::ChargeDensityAccumulator(const InputParameters & params)
   : GeneralUserObject(params),
     _var_name(getParam<NonlinearVariableName>("variable")),
     _study(getUserObject<PICStudyBase>("study")),
-    _charge_index(_study.getRayDataIndex("charge"))
+    _charge_index(_study.getRayDataIndex("charge")),
+    _weight_index(_study.getRayDataIndex("weight"))
 {
 }
 
 void
-ChargeAccumulator::execute()
+ChargeDensityAccumulator::execute()
 {
   if (_fe_problem.currentlyComputingResidual())
   {
@@ -46,7 +47,8 @@ ChargeAccumulator::execute()
 
     for (auto & p : particles)
     {
-      accumulator->add(*p->currentElem(), p->currentPoint(), p->data(_charge_index));
+      accumulator->add(
+          *p->currentElem(), p->currentPoint(), p->data(_charge_index) * p->data(_weight_index));
     }
 
     accumulator->finalize();

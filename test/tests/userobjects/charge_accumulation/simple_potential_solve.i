@@ -60,6 +60,7 @@
                         0 0 0'
 
     charge = 0.5
+    weight = 1
     execute_on = 'TIMESTEP_BEGIN'
     always_cache_traces = true
     data_on_cache_traces = true
@@ -67,7 +68,7 @@
   []
 
   [accumulator]
-    type = ChargeAccumulator
+    type = ChargeDensityAccumulator
     study = study
     variable = phi
     extra_vector_tags = dump_value
