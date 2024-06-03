@@ -14,6 +14,7 @@
 //*
 
 #include "InitializerBase.h"
+#include "Distribution.h"
 
 InputParameters
 InitializerBase::validParams()
@@ -23,9 +24,13 @@ InitializerBase::validParams()
                              "for dimensional dependent velocity updating."
                              "And the ability to sample vector fields for use in a particle step");
   params.addParam<unsigned int>("seed", 0, "An additional seed for the random number generators");
-  params.addParam<Real>("mass", 1, "The mass of the particles used for a test");
-  params.addParam<Real>("charge", 1, "The charge of the particles used for a test");
+  params.addRangeCheckedParam<Real>(
+      "mass", 1.0, "mass > 0.0", "The mass of the particles being placed in the mesh");
+  params.addParam<Real>("charge", 1, "The charge of the particles being placed in the mesh");
   params.addParam<std::string>("species", "", "The type of particle that is being initialized");
+  params.addRequiredParam<std::vector<DistributionName>>(
+      "velocity_distributions",
+      "The distribution names to be sampled when initializing the velocity of each particle");
   return params;
 }
 
@@ -35,8 +40,18 @@ InitializerBase::InitializerBase(const InputParameters & parameters)
     _charge(getParam<Real>("charge")),
     _species(getParam<std::string>("species")),
     _seed(getParam<unsigned int>("seed")),
-    _mesh_dimension(_fe_problem.mesh().dimension())
+    _mesh_dimension(_fe_problem.mesh().dimension()),
+    _distribution_names(getParam<std::vector<DistributionName>>("velocity_distributions"))
 {
-  if (_mass <= 0.0)
-    paramError("mass", "The mass of particles must be > 0.0");
+}
+
+void
+InitializerBase::initialSetup()
+{
+  for (const DistributionName & name : _distribution_names)
+    _velocity_distributions.push_back(&getDistributionByName(name));
+
+  if (_velocity_distributions.size() != 3)
+    paramError("velocity_distributions",
+               "You must provide 3 distributions, one for each velocity component.");
 }

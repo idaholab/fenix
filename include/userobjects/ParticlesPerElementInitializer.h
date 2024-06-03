@@ -15,8 +15,6 @@
 
 #pragma once
 
-class Distribution;
-
 #include "InitializerBase.h"
 
 class ParticlesPerElementInitializer : public InitializerBase
@@ -31,18 +29,10 @@ public:
    * the specified number of particles per element
    */
   virtual std::vector<InitialParticleData> getParticleData() const override;
-  /**
-   * overridden to be able to pull the distribution objects into this class
-   */
-  virtual void initialSetup() override;
 
 protected:
   /// The uniform charge density that the particle weights will be based off
   const Real _number_density;
   /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
-  /// the distributions that will be used for set the initial particle velocities
-  std::vector<Distribution const *> _velocity_distributions;
-  /// Velocity distribution names
-  const std::vector<DistributionName> & _distribution_names;
 };

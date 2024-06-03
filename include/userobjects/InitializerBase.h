@@ -16,8 +16,9 @@
 #pragma once
 
 #include "GeneralUserObject.h"
-/** This struct stores all of the data needed to create a ray representing a computational
- * particle*/
+
+class Distribution;
+
 struct InitialParticleData
 {
   /// the location where the particle will be placed
@@ -50,6 +51,11 @@ public:
   virtual std::vector<InitialParticleData> getParticleData() const = 0;
 
   /**
+   * overridden to be able to pull the distribution objects into this class
+   */
+  virtual void initialSetup() override;
+
+  /**
    * Unused methods
    */
   ///@{
@@ -68,4 +74,8 @@ protected:
   const unsigned int _seed;
   /// the dimension of the finite element mesh
   const Real _mesh_dimension;
+  /// the distributions that will be used for set the initial particle velocities
+  std::vector<Distribution const *> _velocity_distributions;
+  /// Velocity distribution names
+  const std::vector<DistributionName> & _distribution_names;
 };

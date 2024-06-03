@@ -1,0 +1,70 @@
+[Tests]
+  design = 'InitializerBase.md ParticlesPerElementInitializer.md ElementSampler.md'
+  issues = '#36'
+  [edge2_rays]
+    input = '1d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=EDGE2
+                Outputs/rays/file_base=edge2_rays'
+    exodiff = 'edge2_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of EDGE2 elements within a bounding box uniformly in a parallel consistent manner"
+  []
+  [tri3_rays]
+    input = '2d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=TRI3
+                Outputs/rays/file_base=tri3_rays'
+    exodiff = 'tri3_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of TRI3 elements within a bounding box uniformly in a parallel consistent manner"
+  []
+  [quad4_rays]
+    input = '2d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=QUAD4
+                Outputs/rays/file_base=quad4_rays'
+    exodiff = 'quad4_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of QUAD4 elements within a bounding box uniformly in a parallel consistent manner"
+  []
+  [hex8_rays]
+    input = '3d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=HEX8
+                Outputs/rays/file_base=hex8_rays'
+    exodiff = 'hex8_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of HEX8 elements within a bounding box uniformly in a parallel consistent manner"
+  []
+  [tet4_rays]
+    input = '3d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=TET4
+                Outputs/rays/file_base=tet4_rays'
+    exodiff = 'tet4_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of TET4 elements within a bounding box uniformly in a parallel consistent manner"
+    mesh_mode = 'REPLICATED'
+  []
+  [pyramid5_rays]
+    input = '3d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=PYRAMID5
+                Outputs/rays/file_base=pyramid5_rays'
+    exodiff = 'pyramid5_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside of PYRAMID5 elements within a bounding box uniformly in a parallel consistent manner"
+    mesh_mode = 'REPLICATED'
+  []
+  [prism6_rays]
+    input = '3d.i'
+    type = 'Exodiff'
+    cli_args = 'Mesh/gmg/elem_type=PRISM6
+                Outputs/rays/file_base=prism6_rays'
+    exodiff = 'prism6_rays.e'
+    allow_test_objects = true
+    requirement = "The system shall be capable of placing particles inside PRISM6 elements within a bounding box uniformly in a parallel consistent manner"
+  []
+[]
+
