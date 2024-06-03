@@ -1,5 +1,5 @@
 [Tests]
-  design = 'InitializerBase.md ParticlesPerElementInitializer.md'
+  design = 'InitializerBase.md ParticlesPerElementInitializer.md ElementSampler.md'
   issues = '#36'
   [errors]
     requirement = "The system return a useful error when the user"
@@ -16,7 +16,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = 'UserObjects/initializer/mass=0'
-      expect_err = 'The mass of particles must be > 0.0'
+      expect_err = 'Range check failed for parameter UserObjects/initializer/mass'
       detail = 'tries to give particles zero mass'
     []
     [negative_mass_requested]
@@ -24,7 +24,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = 'UserObjects/initializer/mass=-1'
-      expect_err = 'The mass of particles must be > 0.0'
+      expect_err = 'Range check failed for parameter UserObjects/initializer/mass'
       detail = 'tries to give particles a negative mass'
     []
     [too_few_distributions]
@@ -40,7 +40,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/particles_per_element=0"
-      expect_err = 'The number of particles in each element must be > 0'
+      expect_err = 'Range check failed for parameter UserObjects/initializer/particles_per_element'
       detail = 'tries to put 0 particles in each element.'
     []
     [zero_number_density_requested]
@@ -48,7 +48,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/number_density=0"
-      expect_err = 'The requested number density must be > 0.'
+      expect_err = 'Range check failed for parameter UserObjects/initializer/number_density'
       detail = 'tries to request that a particle type be initialized with zero number density'
     []
     [negative_number_density_requested]
@@ -56,7 +56,7 @@
       input = 'errors.i'
       allow_test_objects = true
       cli_args = "UserObjects/initializer/number_density=-1"
-      expect_err = 'The requested number density must be > 0.'
+      expect_err = 'Range check failed for parameter UserObjects/initializer/number_density'
       detail = 'tries to request that a particle type be initialized with a negative number density'
     []
   []
