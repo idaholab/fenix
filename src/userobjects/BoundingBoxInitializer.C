@@ -80,12 +80,12 @@ BoundingBoxInitializer::getParticleData() const
   {
     unsigned int intersection_count = 0;
     unsigned int nodes_within = 0;
+    bool elem_added = false;
     // if one of the nodes is in our box or on the edge
     // of the box then we need to add this to the elements we want
     // to place particles in
-    for (const auto node : elem->node_ref_range())
+    for (const auto & node : elem->node_ref_range())
     {
-
       unsigned int dim_valid = 0;
       // first we can check to see if one node is within the bounding box
       // this is sufficient for 1D
@@ -98,6 +98,7 @@ BoundingBoxInitializer::getParticleData() const
       if (dim_valid == _mesh_dimension)
       {
         valid_elems.push_back(elem);
+        elem_added = true;
         break;
       }
 
@@ -125,13 +126,12 @@ BoundingBoxInitializer::getParticleData() const
         }
       }
     }
+    if (elem_added)
+      continue;
     // if more than two planes are intersecting the
     // element then we need to put some particles within it as well
     if (intersection_count > 1)
-    {
       valid_elems.push_back(elem);
-      break;
-    }
   }
 
   // if there are no elements for this processor: do nothing
