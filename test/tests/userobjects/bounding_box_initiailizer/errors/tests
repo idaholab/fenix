@@ -1,5 +1,5 @@
 [Tests]
-  design = 'InitializerBase.md BoundingBox.md ElementSampler.md'
+  design = 'InitializerBase.md BoundingBoxInitializer.md ElementSampler.md'
   issues = '#36'
   [errors]
     requirement = "The system return a useful error when the user"
@@ -50,7 +50,7 @@
                   UserObjects/initializer/x2=0'
       allow_test_objects = true
       expect_err = "x2 must be greater than x1"
-      detail = 'tries to setup a bounding box in 2D but provides the z parameters'
+      detail = 'tries to setup a bounding box where x2 is greater than x1'
     []
   []
 []
