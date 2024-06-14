@@ -14,19 +14,11 @@
 
 #pragma once
 
-#include "MooseApp.h"
+#include <string>
 
-class FenixTestApp : public MooseApp
+namespace FenixHeader
 {
-public:
-  static InputParameters validParams();
 
-  FenixTestApp(InputParameters parameters);
-  virtual ~FenixTestApp();
+std::string header();
 
-  /// Display the FENIX copyright notice and header information
-  virtual std::string header() const override;
-
-  static void registerApps();
-  static void registerAll(Factory & f, ActionFactory & af, Syntax & s, bool use_test_objs = false);
-};
+} // namespace FenixHeader
