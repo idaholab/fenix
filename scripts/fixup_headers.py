@@ -5,7 +5,7 @@
 # first to make sure there is a clean dry-run of the files that should
 # be updated
 # This is based on a script of the same name in the MOOSE Framework:
-# https://github.com/idaholab/moose/blob/master/framework/scripts/fixup_headers.py
+# https://github.com/idaholab/moose/blob/c36c4a18fba0ccf92769bbaef5e6b2d2ba7a43c1/framework/scripts/fixup_headers.py
 
 import os, string, re, shutil
 from optparse import OptionParser
