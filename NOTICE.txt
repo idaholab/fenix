@@ -1,10 +1,10 @@
 This project contains code from Idaho National Laboratory's Fusion ENergy Integrated multiphys-X (FENIX) framework 
 
   _____   _____   _   _   ___  __  __
- |  ___| | ____| | \ | | |_ _| \ \/ /
- | |_    |  _|   |  \| |  | |   \  / 
- |  _|   | |___  | |\  |  | |   /  \ 
- |_|     |_____| |_| \_| |___| /_/\_\
+ |  ___\ | ____\ | \ | | |_ _| \ \/ /
+ | |_    |  _/   |  \| |  | |   \  / 
+ |  _/   | |___  | |\  |  | |   /  \ 
+ |_|     |_____/ |_| \_| |___| /_/\_\
                                      
 
 Github URL https://github.com/idaholab/fenix
