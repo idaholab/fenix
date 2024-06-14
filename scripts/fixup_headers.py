@@ -17,6 +17,7 @@ unified_header = """\
 //* This file is part of FENIX: Fusion ENergy Integrated multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
+//* https://mooseframework.inl.gov/fenix
 //*
 //* FENIX is powered by the MOOSE Framework
 //* https://www.mooseframework.inl.gov
@@ -32,6 +33,7 @@ python_header = """\
 #* This file is part of FENIX: Fusion ENergy Integrated multiphys-X,
 #* A multiphysics application for modeling plasma facing components
 #* https://github.com/idaholab/fenix
+#* https://mooseframework.inl.gov/fenix
 #*
 #* FENIX is powered by the MOOSE Framework
 #* https://www.mooseframework.inl.gov
