@@ -1,12 +1,17 @@
-//* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
+//* This file is part of FENIX: Fusion ENergy Integrated multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
+//* https://mooseframework.inl.gov/fenix
 //*
 //* FENIX is powered by the MOOSE Framework
 //* https://www.mooseframework.inl.gov
 //*
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
+//*
+//* Copyright 2024, Battelle Energy Alliance, LLC
+//* ALL RIGHTS RESERVED
+//*
 
 #include "BoundingBoxInitializer.h"
 #include "MooseRandom.h"
@@ -59,8 +64,8 @@ BoundingBoxInitializer::BoundingBoxInitializer(const InputParameters & parameter
     mooseError("Params 'z1' and 'z2' should not be set unless you are performing a 3D simulation");
   }
 
-  std::vector<std::string> bottom_left_stirngs = {"x1", "y1", "z1"};
-  std::vector<std::string> top_right_stirngs = {"x2", "y2", "z2"};
+  const std::vector<std::string> bottom_left_strings = {"x1", "y1", "z1"};
+  const std::vector<std::string> top_right_strings = {"x2", "y2", "z2"};
   for (const auto i : make_range(_mesh_dimension))
   {
     if (_top_right(i) <= _bottom_left(i))
@@ -112,18 +117,14 @@ BoundingBoxInitializer::getParticleData() const
         {
           Real plane_value = 0;
           for (const auto j : make_range(_mesh_dimension))
-          {
-            plane_value += node(j) * _planes[i][j];
-          }
+          plane_value += node(j) * _planes[i][j];
           plane_value += _planes[i][3];
 
           if (plane_value >= 0)
             nodes_within++;
         }
         if (nodes_within > 1)
-        {
-          intersection_count++;
-        }
+        intersection_count++;
       }
     }
     if (elem_added)
@@ -138,7 +139,7 @@ BoundingBoxInitializer::getParticleData() const
   if (valid_elems.size() == 0)
     return {};
 
-  std::vector<InitialParticleData> data = std::vector<InitialParticleData>();
+  std::vector<InitialParticleData> data;
   MooseRandom generator;
   // this objects allows us to uniformly sample space in elements
   FENIX::ElementSampler sampler = FENIX::ElementSampler(_fe_problem, _seed, generator);
