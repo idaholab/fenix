@@ -15,12 +15,12 @@
 
 #pragma once
 
-#include "InitializerBase.h"
+#include "ParticleInitializerBase.h"
 
-class ParticlesPerElementInitializer : public InitializerBase
+class PerElementParticleInitializer : public ParticleInitializerBase
 {
 public:
-  ParticlesPerElementInitializer(const InputParameters & parameters);
+  PerElementParticleInitializer(const InputParameters & parameters);
 
   static InputParameters validParams();
   /**

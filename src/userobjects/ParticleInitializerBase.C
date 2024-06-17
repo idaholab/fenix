@@ -13,11 +13,11 @@
 //* ALL RIGHTS RESERVED
 //*
 
-#include "InitializerBase.h"
+#include "ParticleInitializerBase.h"
 #include "Distribution.h"
 
 InputParameters
-InitializerBase::validParams()
+ParticleInitializerBase::validParams()
 {
   auto params = GeneralUserObject::validParams();
   params.addClassDescription("Base class for ParticleStepper. Provides the basic implementation"
@@ -34,7 +34,7 @@ InitializerBase::validParams()
   return params;
 }
 
-InitializerBase::InitializerBase(const InputParameters & parameters)
+ParticleInitializerBase::ParticleInitializerBase(const InputParameters & parameters)
   : GeneralUserObject(parameters),
     _mass(getParam<Real>("mass")),
     _charge(getParam<Real>("charge")),
@@ -49,7 +49,7 @@ InitializerBase::InitializerBase(const InputParameters & parameters)
 }
 
 void
-InitializerBase::initialSetup()
+ParticleInitializerBase::initialSetup()
 {
   // Needed because distributions are constructed after UserObjects
   for (const DistributionName & name : _distribution_names)

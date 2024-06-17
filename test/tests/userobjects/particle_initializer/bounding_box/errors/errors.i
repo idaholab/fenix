@@ -29,7 +29,7 @@ charge_density = 2
 
 [UserObjects]
   [initializer]
-    type = BoundingBoxInitializer
+    type = BoundingBoxParticleInitializer
     mass = 1
     charge = 1
     number_density = ${charge_density}

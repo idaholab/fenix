@@ -58,7 +58,7 @@ charge_density = 0
 
 [UserObjects]
   [initializer]
-    type = ParticlesPerElementInitializer
+    type = PerElementParticleInitializer
     mass = 1
     charge = 1
     number_density = ${charge_density}
