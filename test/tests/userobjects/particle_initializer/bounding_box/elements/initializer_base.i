@@ -27,7 +27,7 @@ charge_density = 2
   []
 
   [initializer]
-    type = BoundingBoxInitializer
+    type = BoundingBoxParticleInitializer
     # values are chosen to ensure the bounding box cuts elements
     # in some interesting ways
     bottom_left = '1.1 3.6 2.6'

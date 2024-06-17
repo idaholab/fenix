@@ -16,7 +16,7 @@
 #include "TestInitializedPICStudy.h"
 
 #include "ClaimRays.h"
-#include "InitializerBase.h"
+#include "ParticleInitializerBase.h"
 #include "ParticleStepperBase.h"
 
 registerMooseObject("FenixTestApp", TestInitializedPICStudy);
@@ -35,7 +35,7 @@ TestInitializedPICStudy::validParams()
 
 TestInitializedPICStudy::TestInitializedPICStudy(const InputParameters & parameters)
   : PICStudyBase(parameters),
-    _initializer(getUserObject<InitializerBase>("initializer")),
+    _initializer(getUserObject<ParticleInitializerBase>("initializer")),
     _particles_per_element(getParam<unsigned int>("particles_per_element"))
 {
 }

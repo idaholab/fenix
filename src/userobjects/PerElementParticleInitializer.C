@@ -13,16 +13,16 @@
 //* ALL RIGHTS RESERVED
 //*
 
-#include "ParticlesPerElementInitializer.h"
+#include "PerElementParticleInitializer.h"
 #include "MooseRandom.h"
 #include "ElementSampler.h"
 
-registerMooseObject("FenixApp", ParticlesPerElementInitializer);
+registerMooseObject("FenixApp", PerElementParticleInitializer);
 
 InputParameters
-ParticlesPerElementInitializer::validParams()
+PerElementParticleInitializer::validParams()
 {
-  auto params = InitializerBase::validParams();
+  auto params = ParticleInitializerBase::validParams();
   params.addClassDescription(
       "Particle initializer that uniformly distributes a specified number of particles per "
       "element and calculates the corresponding particle weight based on the requested number "
@@ -38,15 +38,15 @@ ParticlesPerElementInitializer::validParams()
   return params;
 }
 
-ParticlesPerElementInitializer::ParticlesPerElementInitializer(const InputParameters & parameters)
-  : InitializerBase(parameters),
+PerElementParticleInitializer::PerElementParticleInitializer(const InputParameters & parameters)
+  : ParticleInitializerBase(parameters),
     _number_density(getParam<Real>("number_density")),
     _particles_per_element(getParam<unsigned int>("particles_per_element"))
 {
 }
 
 std::vector<InitialParticleData>
-ParticlesPerElementInitializer::getParticleData() const
+PerElementParticleInitializer::getParticleData() const
 {
 
   // counting the number of elements this process is responsible for

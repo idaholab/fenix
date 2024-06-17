@@ -17,7 +17,7 @@
 
 #include "PICStudyBase.h"
 
-class InitializerBase;
+class ParticleInitializerBase;
 /**
  * Test study of initializing rays with an initializer that will
  * give all of the data needed for rays and ensure that results are parallel consistent
@@ -44,7 +44,7 @@ protected:
    */
   virtual void initializeParticles() override final;
   /// the object that will supply initial data needed for rays
-  const InitializerBase & _initializer;
+  const ParticleInitializerBase & _initializer;
   /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
   /// the element id of the element that we are putting rays in

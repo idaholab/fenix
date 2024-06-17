@@ -13,19 +13,19 @@
 //* ALL RIGHTS RESERVED
 //*
 
-#include "BoundingBoxInitializer.h"
+#include "BoundingBoxParticleInitializer.h"
 #include "MooseRandom.h"
 #include "ElementSampler.h"
 #include "Distribution.h"
 
-registerMooseObject("FenixApp", BoundingBoxInitializer);
+registerMooseObject("FenixApp", BoundingBoxParticleInitializer);
 
 InputParameters
-BoundingBoxInitializer::validParams()
+BoundingBoxParticleInitializer::validParams()
 {
-  auto params = ParticlesPerElementInitializer::validParams();
+  auto params = PerElementParticleInitializer::validParams();
   params.addClassDescription(
-      "This initializer performs the same task as [ParticlesPerElementInitializer.md], however, "
+      "This initializer performs the same task as [PerElementParticleInitializer.md], however, "
       "only particles that exist within the bounding box are created.");
   params.addRequiredParam<Point>("bottom_left", "The bottom left corner of the bounding box");
   params.addRequiredParam<Point>("top_right", "The top right corner of the bounding box");
@@ -33,8 +33,8 @@ BoundingBoxInitializer::validParams()
   return params;
 }
 
-BoundingBoxInitializer::BoundingBoxInitializer(const InputParameters & parameters)
-  : ParticlesPerElementInitializer(parameters),
+BoundingBoxParticleInitializer::BoundingBoxParticleInitializer(const InputParameters & parameters)
+  : PerElementParticleInitializer(parameters),
     _bottom_left(getParam<Point>("bottom_left")),
     _top_right(getParam<Point>("top_right")),
     _planes({{-1, 0, 0, _bottom_left(0)},
@@ -63,7 +63,7 @@ BoundingBoxInitializer::BoundingBoxInitializer(const InputParameters & parameter
 }
 
 std::vector<InitialParticleData>
-BoundingBoxInitializer::getParticleData() const
+BoundingBoxParticleInitializer::getParticleData() const
 {
 
   // first collect the elements that we will place particles in

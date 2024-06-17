@@ -15,17 +15,17 @@
 
 #pragma once
 
-#include "ParticlesPerElementInitializer.h"
+#include "PerElementParticleInitializer.h"
 
-class BoundingBoxInitializer : public ParticlesPerElementInitializer
+class BoundingBoxParticleInitializer : public PerElementParticleInitializer
 {
 public:
-  BoundingBoxInitializer(const InputParameters & parameters);
+  BoundingBoxParticleInitializer(const InputParameters & parameters);
 
   static InputParameters validParams();
   /**
    * Initialization that applies a bounding box to
-   * ParticlesPerElementInitializer
+   * PerElementParticleInitializer
    * if the bounding box encompasses the whole domain then these are the same
    */
   virtual std::vector<InitialParticleData> getParticleData() const override;

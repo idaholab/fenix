@@ -37,10 +37,10 @@ struct InitialParticleData
   const Elem * elem;
 };
 
-class InitializerBase : public GeneralUserObject
+class ParticleInitializerBase : public GeneralUserObject
 {
 public:
-  InitializerBase(const InputParameters & parameters);
+  ParticleInitializerBase(const InputParameters & parameters);
 
   static InputParameters validParams();
 
