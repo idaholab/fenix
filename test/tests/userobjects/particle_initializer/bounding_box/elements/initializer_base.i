@@ -4,12 +4,6 @@ particles_per_element = 20
 # set by cli args for each case since it is needed by all
 # tests but changes based on the dimension of the problem
 charge_density = 2
-[Mesh]
-  [gmg]
-    type = GeneratedMeshGenerator
-  []
-  allow_renumbering = false
-[]
 
 [GlobalParams]
   particles_per_element = ${particles_per_element}
@@ -28,17 +22,20 @@ charge_density = 2
 []
 
 [UserObjects]
+  [velocity_updater]
+    type = TestSimpleStepper
+  []
+
   [initializer]
     type = BoundingBoxInitializer
+    # values are chosen to ensure the bounding box cuts elements
+    # in some interesting ways
+    bottom_left = '1.1 3.6 2.6'
+    top_right = '4.25 5.7 8.3'
     mass = 1
     charge = 1
     number_density = ${charge_density}
-    x2 = 1
     velocity_distributions = 'zero zero zero'
-  []
-
-  [velocity_updater]
-    type = TestSimpleStepper
   []
 
   [study]

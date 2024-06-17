@@ -10,9 +10,3 @@
   allow_renumbering = false
 []
 
-[UserObjects]
-  [initializer]
-    x1 = 1.1
-    x2 = 4.25
-  []
-[]
