@@ -43,6 +43,9 @@ InitializerBase::InitializerBase(const InputParameters & parameters)
     _mesh_dimension(_fe_problem.mesh().dimension()),
     _distribution_names(getParam<std::vector<DistributionName>>("velocity_distributions"))
 {
+  if (_distribution_names.size() != 3)
+    paramError("velocity_distributions",
+               "You must provide 3 distributions, one for each velocity component.");
 }
 
 void
@@ -51,8 +54,4 @@ InitializerBase::initialSetup()
   // Needed because distributions are constructed after UserObjects
   for (const DistributionName & name : _distribution_names)
     _velocity_distributions.push_back(&getDistributionByName(name));
-
-  if (_velocity_distributions.size() != 3)
-    paramError("velocity_distributions",
-               "You must provide 3 distributions, one for each velocity component.");
 }

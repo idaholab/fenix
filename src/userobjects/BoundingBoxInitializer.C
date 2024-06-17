@@ -27,50 +27,38 @@ BoundingBoxInitializer::validParams()
   params.addClassDescription(
       "This initializer performs the same task as [ParticlesPerElementInitializer.md], however, "
       "only particles that exist within the bounding box are created.");
-  params.addParam<Real>("x1", 0.0, "The x coordinate of the lower left-hand corner of the box");
-  params.addParam<Real>("y1", 0.0, "The y coordinate of the lower left-hand corner of the box");
-  params.addParam<Real>("z1", 0.0, "The z coordinate of the lower left-hand corner of the box");
-  params.addParam<Real>("x2", 0.0, "The x coordinate of the upper right-hand corner of the box");
-  params.addParam<Real>("y2", 0.0, "The y coordinate of the upper right-hand corner of the box");
-  params.addParam<Real>("z2", 0.0, "The z coordinate of the upper right-hand corner of the box");
+  params.addRequiredParam<Point>("bottom_left", "The bottom left corner of the bounding box");
+  params.addRequiredParam<Point>("top_right", "The top right corner of the bounding box");
 
   return params;
 }
 
 BoundingBoxInitializer::BoundingBoxInitializer(const InputParameters & parameters)
   : ParticlesPerElementInitializer(parameters),
-    _x1(getParam<Real>("x1")),
-    _y1(getParam<Real>("y1")),
-    _z1(getParam<Real>("z1")),
-    _x2(getParam<Real>("x2")),
-    _y2(getParam<Real>("y2")),
-    _z2(getParam<Real>("z2")),
-    _bottom_left(_x1, _y1, _z1),
-    _top_right(_x2, _y2, _z2),
-    _planes({{-1, 0, 0, _x1},
-             {1, 0, 0, -_x2},
-             {0, -1, 0, _y1},
-             {0, 1, 0, -_y2},
-             {0, 0, -1, _z1},
-             {0, 0, 1, -_z2}})
+    _bottom_left(getParam<Point>("bottom_left")),
+    _top_right(getParam<Point>("top_right")),
+    _planes({{-1, 0, 0, _bottom_left(0)},
+             {1, 0, 0, -_top_right(0)},
+             {0, -1, 0, _bottom_left(1)},
+             {0, 1, 0, -_top_right(1)},
+             {0, 0, -1, _bottom_left(2)},
+             {0, 0, 1, -_top_right(2)}})
 {
-  if (_fe_problem.mesh().dimension() == 1 && (isParamSetByUser("y1") || isParamSetByUser("y2")))
-  {
-    mooseError("Params 'y1' and 'y2' should not be set in 1D simulations");
-  }
-
-  if (_fe_problem.mesh().dimension() != 3 && (isParamSetByUser("z1") || isParamSetByUser("z2")))
-  {
-    mooseError("Params 'z1' and 'z2' should not be set unless you are performing a 3D simulation");
-  }
-
-  const std::vector<std::string> bottom_left_strings = {"x1", "y1", "z1"};
-  const std::vector<std::string> top_right_strings = {"x2", "y2", "z2"};
+  if (_mesh_dimension != Moose::dim)
+    mooseWarning(std::to_string(uint(Moose::dim)) +
+                 " components are required for libMesh::Point input.\n"
+                 "However, your simulation is only " +
+                 std::to_string(uint(_mesh_dimension)) +
+                 " dimensional.\n"
+                 "The extra component" +
+                 std::string(_mesh_dimension == uint(2) ? "s" : "") +
+                 " of the libMesh::Point input will be ignored.\n");
   for (const auto i : make_range(_mesh_dimension))
   {
     if (_top_right(i) <= _bottom_left(i))
-      paramError(top_right_stirngs[i],
-                 top_right_stirngs[i] + " must be greater than " + bottom_left_stirngs[i]);
+      paramError("top_right",
+                 "Component " + std::to_string(uint(i)) + " of 'top_right' is <= component " +
+                     std::to_string(uint(i)) + " of 'bottom_left'");
   }
 }
 
@@ -117,14 +105,15 @@ BoundingBoxInitializer::getParticleData() const
         {
           Real plane_value = 0;
           for (const auto j : make_range(_mesh_dimension))
-          plane_value += node(j) * _planes[i][j];
+            plane_value += node(j) * _planes[i][j];
+
           plane_value += _planes[i][3];
 
           if (plane_value >= 0)
             nodes_within++;
         }
         if (nodes_within > 1)
-        intersection_count++;
+          intersection_count++;
       }
     }
     if (elem_added)
@@ -162,17 +151,15 @@ BoundingBoxInitializer::getParticleData() const
       // if the point is in the box then we can add a particle for this point
       if (dim_valid == _mesh_dimension)
       {
-        InitialParticleData temp_data;
-        temp_data.elem = elem;
-        temp_data.weight = weight;
-        temp_data.species = _species;
-        temp_data.mass = _mass;
-        temp_data.charge = _charge;
-        temp_data.position = point;
-        temp_data.velocity = Point(_velocity_distributions[0]->quantile(generator.rand()),
-                                   _velocity_distributions[1]->quantile(generator.rand()),
-                                   _velocity_distributions[2]->quantile(generator.rand()));
-        data.push_back(temp_data);
+        auto & particle = data.emplace_back();
+        particle.elem = elem;
+        particle.weight = weight;
+        particle.species = _species;
+        particle.mass = _mass;
+        particle.charge = _charge;
+        particle.position = point;
+        for (const auto i : make_range(uint(3)))
+          particle.velocity(i) = _velocity_distributions[0]->quantile(generator.rand());
       }
     }
   }

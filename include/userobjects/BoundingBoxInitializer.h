@@ -31,25 +31,11 @@ public:
   virtual std::vector<InitialParticleData> getParticleData() const override;
 
 protected:
-  ///@{
-  /// The individual components of the bottom left point of the axis aligned bounding box
-  const Real _x1;
-  const Real _y1;
-  const Real _z1;
-  ///@}
-
-  ///@{
-  /// The individual components of the upper right point of the axis aligned bounding box
-  const Real _x2;
-  const Real _y2;
-  const Real _z2;
-  ///@}
-
   /// The Point object constructed from the x1, y1, z1 components for the bottom left BB corner
   const Point _bottom_left;
 
   /// The Point object constructed from the x2, y2, z2 components for the bottom left BB corner
   const Point _top_right;
-
+  /// Holds the coefficients for each of the planes which are required for checking if an element is contained within the bounding box
   const std::vector<std::vector<Real>> _planes;
 };
