@@ -17,7 +17,7 @@
       type = 'RunException'
       input = 'errors.i'
       cli_args = "Mesh/gmg/dim=1
-                  UserObjects/initializer/bottom_left='0 0 0'
+                  UserObjects/initializer/top_right='0 0 0'
                   UserObjects/initializer/bottom_left='1 0 0'"
       allow_test_objects = true
       expect_err = "Component 0 of 'top_right' is <= component 0 of 'bottom_left'"

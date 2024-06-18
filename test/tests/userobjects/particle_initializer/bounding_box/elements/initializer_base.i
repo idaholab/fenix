@@ -14,6 +14,13 @@ charge_density = 2
  kernel_coverage_check = false
 []
 
+[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+  []
+  allow_renumbering = false
+[]
+
 [Distributions]
   [zero]
     type = Constant

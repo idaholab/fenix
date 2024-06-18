@@ -2,7 +2,6 @@
 
 [Mesh]
   [gmg]
-    type = GeneratedMeshGenerator
     dim = 3
     nx = 5
     ny = 5
@@ -11,5 +10,4 @@
     ymax = 10
     zmax = 10
   []
-  allow_renumbering = false
 []

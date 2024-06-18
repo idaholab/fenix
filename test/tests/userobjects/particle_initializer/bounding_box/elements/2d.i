@@ -2,7 +2,6 @@
 
 [Mesh]
   [gmg]
-    type = GeneratedMeshGenerator
     dim = 2
     nx = 10
     ny = 10
@@ -10,5 +9,4 @@
     ymax = 10
     elem_type = TRI3
   []
-  allow_renumbering = false
 []
