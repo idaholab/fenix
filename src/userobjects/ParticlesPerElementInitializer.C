@@ -82,7 +82,7 @@ ParticlesPerElementInitializer::getParticleData() const
   // setting up this to be able to map from reference elements to the physical elements
   ArbitraryQuadrature arbitrary_qrule = ArbitraryQuadrature(_mesh_dimension, FIRST);
   FEType fe_type = FEType(CONSTANT, MONOMIAL);
-  UniquePtr<FEBase> fe = FEBase::build(_mesh_dimension, fe_type);
+  std::unique_ptr<FEBase> fe = FEBase::build(_mesh_dimension, fe_type);
   fe->attach_quadrature_rule(&arbitrary_qrule);
   fe->get_xyz();
   // random number generator to be reseeded on each element
