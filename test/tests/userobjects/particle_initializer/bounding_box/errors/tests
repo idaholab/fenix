@@ -38,7 +38,9 @@
     [unused_input_warning_2d]
       type = 'RunException'
       input = 'errors.i'
-      cli_args = "Mesh/gmg/dim=2"
+      cli_args = "Mesh/gmg/dim=2
+                  UserObjects/initializer/bottom_left='0 0 0'
+                  UserObjects/initializer/top_right='1 1 0'"
       allow_test_objects = true
       allow_warnings = False
       expect_err = "3 components are required for libMesh::Point input.\nHowever, your simulation is only 2 dimensional.\nThe extra components of the libMesh::Point input will be ignored.\n"
