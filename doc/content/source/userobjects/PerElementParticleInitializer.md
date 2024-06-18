@@ -1,6 +1,6 @@
-# ParticlesPerElementInitializer
+# PerElementParticleInitializer
 
-!syntax description /UserObjects/ParticlesPerElementInitializer
+!syntax description /UserObjects/PerElementParticleInitializer
 
 ## Overview
 
@@ -26,10 +26,10 @@ where $N$ is the requested number density, $V_j$ is the dimension dependent "vol
 
 !listing test/tests/userobjects/particles_per_element_initializer/elements/1d.i block=UserObjects
 
-!syntax parameters /UserObjects/ParticlesPerElementInitializer
+!syntax parameters /UserObjects/PerElementParticleInitializer
 
-!syntax inputs /UserObjects/ParticlesPerElementInitializer
+!syntax inputs /UserObjects/PerElementParticleInitializer
 
-!syntax children /UserObjects/ParticlesPerElementInitializer
+!syntax children /UserObjects/ParticlesPPerElementParticleInitializererElementInitializer
 
 !bibtex bibliography
