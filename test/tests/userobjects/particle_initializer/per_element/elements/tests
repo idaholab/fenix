@@ -1,5 +1,5 @@
 [Tests]
-  design = 'InitializerBase.md ParticlesPerElementInitializer.md ElementSampler.md'
+  design = 'ParticleInitializerBase.md PerElementParticleInitializer.md ElementSampler.md'
   issues = '#36'
   [edge2]
     requirement = "The system shall be capable of placing particles inside of EDGE2 elements uniformly"
