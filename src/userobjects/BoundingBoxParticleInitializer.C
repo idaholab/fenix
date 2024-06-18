@@ -44,6 +44,12 @@ BoundingBoxParticleInitializer::BoundingBoxParticleInitializer(const InputParame
              {0, 0, -1, _bottom_left(2)},
              {0, 0, 1, -_top_right(2)}})
 {
+  for (const auto i : make_range(_mesh_dimension))
+    if (_top_right(i) <= _bottom_left(i))
+      paramError("top_right",
+                 "Component " + std::to_string(uint(i)) + " of 'top_right' is <= component " +
+                     std::to_string(uint(i)) + " of 'bottom_left'");
+
   if (_mesh_dimension != Moose::dim)
     mooseWarning(std::to_string(uint(Moose::dim)) +
                  " components are required for libMesh::Point input.\n"
@@ -53,13 +59,6 @@ BoundingBoxParticleInitializer::BoundingBoxParticleInitializer(const InputParame
                  "The extra component" +
                  std::string(_mesh_dimension == uint(2) ? "s" : "") +
                  " of the libMesh::Point input will be ignored.\n");
-  for (const auto i : make_range(_mesh_dimension))
-  {
-    if (_top_right(i) <= _bottom_left(i))
-      paramError("top_right",
-                 "Component " + std::to_string(uint(i)) + " of 'top_right' is <= component " +
-                     std::to_string(uint(i)) + " of 'bottom_left'");
-  }
 }
 
 std::vector<InitialParticleData>
