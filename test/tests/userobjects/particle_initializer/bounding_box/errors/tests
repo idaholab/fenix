@@ -1,6 +1,6 @@
 [Tests]
-  design = 'InitializerBase.md BoundingBoxInitializer.md ElementSampler.md'
-  issues = '#36'
+  design = 'ParticleInitializerBase.md BoundingBoxParticleInitializer.md ElementSampler.md'
+  issues = '#42'
   [errors]
     requirement = "The system return a useful error when the user"
     [unsupported_element]

@@ -1,6 +1,6 @@
 [Tests]
-  design = 'InitializerBase.md ParticlesPerElementInitializer.md ElementSampler.md'
-  issues = '#36'
+  design = 'ParticleInitializerBase.md BoundingBoxParticleInitializer.md ElementSampler.md'
+  issues = '#42'
   [rays]
     requirement = 'The system shall support placing particles within a bounding box uniformly in a parallel consistent manner in the element type'
     [edge2_rays]
