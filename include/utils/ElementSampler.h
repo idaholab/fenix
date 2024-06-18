@@ -42,6 +42,6 @@ protected:
   /// the quadrature rule that maps points from the reference element to the physical element
   ArbitraryQuadrature _arbitrary_qrule;
   /// the fe object that helps mapping points from the reference element to the physical element
-  UniquePtr<FEBase> _fe;
+  std::unique_ptr<FEBase> _fe;
 };
 }
