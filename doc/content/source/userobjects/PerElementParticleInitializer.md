@@ -24,12 +24,12 @@ where $N$ is the requested number density, $V_j$ is the dimension dependent "vol
 
 ## Example Input Syntax
 
-!listing test/tests/userobjects/particles_per_element_initializer/elements/1d.i block=UserObjects
+!listing test/tests/userobjects/particle_initializer/per_element/elements/1d.i block=UserObjects
 
 !syntax parameters /UserObjects/PerElementParticleInitializer
 
 !syntax inputs /UserObjects/PerElementParticleInitializer
 
-!syntax children /UserObjects/ParticlesPPerElementParticleInitializererElementInitializer
+!syntax children /UserObjects/PerElementParticleInitializer
 
 !bibtex bibliography

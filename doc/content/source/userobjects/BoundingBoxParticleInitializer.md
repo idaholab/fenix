@@ -7,7 +7,7 @@ This method does not give explict control over the total number of macro particl
 
 ## Example Input Syntax
 
-!listing test/tests/userobjects/particles_per_element_initializer/elements/1d.i block=UserObjects
+!listing test/tests/userobjects/particle_initializer/bounding_box/elements/1d.i block=UserObjects
 
 !syntax parameters /UserObjects/BoundingBoxParticleInitializer
 

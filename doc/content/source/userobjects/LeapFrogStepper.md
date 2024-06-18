@@ -36,7 +36,7 @@ The implementation of the leap frog scheme was verified using single particle mo
 
 # Example Input Syntax
 
-!listing test/tests/userobjects/leapfrog_stepper/projectile_motion.i block=UserObjects
+!listing test/tests/userobjects/particle_stepper/leapfrog_stepper/projectile_motion.i block=UserObjects
 
 !syntax parameters /UserObjects/LeapFrogStepper
 
