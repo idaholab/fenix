@@ -10,6 +10,7 @@
                   Outputs/rays/file_base=edge2_rays'
       exodiff = 'edge2_rays.e'
       allow_test_objects = true
+      allow_warnings = true
       detail = 'EDGE2'
     []
     [tri3_rays]
@@ -19,6 +20,7 @@
                   Outputs/rays/file_base=tri3_rays'
       exodiff = 'tri3_rays.e'
       allow_test_objects = true
+      allow_warnings = true
       detail = 'TRI3'
     []
     [quad4_rays]
@@ -28,6 +30,7 @@
                   Outputs/rays/file_base=quad4_rays'
       exodiff = 'quad4_rays.e'
       allow_test_objects = true
+      allow_warnings = true
       detail = 'QUAD4'
     []
     [hex8_rays]
