@@ -14,7 +14,7 @@ FENIX will enable high-fidelity modeling of irradiation levels and plasma exposu
 conditions of plasma facing components and their impact on heat and tritium distributions, as well
 as the resulting mechanical constraints experienced by the plasma facing components.
 
-The [FENIX documentation](https://fenix-dev.hpc.inl.gov/site/index.html) includes the code reference, a getting started guide, and details about verification, validation, and examples case, etc.
+The [FENIX documentation](https://mooseframework.inl.gov/fenix/index.html) includes the code reference, a getting started guide, and details about verification, validation, and examples case, etc.
 
 "Fork FENIX" to create a new MOOSE-based application.
 For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
