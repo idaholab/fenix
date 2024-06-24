@@ -16,9 +16,6 @@ as the resulting mechanical constraints experienced by the plasma facing compone
 
 The [FENIX documentation](https://mooseframework.inl.gov/fenix/index.html) includes the code reference, a getting started guide, and details about verification, validation, and examples case, etc.
 
-"Fork FENIX" to create a new MOOSE-based application.
-For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
-
 ### Other Software
 Idaho National Laboratory is a cutting edge research facility which is constantly producing high quality research and software. Feel free to take a look at our other software and scientific offerings at:
 
