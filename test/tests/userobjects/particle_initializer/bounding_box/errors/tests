@@ -1,0 +1,51 @@
+[Tests]
+  design = 'ParticleInitializerBase.md BoundingBoxParticleInitializer.md ElementSampler.md'
+  issues = '#42'
+  [errors]
+    requirement = "The system return a useful error when the user"
+    [unsupported_element]
+      type = 'RunException'
+      input = 'errors.i'
+      allow_test_objects = true
+      allow_warnings = true
+      cli_args = 'Mesh/gmg/dim=1
+                  Mesh/gmg/elem_type=EDGE3'
+      expect_err = 'Particle Initialization has not been implemented for elements of type EDGE3'
+      detail = 'requests an element type that initialization has not been verified for'
+    []
+
+    [top_right_less_than_bottom_left]
+      type = 'RunException'
+      input = 'errors.i'
+      cli_args = "Mesh/gmg/dim=1
+                  UserObjects/initializer/top_right='0 0 0'
+                  UserObjects/initializer/bottom_left='1 0 0'"
+      allow_test_objects = true
+      expect_err = "Component 0 of 'top_right' is <= component 0 of 'bottom_left'"
+      detail = 'tries to setup a bounding box where a component of bottom_left is greater than top_right'
+    []
+  []
+  [warnings]
+    requirement = "The system return a useful warning to remind the user that the"
+    [unused_input_warning_1d]
+      type = 'RunException'
+      input = 'errors.i'
+      cli_args = "Mesh/gmg/dim=1"
+      allow_test_objects = true
+      allow_warnings = False
+      expect_err = "3 components are required for libMesh::Point input.\nHowever, your simulation is only 1 dimensional.\nThe extra component of the libMesh::Point input will be ignored.\n"
+      detail = '2 extra components of the `bottom_left` and `top_right` inputs are ignored in 1D simulations'
+    []
+    [unused_input_warning_2d]
+      type = 'RunException'
+      input = 'errors.i'
+      cli_args = "Mesh/gmg/dim=2
+                  UserObjects/initializer/bottom_left='0 0 0'
+                  UserObjects/initializer/top_right='1 1 0'"
+      allow_test_objects = true
+      allow_warnings = False
+      expect_err = "3 components are required for libMesh::Point input.\nHowever, your simulation is only 2 dimensional.\nThe extra components of the libMesh::Point input will be ignored.\n"
+      detail = '1 extra component of the `bottom_left` and `top_right` inputs are ignored in 2D simulations'
+    []
+  []
+[]

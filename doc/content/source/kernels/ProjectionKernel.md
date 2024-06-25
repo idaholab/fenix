@@ -34,7 +34,7 @@ This kernel represent the first term in the above equation and in FENIX is gener
 
 ## Example Input Syntax
 
-!listing test/tests/userobjects/particles_per_element_initializer/elements/1d.i block=Kernels
+!listing test/tests/userobjects/particle_initializer/per_element/elements/1d.i block=Kernels
 
 !syntax parameters /Kernels/ProjectionKernel
 
