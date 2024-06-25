@@ -118,7 +118,7 @@ The implementation of the Boris algorithm was verified using several single part
 
 # Example Input Syntax
 
-!listing test/tests/userobjects/boris_stepper/cyclotron_motion.i block=UserObjects
+!listing test/tests/userobjects/particle_stepper/boris_stepper/cyclotron_motion.i block=UserObjects
 
 !syntax parameters /UserObjects/BorisStepper
 
