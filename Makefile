@@ -5,14 +5,16 @@
 # Optional Environment variables
 # MOOSE_DIR        - Root directory of the MOOSE project
 # TMAP8_DIR        - Root directory of the TMAP8 project
+# CARDINAL_DIR     - Root directory of the Cardinal project
 #
 ###############################################################################
 # Use the MOOSE submodule if it exists and MOOSE_DIR is not set
-MOOSE_SUBMODULE    := $(CURDIR)/moose
+# If it doesn't exist, and MOOSE_DIR is not set, then look for it adjacent to the application
+MOOSE_SUBMODULE       := $(CURDIR)/moose
 ifneq ($(wildcard $(MOOSE_SUBMODULE)/framework/Makefile),)
-  MOOSE_DIR        ?= $(MOOSE_SUBMODULE)
+  MOOSE_DIR           ?= $(MOOSE_SUBMODULE)
 else
-  MOOSE_DIR        ?= $(shell dirname `pwd`)/moose
+  MOOSE_DIR           ?= $(shell dirname `pwd`)/moose
 endif
 
 # Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
@@ -23,6 +25,18 @@ ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
 else
   TMAP8_DIR        ?= $(shell dirname `pwd`)/tmap8
 endif
+
+# Use the Cardinal submodule if it exists and CARDINAL_DIR is not set
+# If it doesn't exist, and CARDINAL_DIR is not set, then look for it adjacent to the application
+CARDINAL_SUBMODULE    := $(CURDIR)/cardinal
+ifneq ($(wildcard $(CARDINAL_SUBMODULE)/Makefile),)
+  CARDINAL_DIR        ?= $(CARDINAL_SUBMODULE)
+else
+  CARDINAL_DIR        ?= $(shell dirname `pwd`)/cardinal
+endif
+CARDINAL_CONTRIB_DIR  := $(CARDINAL_DIR)/contrib
+
+OPENMC_DIR            ?= ${CARDINAL_CONTRIB_DIR}/openmc
 
 # framework
 FRAMEWORK_DIR      := $(MOOSE_DIR)/framework
@@ -69,6 +83,13 @@ include $(MOOSE_DIR)/modules/modules.mk
 # TMAP8
 APPLICATION_DIR    := $(TMAP8_DIR)
 APPLICATION_NAME   := tmap8
+BUILD_EXEC         := no
+GEN_REVISION       := no
+include            $(FRAMEWORK_DIR)/app.mk
+
+# Cardinal
+APPLICATION_DIR    := $(CARDINAL_DIR)
+APPLICATION_NAME   := cardinal
 BUILD_EXEC         := no
 GEN_REVISION       := no
 include            $(FRAMEWORK_DIR)/app.mk
