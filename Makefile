@@ -34,9 +34,12 @@ ifneq ($(wildcard $(CARDINAL_SUBMODULE)/Makefile),)
 else
   CARDINAL_DIR        ?= $(shell dirname `pwd`)/cardinal
 endif
-CARDINAL_CONTRIB_DIR  := $(CARDINAL_DIR)/contrib
 
-OPENMC_DIR            ?= ${CARDINAL_CONTRIB_DIR}/openmc
+# Cardinal contrib variables
+CARDINAL_CONTRIB_DIR  := $(CARDINAL_DIR)/contrib
+CONTRIB_INSTALL_DIR   ?= $(CARDINAL_DIR)/install
+OPENMC_INSTALL_DIR    := $(CONTRIB_INSTALL_DIR)
+OPENMC_LIBDIR         := $(OPENMC_INSTALL_DIR)/lib
 
 # framework
 FRAMEWORK_DIR      := $(MOOSE_DIR)/framework
@@ -99,7 +102,17 @@ APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := fenix
 BUILD_EXEC         := yes
 GEN_REVISION       := no
+
+# Cardinal dependency libraries
+ADDITIONAL_LIBS := -L$(CARDINAL_DIR)/lib -L$(OPENMC_LIBDIR) -lopenmc -lhdf5_hl -ldagmc -lMOAB
+
 include            $(FRAMEWORK_DIR)/app.mk
 
 ###############################################################################
 # Additional special case targets should be added here
+
+CARDINAL_EXTERNAL_FLAGS := -L$(CARDINAL_DIR)/lib -L$(OPENMC_LIBDIR)  \
+                           -Wl,-rpath,$(OPENMC_LIBDIR) -lopenmc -lhdf5_hl -ldagmc -lMOAB
+
+# EXTERNAL_FLAGS is used in rules for app.mk
+$(app_EXEC): EXTERNAL_FLAGS := $(CARDINAL_EXTERNAL_FLAGS)
