@@ -21,6 +21,7 @@
 
 // contribs
 #include "TMAP8App.h"
+#include "CardinalApp.h"
 
 InputParameters
 FenixApp::validParams()
@@ -46,6 +47,7 @@ FenixApp::registerAll(Factory & f, ActionFactory & af, Syntax & s)
   Registry::registerActionsTo(af, {"FenixApp"});
 
   TMAP8App::registerAll(f, af, s);
+  CardinalApp::registerAll(f, af, s);
 
   /* register custom execute flags, action syntax, etc. here */
 }
@@ -56,6 +58,7 @@ FenixApp::registerApps()
   registerApp(FenixApp);
   ModulesApp::registerApps();
   TMAP8App::registerApps();
+  CardinalApp::registerApps();
 }
 
 /***************************************************************************************************
