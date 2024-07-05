@@ -1,3 +1,6 @@
 [submodule "moose"]
 	path = moose
 	url = ../../idaholab/moose
+[submodule "tmap8"]
+	path = tmap8
+	url = ../../idaholab/tmap8.git
