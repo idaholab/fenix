@@ -67,14 +67,35 @@ git submodule update --init moose
 git submodule update --init tmap8
 ```
 
+Finally, Cardinal and its dependencies must be downloaded and pre-built. To perform this, first run
+the build script from the FENIX clone directory:
+
+```bash
+scripts/update_and_rebuild_cardinal.sh
+```
+
+Then, to download OpenMC cross sections needed for OpenMC-based Cardinal runs, run:
+
+```bash
+cd ~/projects/FENIX/cardinal
+scripts/download-openmc-cross-sections.sh
+```
+
+and subsequently set the location of those cross sections in your environment:
+
+```bash
+export OPENMC_CROSS_SECTIONS=~/projects/FENIX/cross_sections/cross_sections.xml
+```
+
 !alert! note
-The copies of MOOSE and TMAP8 provided with FENIX have been fully tested against the current
+The copies of MOOSE, TMAP8, and Cardinal provided with FENIX have been fully tested against the current
 FENIX version, and is guaranteed to work with all current FENIX tests.
 !alert-end!
 
 Once all dependencies have been downloaded, FENIX can be compiled and tested:
 
 ```bash
+cd ~/projects/FENIX
 make -j8
 ./run_tests -j8
 ```
@@ -90,7 +111,7 @@ FENIX is ready to be used and further developed.
 
 ## Update FENIX
 
-FENIX (and its underlying dependencies MOOSE and TMAP8) is under heavy development and is
+FENIX (and its underlying dependencies MOOSE, TMAP8, and Cardinal) is under heavy development and is
 updated on a continuous basis. Therefore, it is important that the local copy of FENIX be periodically
 updated to obtain new capabilities, improvements, and bugfixes. Weekly updates are recommended as,
 at minimum, the MOOSE submodule within FENIX is updated up to several times a week.
