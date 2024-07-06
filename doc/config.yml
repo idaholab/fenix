@@ -54,6 +54,9 @@ Content:
             - python/TestHarness.md
     tmap8:
         root_dir: ${ROOT_DIR}/tmap8/doc/content
+    cardinal:
+        root_dir: ${ROOT_DIR}/cardinal/doc/content
+        content: !include ${ROOT_DIR}/doc/cardinal_nek_exclude.yml
 
 Renderer:
     type: MooseDocs.base.MaterializeRenderer
@@ -86,11 +89,16 @@ Extensions:
         executable: ${ROOT_DIR}
         remove:
             framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
+            cardinal:
+                - /ICs/BulkEnergyConservationIC
+                - /Cardinal/ICs/BulkEnergyConservation/BulkEnergyConservationICAction
+                - /Cardinal/ICs/VolumetricHeatSource/VolumetricHeatSourceICAction
     MooseDocs.extensions.common:
         shortcuts: !include ${MOOSE_DIR}/framework/doc/globals.yml
     MooseDocs.extensions.acronym:
         acronyms:
             framework: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+            cardinal: !include ${ROOT_DIR}/cardinal/doc/acronyms.yml
             fenix:
                 FENIX: Fusion ENergy Integrated multiphys-X
                 PIC: particle-in-cell
@@ -117,6 +125,7 @@ Extensions:
             stochastic_tools: !include ${MOOSE_DIR}/modules/stochastic_tools/doc/sqa_stochastic_tools.yml
             thermal_hydraulics: !include ${MOOSE_DIR}/modules/thermal_hydraulics/doc/sqa_thermal_hydraulics.yml
             tmap8: !include ${ROOT_DIR}/tmap8/doc/sqa_tmap8.yml
+            #cardinal: !include ${ROOT_DIR}/cardinal/doc/sqa_cardinal.yml
         reports: !include ${ROOT_DIR}/doc/sqa_reports.yml
         repos:
             default: https://github.com/idaholab/fenix
