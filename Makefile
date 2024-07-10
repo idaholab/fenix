@@ -111,6 +111,13 @@ include            $(FRAMEWORK_DIR)/app.mk
 ###############################################################################
 # Additional special case targets should be added here
 
+# Used in prebuild
+export MOOSE_JOBS=$(patsubst -j%,%,$(filter -j%,$(MAKEFLAGS)))
+
+# Adding to rule in moose.mk to prebuild cardinal and dependencies
+prebuild::
+	+@-bash $(CURDIR)/scripts/build_cardinal.sh
+
 CARDINAL_EXTERNAL_FLAGS := -L$(CARDINAL_DIR)/lib -L$(OPENMC_LIBDIR)  \
                            -Wl,-rpath,$(OPENMC_LIBDIR) -lopenmc -lhdf5_hl -ldagmc -lMOAB
 
