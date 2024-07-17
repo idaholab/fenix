@@ -16,11 +16,11 @@ endif
 
 # Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
 # If it doesn't exist, and TMAP8_DIR is not set, then look for it adjacent to the application
-TMAP8_SUBMODULE    := $(CURDIR)/tmap8
+TMAP8_SUBMODULE    := $(CURDIR)/TMAP8
 ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
   TMAP8_DIR        ?= $(TMAP8_SUBMODULE)
 else
-  TMAP8_DIR        ?= $(shell dirname `pwd`)/tmap8
+  TMAP8_DIR        ?= $(shell dirname `pwd`)/TMAP8
 endif
 
 # framework
@@ -67,7 +67,7 @@ include $(MOOSE_DIR)/modules/modules.mk
 
 # TMAP8
 APPLICATION_DIR    := $(TMAP8_DIR)
-APPLICATION_NAME   := tmap8
+APPLICATION_NAME   := TMAP8
 BUILD_EXEC         := no
 GEN_REVISION       := no
 include            $(FRAMEWORK_DIR)/app.mk
