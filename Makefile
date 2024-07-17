@@ -14,6 +14,15 @@ else
   MOOSE_DIR        ?= $(shell dirname `pwd`)/moose
 endif
 
+# Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
+# If it doesn't exist, and TMAP8_DIR is not set, then look for it adjacent to the application
+TMAP8_SUBMODULE    := $(CURDIR)/tmap8
+ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
+  TMAP8_DIR        ?= $(TMAP8_SUBMODULE)
+else
+  TMAP8_DIR        ?= $(shell dirname `pwd`)/tmap8
+endif
+
 # framework
 FRAMEWORK_DIR      := $(MOOSE_DIR)/framework
 include $(FRAMEWORK_DIR)/build.mk
@@ -26,33 +35,42 @@ include $(FRAMEWORK_DIR)/moose.mk
 
 ALL_MODULES                 := no
 
-CHEMICAL_REACTIONS          := no
+CHEMICAL_REACTIONS          := yes
 CONTACT                     := no
 ELECTROMAGNETICS            := yes
 EXTERNAL_PETSC_SOLVER       := no
-FLUID_PROPERTIES            := no
+FLUID_PROPERTIES            := yes
 FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_TRANSFER               := no
+HEAT_TRANSFER               := yes
 LEVEL_SET                   := no
-MISC                        := no
-NAVIER_STOKES               := no
+MISC                        := yes
+NAVIER_STOKES               := yes
 OPTIMIZATION                := no
 PERIDYNAMICS                := no
-PHASE_FIELD                 := no
+PHASE_FIELD                 := yes
 POROUS_FLOW                 := no
 RAY_TRACING                 := yes
-REACTOR                     := no
-RDG                         := no
+REACTOR                     := yes
+RDG                         := yes
 RICHARDS                    := no
+SCALAR_TRANSPORT            := yes
+SOLID_MECHANICS             := yes
+SOLID_PROPERTIES            := yes
 STOCHASTIC_TOOLS            := yes
-THERMAL_HYDRAULICS          := no
-TENSOR_MECHANICS            := no
+THERMAL_HYDRAULICS          := yes
 XFEM                        := no
 
 include $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
+
+# TMAP8
+APPLICATION_DIR    := $(TMAP8_DIR)
+APPLICATION_NAME   := tmap8
+BUILD_EXEC         := no
+GEN_REVISION       := no
+include            $(FRAMEWORK_DIR)/app.mk
 
 # dep apps
 APPLICATION_DIR    := $(CURDIR)
