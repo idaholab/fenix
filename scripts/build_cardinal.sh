@@ -36,9 +36,13 @@ else
 fi
 
 # Checking for HDF5 using HDF5_DIR (set via conda automatically). If this is not set,
+# check if PETSC_DIR is defined (indicates that PETSc is pre-installed, and HDF5 is
+# installed via the PETSc script if not available using conda). If all else fails,
 # throw an error code and request that the user set it!
 if [ -n "$HDF5_DIR" ]; then
   export HDF5_ROOT=$HDF5_DIR
+elif [ -n "$PETSC_DIR" ]; then
+  export HDF5_ROOT=$PETSC_DIR
 else
   echo -e "${RED}ERROR: HDF5 not found; please set HDF5_DIR in your environment!${NC}"
   exit 1
