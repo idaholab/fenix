@@ -65,15 +65,9 @@ Then navigate to the FENIX clone directory and download the MOOSE and TMAP8 subm
 cd ~/projects/FENIX
 git submodule update --init moose
 git submodule update --init tmap8
+git submodule update --init cardinal
 ```
 
-Finally, Cardinal and its dependencies must be downloaded and pre-built. To perform this, first run
-the build script from the FENIX clone directory:
-
-```bash
-cd ~/projects/FENIX
-scripts/update_and_rebuild_cardinal.sh
-```
 
 Then, to download OpenMC cross sections needed for OpenMC-based Cardinal runs, run:
 
