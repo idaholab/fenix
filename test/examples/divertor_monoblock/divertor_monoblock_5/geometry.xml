@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="1" material="4" name="Water_Cell" region="-1 -5 8 -9" universe="1"/>
+  <cell id="2" material="3" name="CuCrZr_Cell" region="1 -2 -5 8 -9" universe="1"/>
+  <cell id="3" material="2" name="Cu_Cell" region="2 -3 -5 8 -9" universe="1"/>
+  <cell id="4" material="1" name="W_Cell" region="4 -5 6 -7 3 8 -9" universe="1"/>
+  <cell id="5" material="void" name="Vacuum_Cell" region="~(4 -5 6 -7 3 8 -9) -10" universe="1"/>
+  <surface coeffs="0.0 0.0 0.6000000000000001" id="1" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 0.75" id="2" type="z-cylinder"/>
+  <surface coeffs="0.0 0.0 0.8500000000000001" id="3" type="z-cylinder"/>
+  <surface coeffs="-1.4000000000000001" id="4" type="x-plane"/>
+  <surface coeffs="0" id="5" type="x-plane"/>
+  <surface coeffs="-1.4000000000000001" id="6" type="y-plane"/>
+  <surface coeffs="1.4000000000000001" id="7" type="y-plane"/>
+  <surface coeffs="0" id="8" type="z-plane"/>
+  <surface coeffs="0.6000000000000001" id="9" type="z-plane"/>
+  <surface boundary="vacuum" coeffs="0.0 0.0 0.0 5.0" id="10" type="sphere"/>
+</geometry>
