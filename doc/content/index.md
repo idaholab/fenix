@@ -68,7 +68,7 @@ throughout the world.
 ## FENIX results from a collaboration across several institutions style=clear:both;
 
 !style halign=left
-FENIX started as a project lead by Idaho National laboratory in collaboration with North Carolina State University, the University of Illinois Urbana-Champaign, and the United Kingdom Atomic Energy Authority. We are always looking for new collaborations and encourage everyone to [get started](getting_started/installation.html), start [contributing](sqa/contributing.html), and connect with the team on [the FENIX GitHub discussion](https://github.com/idaholab/fenix/discussions).
+FENIX started as a project lead by Idaho National laboratory in collaboration with North Carolina State University, the University of Illinois Urbana-Champaign, and the United Kingdom Atomic Energy Authority. We are always looking for new collaborations and encourage everyone to [get started](getting_started/installation.html), start [contributing](getting_started/contributing.html), and connect with the team on [the FENIX GitHub discussion](https://github.com/idaholab/fenix/discussions).
 
 !media large_media/framework/inl_blue.png link=https://www.inl.gov style=display:block;margin:auto;width:30%;
 
