@@ -49,4 +49,4 @@ tests, verification and validation cases, or examples is desired, their input fi
 As FENIX is developed and more capabilities are added, the tests directory will continue to
 grow. If you feel that you have added important new functionality, please create a test or example for
 it, such that any future changes will not break that capability.
-See the [contribution guide](sqa/contributing.md) for detailed instructions on how to contribute to FENIX.
+See the [contribution guide](getting_started/contributing.md) for detailed instructions on how to contribute to FENIX.
