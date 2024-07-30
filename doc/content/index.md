@@ -17,7 +17,6 @@ calculations related to fusion energy systems.
 Interfaces to other MOOSE-based codes, including tritium transport ([TMAP8](https://mooseframework.inl.gov/tmap8))
 and neutronics ([Cardinal](https://cardinal.cels.anl.gov/)) are also included to support FENIX simulations.
 
-
 !row!
 !col! small=12 medium=4 large=4 icon=get_app
 ## [Getting Started](getting_started/installation.md) class=center style=font-weight:200;font-size:150%;
@@ -70,7 +69,7 @@ Learn more about FENIX in this United States Department of Energy Office of Tech
 
 !media https://www.youtube.com/embed/gMLr_ElY84A?si=mSBI28bnuu0dnKb7
        id=FENIX-DOE-OTT
-       caption= FENIX webinar for the United States Department of Energy Office of Technology Transition National Lab Discovery Series (June 2024).
+       caption=FENIX webinar for the United States Department of Energy Office of Technology Transition National Lab Discovery Series (June 2024).
 
 ## FENIX results from a collaboration across several institutions style=clear:both;
 
