@@ -98,7 +98,7 @@
     execute_on = 'TIMESTEP_BEGIN'
     always_cache_traces = true
     data_on_cache_traces = true
-    velocity_updater = stepper
+    stepper = stepper
   []
 []
 

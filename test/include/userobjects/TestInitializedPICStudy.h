@@ -47,6 +47,8 @@ protected:
   const ParticleInitializerBase & _initializer;
   /// the number of particles that will be placed in each element
   const unsigned int _particles_per_element;
+  /// wether or not the id generation scheme from raytracing study will be used or the one in this user object will be
+  const bool _use_custom_id_scheme;
   /// the element id of the element that we are putting rays in
   dof_id_type _curr_elem_id;
   /// the number of rays that we have put into the current element

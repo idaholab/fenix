@@ -45,26 +45,31 @@
     type = TestSimpleStepper
   []
 
-  [study]
-    type = TestPICStudyUserDefinedRays
+  [initializer]
+    type = TestPlacedParticleInitializer
     start_points = '0 0 0
                     0.25 0 0
                     0.5 0 0
                     0.75 0 0
                     1 0 0'
-
     start_velocities = '0 0 0
                         0 0 0
                         0 0 0
                         0 0 0
                         0 0 0'
-
     charge = 0.5
     weight = 1
-    execute_on = 'TIMESTEP_BEGIN'
+  []
+
+
+  [study]
+    type = TestInitializedPICStudy
+    stepper = stepper
+    initializer = initializer
     always_cache_traces = true
     data_on_cache_traces = true
-    velocity_updater = stepper
+    use_custom_rayids = false
+    execute_on = 'TIMESTEP_BEGIN'
   []
 
   [accumulator]
