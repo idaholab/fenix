@@ -51,6 +51,7 @@ TestInitializedPICStudy::initializeParticles()
 {
   auto initial_data = _initializer.getParticleData();
   // if there are no rays on this processor: do nothing
+  std::cout << initial_data.size() << std::endl;
   if (initial_data.size() == 0)
     return;
 
