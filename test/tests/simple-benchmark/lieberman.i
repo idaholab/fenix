@@ -1,14 +1,21 @@
-number_density = 1e16
+number_density = 1e16 # m^-3
 # domain length
-l = 0.1
-eps_0 = 8.85e-12
-m = 6.64e-26
-q = 1.602e-19
+l = 0.1 # [m]
+# premitity of free space
+eps_0 = 8.85e-12 # [F/m]
+# particle mass
+m = 6.64e-26 # [kg]
+# particle charge
+q = 1.602e-19 # [C]
+# number of elements being used
+num_elem = 100
+# number of points to sample the potential at
+num_samples = ${fparse num_elem + 1}
 
 [Mesh/gmg]
   type = GeneratedMeshGenerator
   dim = 1
-  nx = 100
+  nx = ${num_elem}
   xmax = ${l}
 []
 
@@ -154,6 +161,16 @@ q = 1.602e-19
     study = study
     execute_on = TIMESTEP_END
   []
+
+  [potential]
+    type = LineValueSampler
+    variable = phi
+    start_point = '0 0 0'
+    end_point = '${l} 0 0'
+    num_points = ${num_samples}
+    sort_by = 'x'
+    execute_on = TIMESTEP_END
+  []
 []
 
 
@@ -178,11 +195,7 @@ q = 1.602e-19
     type = CSV
     execute_on = TIMESTEP_END
     file_base = 'lieberman'
+    start_step = 1
+    time_step_interval = 259
   []
-  # [rays]
-  #   type = RayTracingExodus
-  #   study = study
-  #   output_data = true
-  #   execute_on = 'TIMESTEP_END'
-  # []
 []
