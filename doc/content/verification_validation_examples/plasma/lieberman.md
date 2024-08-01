@@ -127,7 +127,27 @@ For this simulation only the x component of the electric field is being used in 
 
 !listing test/tests/simple-benchmark/lieberman.i block=Distributions UserObjects
                                                  remove=UserObjects/charge_accumulator UserObjects/density_accumulator
+                                                 UserObjects/study/particles_per_element
 
-This block is where particles are created and the rules for how the particle velocity is update by the fields is defined. The `stepper` is a [LeapFrogStepper.md] which updates the particles velocity based on the value of the electric fields at the location the particle exists. The `initializer` defines the rules for how particles are placed in the mesh. The [UniformGridParticleInitializer.md]
+This block is where particles are created and the rules for how the particle velocity is update by the fields is defined. The `stepper` is a [LeapFrogStepper.md] which updates the particles velocity based on the value of the electric fields at the location the particle exists. The `initializer` defines the rules for how particles are placed in the mesh. The [UniformGridParticleInitializer.md] places particles evenly throughout the mesh. In this case we are placing 100 particles on the mesh and weighting them so that they will approximate a uniform number density of $10^{16}$ \[m$^{-3}$\], the last parameter `velocity_distributions` tells the system which distributions that you would like to sample from when initializing particle velocity data. The final object is the `TestInitializedPICStudy` this object and anyother which inherit from [PICStudyBase.md] are responsible for managing the particles.
+
+### Residual Contributions
+
+!listing test/tests/simple-benchmark/lieberman.i block=UserObjects
+                                                 remove=UserObjects/stepper UserObjects/initializer UserObjects/study
+
+In order to contribute to the residual of variables based on particle quantities you must use an accumulator. Accumulators evaluate the inner product of particle quantities and the test function. In this block there are two accumulators: the charge[ChargeDensityAccumulator.md] and the [NumberDensityAccumulator.md]. These objects do the same thing but for different quantities. The [ChargeDensityAccumulator.md]  evalulates the inner product between the computational particle charge density, which is defined as
+
+\begin{equation}
+  \rho = \sum_{i=1}^N \omega_i q_i,
+\end{equation}
+
+and the test function, while the [NumberDensityAccumulator.md] evalulates the inner product betweent he computation particle number density, which is defined as
+
+\begin{equation}
+  n = \sum_{i=1}^N \omega_i,
+\end{equation}
+
+and the test function. These objects contribute to the residual of the electrostatic potential and the projection of the particle density onto the finite element mesh respectively.
 
 ## Results
