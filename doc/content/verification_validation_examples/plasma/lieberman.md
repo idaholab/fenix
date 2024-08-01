@@ -40,7 +40,8 @@ The solution to which is
   \frac{en}{\varepsilon_0}
   \left[
     \left(\frac{l}{2}\right)^2
-    - x^2
+    -
+    \left(x - \frac{l}{2}\right)^2
   \right]
 \end{equation}
 
