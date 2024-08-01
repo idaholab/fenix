@@ -54,12 +54,6 @@ cd ${CARDINAL_DIR}
 export ENABLE_NEK=no
 export ENABLE_DAGMC=yes # Also enables MOAB
 
-# Download all cardinal dependencies
-echo "INFO: Updating OpenMC, DAGMC, and MOAB submodules..."
-git submodule update --init --recursive contrib/openmc
-git submodule update --init contrib/DAGMC
-git submodule update --init contrib/moab
-
 if [[ -z "${OPENMC_CROSS_SECTIONS}" ]]; then
   echo -e "${YELLOW}"
   echo "If you are using OpenMC, remember that you need to set OPENMC_CROSS_SECTIONS to point to a cross_sections.xml file!"

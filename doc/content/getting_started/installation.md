@@ -68,8 +68,16 @@ git submodule update --init tmap8
 git submodule update --init cardinal
 ```
 
+Next, some Cardinal dependencies need to be downloaded:
 
-Then, to download OpenMC cross sections needed for OpenMC-based Cardinal runs, run:
+```bash
+cd ~/projects/FENIX/cardinal
+git submodule update --init --recursive contrib/openmc
+git submodule update --init contrib/DAGMC
+git submodule update --init contrib/moab
+```
+
+To download OpenMC cross sections needed for OpenMC-based Cardinal runs, run:
 
 ```bash
 cd ~/projects/FENIX/cardinal
