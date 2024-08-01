@@ -21,8 +21,6 @@ TestPlacedParticleInitializer::validParams()
   params.addRequiredParam<std::vector<Point>>(
       "start_velocities",
       "The direction(s) that the ray(s) start in (does not need to be normalized)");
-  params.addParam<Real>("mass", 1, "The mass of the particles used for a test");
-  params.addParam<Real>("charge", 1, "The charge of the particles used for a test");
   params.addParam<Real>(
       "weight", 0, "The number of physical particles a computational particle represents");
   // these are unused in this class but the base class checks the size of this to make sure it is 3

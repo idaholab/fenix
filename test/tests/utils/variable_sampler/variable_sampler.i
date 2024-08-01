@@ -34,23 +34,21 @@
     type = TestSimpleStepper
   []
 
+  [initializer]
+    type = TestPlacedParticleInitializer
+    start_points = '0 0 0'
+    start_velocities = '1 1 1'
+  []
+
   [study]
     type = TestVariableSampler
     field = F
-    start_points = '0 0 0'
-    start_velocities = '1 1 1'
-    execute_on = 'TIMESTEP_BEGIN'
+    stepper = stepper
+    initializer = initializer
+    use_custom_rayids = false
     always_cache_traces = true
     data_on_cache_traces = true
-    stepper = stepper
-  []
-[]
-
-[RayBCs]
-  [reflect]
-    type = ReflectRayBC
-    boundary = 'top bottom right left'
-    study = study
+    execute_on = 'TIMESTEP_BEGIN'
   []
 []
 

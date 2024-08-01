@@ -16,9 +16,9 @@
 #pragma once
 
 #include "VariableSampler.h"
-#include "TestPICStudyUserDefinedRays.h"
+#include "TestInitializedPICStudy.h"
 
-class TestVariableSampler : public TestPICStudyUserDefinedRays
+class TestVariableSampler : public TestInitializedPICStudy
 {
 public:
   TestVariableSampler(const InputParameters & parameters);

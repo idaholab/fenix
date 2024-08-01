@@ -61,14 +61,13 @@
     weight = 1
   []
 
-
   [study]
     type = TestInitializedPICStudy
     stepper = stepper
     initializer = initializer
+    use_custom_rayids = false
     always_cache_traces = true
     data_on_cache_traces = true
-    use_custom_rayids = false
     execute_on = 'TIMESTEP_BEGIN'
   []
 

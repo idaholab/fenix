@@ -55,16 +55,22 @@
     field_components = 'Ex Ey Ez'
   []
 
-  [study]
-    type = TestPICStudyUserDefinedRays
+  [initializer]
+    type = TestPlacedParticleInitializer
     start_points = '0 10.5 0'
     start_velocities = '0 0 0'
-    charge = 1.602176634e-19
     mass = 9.1093837015e-31
-    execute_on = 'TIMESTEP_BEGIN'
+    charge = 1.602176634e-19
+  []
+
+  [study]
+    type = TestInitializedPICStudy
+    stepper = stepper
+    initializer = initializer
+    use_custom_rayids = false
     always_cache_traces = true
     data_on_cache_traces = true
-    stepper = stepper
+    execute_on = 'TIMESTEP_BEGIN'
   []
 []
 
@@ -72,14 +78,6 @@
 [RayKernels]
   [null]
     type = NullRayKernel
-  []
-[]
-
-[RayBCs]
-  [reflect]
-    type = ReflectRayBC
-    boundary = 'top bottom right left'
-    study = study
   []
 []
 

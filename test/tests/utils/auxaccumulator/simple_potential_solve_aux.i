@@ -43,8 +43,8 @@
     type = TestSimpleStepper
   []
 
-  [study]
-    type = TestChargeAccumulator
+  [initializer]
+    type = TestPlacedParticleInitializer
     start_points = '0 0 0
                     0 0 0
                     0.25 0 0
@@ -66,26 +66,23 @@
                         0 0 0
                         0 0 0
                         0 0 0'
+  []
 
-    execute_on = 'TIMESTEP_BEGIN'
+  [study]
+    type = TestChargeAccumulator
+    variable = rho
+    stepper = stepper
+    initializer = initializer
+    use_custom_rayids = false
     always_cache_traces = true
     data_on_cache_traces = true
-    stepper = stepper
-    variable = rho
+    execute_on = 'TIMESTEP_BEGIN'
   []
 []
 
 [RayKernels]
   [null]
     type = NullRayKernel
-  []
-[]
-
-[RayBCs]
-  [reflect]
-    type = ReflectRayBC
-    boundary = 'left right'
-    study = study
   []
 []
 
