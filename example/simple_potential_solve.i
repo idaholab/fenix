@@ -70,7 +70,7 @@ q = 1.602e-19
 
 [AuxKernels]
   [grad_potential]
-    type = NegativeGradientComponent
+    type = NegativeVariableGradientComponent
     variable = Ex
     var = phi
     component = 0

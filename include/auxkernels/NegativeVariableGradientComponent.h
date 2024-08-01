@@ -17,10 +17,10 @@
 
 #include "AuxKernel.h"
 
-class NegativeGradientComponent : public AuxKernel
+class NegativeVariableGradientComponent : public AuxKernel
 {
 public:
-  NegativeGradientComponent(const InputParameters & parameters);
+  NegativeVariableGradientComponent(const InputParameters & parameters);
 
   static InputParameters validParams();
 

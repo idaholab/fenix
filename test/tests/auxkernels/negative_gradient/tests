@@ -1,0 +1,10 @@
+[Tests]
+  # design = 'Diffusion.md'
+  # issues = '#108'
+  [test]
+    type = 'Exodiff'
+    input = 'negative_gradient.i'
+    exodiff = 'negative_gradient_out.e'
+    requirement = 'The system shall be able compute a component of the negative gradient of a variable'
+  []
+[]

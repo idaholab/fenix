@@ -101,6 +101,7 @@ PICStudyBase::postExecuteStudy()
   // we are going to be re using the same rays which just took a step so
   // we store them here to reset them in the generateRays method
   _banked_rays = rayBank();
+  // removing all of the rays which were killed during their tracing
   _banked_rays.erase(
     std::remove_if(
       _banked_rays.begin(),

@@ -12,32 +12,33 @@
 //* Copyright 2024, Battelle Energy Alliance, LLC
 //* ALL RIGHTS RESERVED
 //*
-#include "NegativeGradientComponent.h"
+#include "NegativeVariableGradientComponent.h"
 
-registerMooseObject("FenixApp", NegativeGradientComponent);
+registerMooseObject("FenixApp", NegativeVariableGradientComponent);
 
 InputParameters
-NegativeGradientComponent::validParams()
+NegativeVariableGradientComponent::validParams()
 {
   InputParameters params = AuxKernel::validParams();
   params.addClassDescription(
       "Returns the negative gradient component of field variable");
-  params.addRequiredCoupledVar("var", "The variable of which to take the gradient");
+  params.addRequiredCoupledVar("gradient_variable", "The variable of which to take the gradient");
   params.addRequiredRangeCheckedParam<unsigned int>("component",
                               "component < 3",
                                "The component of the component of the gradients to access");
   return params;
 }
 
-NegativeGradientComponent::NegativeGradientComponent(const InputParameters & parameters)
+NegativeVariableGradientComponent::NegativeVariableGradientComponent(
+    const InputParameters & parameters)
   : AuxKernel(parameters),
-    _grad_var(coupledGradient("var")),
+    _grad_var(coupledGradient("gradient_variable")),
     _component(getParam<unsigned int>("component"))
 {
 }
 
 Real
-NegativeGradientComponent::computeValue()
+NegativeVariableGradientComponent::computeValue()
 {
   return -_grad_var[_qp](_component);
 }
