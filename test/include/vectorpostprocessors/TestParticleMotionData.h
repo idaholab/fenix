@@ -8,7 +8,7 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #pragma once
-
+#include "Ray.h"
 #include "GeneralVectorPostprocessor.h"
 // Forward declarations
 class PICStudyBase;
@@ -27,6 +27,12 @@ public:
 protected:
   /// the study that we are collecting data from
   const PICStudyBase & _study;
+  /// Ray Data indicies for the velocity data
+  ///@{
+  const RayDataIndex _v_x_index;
+  const RayDataIndex _v_y_index;
+  const RayDataIndex _v_z_index;
+  ///@}
   /// the time at which position is calculated
   VectorPostprocessorValue & _t_pos;
   /// Collector for particle position data

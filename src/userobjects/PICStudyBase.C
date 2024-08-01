@@ -73,7 +73,6 @@ PICStudyBase::generateRays()
 void
 PICStudyBase::reinitializeParticles()
 {
-  std::cout << "reset" << std::endl;
   // Reset each ray
   for (auto & ray : _banked_rays)
   {

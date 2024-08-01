@@ -81,7 +81,7 @@ UniformGridParticleInitializer::getParticleData() const
   // does not match the total number to be created
   // without this rounding even in cases where the total number of particles requested is divided evenly
   // by the number of procs the number of particles created does not match the requested number
-  uint local_particle_count = std::round(double(_total_particles) * double(local_volume / global_volume));
+  uint local_particle_count = std::round(double(_total_particles) * local_volume / global_volume);
   uint global_particle_count = local_particle_count;
 
   comm().sum(global_particle_count);

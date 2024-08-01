@@ -24,6 +24,9 @@ TestParticleMotionData::validParams()
 TestParticleMotionData::TestParticleMotionData(const InputParameters & parameters)
   : GeneralVectorPostprocessor(parameters),
     _study(getUserObject<PICStudyBase>("study")),
+    _v_x_index(_study.getRayDataIndex("v_x")),
+    _v_y_index(_study.getRayDataIndex("v_y")),
+    _v_z_index(_study.getRayDataIndex("v_z")),
     _t_pos(declareVector("t_pos")),
     _x(declareVector("x")),
     _y(declareVector("y")),
@@ -63,9 +66,9 @@ TestParticleMotionData::execute()
     _y.push_back(ray->currentPoint()(1));
     _z.push_back(ray->currentPoint()(2));
     _t_vel.push_back(_t - _dt / 2);
-    _v_x.push_back(ray->data()[_study.getRayDataIndex("v_x")]);
-    _v_y.push_back(ray->data()[_study.getRayDataIndex("v_y")]);
-    _v_z.push_back(ray->data()[_study.getRayDataIndex("v_z")]);
+    _v_x.push_back(ray->data(_v_x_index));
+    _v_y.push_back(ray->data(_v_y_index));
+    _v_z.push_back(ray->data(_v_z_index));
     _id.push_back(ray->id());
   }
 }

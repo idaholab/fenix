@@ -1,0 +1,29 @@
+[Tests]
+  [lieberman]
+    requirement = 'The system shall be capable of solving the problem in chapter 1 pages 26-27 of Principles of Plasma Discharge and Material Processing ISBN 0-471-72001-1 and reproduce the same'
+    [field_variables]
+      type = Exodiff
+      input = 'lieberman.i'
+      exodiff = 'lieberman_out.e'
+      cli_args = 'Executioner/num_steps=8
+                  Executioner/dt=1e-9'
+      allow_test_objects = true
+      detail = 'field variable results'
+    []
+    [kinetic_data]
+      type = CSVDiff
+      input = 'lieberman.i'
+      csvdiff = 'lieberman.csv
+                 lieberman_ray_data_0001.csv
+                 lieberman_ray_data_0002.csv
+                 lieberman_ray_data_0003.csv
+                 lieberman_ray_data_0004.csv
+                 lieberman_ray_data_0005.csv
+                 lieberman_ray_data_0006.csv
+                 lieberman_ray_data_0007.csv
+                 lieberman_ray_data_0008.csv'
+      should_execute = false
+      detail = 'kinetic particle results'
+    []
+  []
+[]
