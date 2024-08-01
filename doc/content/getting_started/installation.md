@@ -59,7 +59,7 @@ To compile FENIX, first make sure that the conda MOOSE environment is activated
 conda activate moose
 ```
 
-Then navigate to the FENIX clone directory and download the MOOSE and TMAP8 submodules:
+Then navigate to the FENIX clone directory and download the MOOSE, TMAP8, and Cardinal submodules:
 
 ```bash
 cd ~/projects/FENIX
