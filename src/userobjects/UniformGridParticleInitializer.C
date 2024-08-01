@@ -42,45 +42,75 @@ UniformGridParticleInitializer::UniformGridParticleInitializer(const InputParame
     _total_particles(getParam<unsigned int>("total_particles"))
 {
   if (_mesh_dimension != 1)
-    mooseError("The simulation must be in 1D in order to the UniformGridParticleInitializer");
+    mooseError("The simulation must be in 1D in order to use the UniformGridParticleInitializer");
 }
 
 std::vector<InitialParticleData>
 UniformGridParticleInitializer::getParticleData() const
 {
-  std::vector<InitialParticleData> data = std::vector<InitialParticleData>(_total_particles);
-
-  Real xmin = std::numeric_limits<float>::max();
-  Real xmax = std::numeric_limits<float>::lowest();
+  Real local_xmin = std::numeric_limits<float>::max();
+  Real global_xmax = std::numeric_limits<float>::lowest();
+  Real local_volume = 0;
   for (const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
+    local_volume += elem->volume();
     for (const auto & node : elem->node_ref_range())
     {
-      if (node(0) < xmin)
-        xmin = node(0);
+      if (node(0) < local_xmin)
+        local_xmin = node(0);
 
-      if(node(0) > xmax)
-        xmax = node(0);
+      if (node(0) > global_xmax)
+        global_xmax = node(0);
     }
   }
+  Real global_volume = local_volume;
+  Real global_xmin = local_xmin;
 
-  // std::cout << "Min: " << xmin << std::endl;
-  // std::cout << "Max: " << xmax << std::endl;
-  // std::cout << "dx: " << (xmax - xmin) / (_total_particles) << std::endl;
+  comm().sum(global_volume);
+  comm().min(global_xmin);
+  comm().max(global_xmax);
 
-  Real dx = (xmax - xmin) / (_total_particles);
+  double fraction = local_volume / global_volume;
+  double min_frac = fraction;
+  double max_frac = fraction;
+
+  comm().min(min_frac);
+  comm().max(max_frac);
+
+  // doign some rounding here to help reduce the cases where the total number of requested particles
+  // does not match the total number to be created
+  // without this rounding even in cases where the total number of particles requested is divided evenly
+  // by the number of procs the number of particles created does not match the requested number
+  uint local_particle_count = std::round(double(_total_particles) * double(local_volume / global_volume));
+  uint global_particle_count = local_particle_count;
+
+  comm().sum(global_particle_count);
+
+  // std::cout << comm().size() << std::endl;
+  if (global_particle_count != _total_particles)
+  {
+    std::ostringstream oss;
+    oss << _total_particles << " particles across " << comm().size() << " processes were requested." << std::endl;
+    oss << "But " << global_particle_count << " will be created because of the mesh partition.";
+    mooseWarning(oss.str());
+  }
+
+  std::vector<InitialParticleData> data = std::vector<InitialParticleData>(local_particle_count);
+
+  Real dx = (global_xmax - global_xmin) / (_total_particles);
+
   MooseRandom generator;
   generator.seed(_seed);
 
   uint particle_count = 0;
-  Point curr_point = Point((particle_count + 0.5) * dx);
+  Point curr_point = Point((particle_count + 0.5) * dx + local_xmin);
   for (const auto elem : *_fe_problem.mesh().getActiveLocalElementRange())
   {
     // the particles that are currently in the element
-    auto particle_idxs = std::set<uint>();
-    while (elem->contains_point(curr_point) && particle_count < _total_particles)
+    auto particle_idxs = std::vector<uint>();
+    while (elem->contains_point(curr_point) && particle_count < local_particle_count)
     {
-      particle_idxs.insert(particle_count);
+      particle_idxs.push_back(particle_count);
       data[particle_count].elem = elem;
       data[particle_count].species = _species;
       data[particle_count].mass = _mass;
@@ -90,7 +120,7 @@ UniformGridParticleInitializer::getParticleData() const
       for (const auto j : make_range(uint(3)))
         data[particle_count].velocity(j) = _velocity_distributions[j]->quantile(generator.rand());
       particle_count++;
-      curr_point = Point((particle_count + 0.5) * dx);
+      curr_point = Point((particle_count + 0.5) * dx + local_xmin);
     }
 
     for (const auto idx : particle_idxs)
@@ -104,5 +134,6 @@ UniformGridParticleInitializer::getParticleData() const
       break;
   }
 
+  std::cout << data.size() << std::endl;
   return data;
 }

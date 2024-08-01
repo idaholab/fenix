@@ -9,25 +9,12 @@
   extra_tag_vectors = dump_value
 []
 
-[Variables]
-  [phi]
-  []
+[Variables/n]
 []
 
-[Kernels]
-  [poissons]
-    type = ADMatDiffusion
-    diffusivity = 1
-    variable = phi
-  []
-[]
-
-[BCs/zero]
-  type = DirichletBC
-  variable = phi
-  value = 0
-  boundary = 'left right'
-  preset = false
+[Kernels/null]
+  type = NullKernel
+  variable = n
 []
 
 [AuxVariables/dump_value]
@@ -37,7 +24,7 @@
   type = TagVectorAux
   variable = dump_value
   vector_tag = dump_value
-  v = phi
+  v = n
 []
 
 [UserObjects]
@@ -73,10 +60,10 @@
   []
 
   [accumulator]
-    type = ChargeDensityAccumulator
+    type = NumberDensityAccumulator
     study = study
-    variable = phi
-    extra_vector_tags = dump_value
+    variable = n
+    vector_tags = dump_value
   []
 []
 
@@ -88,9 +75,16 @@
 
 [Executioner]
   type = Transient
-  num_steps = 2
+  num_steps = 1
 []
 
 [Outputs]
   exodus = true
+
+  [rays]
+    type = RayTracingExodus
+    study = study
+    output_data_names = 'charge weight'
+    execute_on = 'TIMESTEP_END'
+  []
 []

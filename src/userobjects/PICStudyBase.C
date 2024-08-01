@@ -73,6 +73,7 @@ PICStudyBase::generateRays()
 void
 PICStudyBase::reinitializeParticles()
 {
+  std::cout << "reset" << std::endl;
   // Reset each ray
   for (auto & ray : _banked_rays)
   {
@@ -101,6 +102,7 @@ PICStudyBase::postExecuteStudy()
   // we are going to be re using the same rays which just took a step so
   // we store them here to reset them in the generateRays method
   _banked_rays = rayBank();
+  std::cout << "post execute" << std::endl;
   // removing all of the rays which were killed during their tracing
   _banked_rays.erase(
     std::remove_if(

@@ -1,11 +1,21 @@
 [Tests]
   design = 'ChargeDensityAccumulator.md'
   issues = '#25'
-  [simple_potential_solve]
-    type = 'Exodiff'
-    input = 'simple_potential_solve.i'
-    exodiff = 'simple_potential_solve_out.e'
-    allow_test_objects = true
-    requirement = 'The system shall be capable of mapping charge from particles to the finite element mesh and solving for the electrostatic potential based on the mapped charge density'
+  [residual_accumulation]
+  requirement = "The system shall be capable of contributing to the residual of variable based on the computational particles'"
+    [simple_potential_solve]
+      type = 'Exodiff'
+      input = 'simple_potential_solve.i'
+      exodiff = 'simple_potential_solve_out.e'
+      allow_test_objects = true
+      detail = 'charge density.'
+    []
+    [number_density_accumulator]
+      type = 'Exodiff'
+      input = 'number_density_accumulator.i'
+      exodiff = 'number_density_accumulator_out.e'
+      allow_test_objects = true
+      requirement = 'number density.'
+    []
   []
 []

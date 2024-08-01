@@ -22,7 +22,7 @@ ParticleQuantityResidualAccumulatorBase::validParams()
   auto params = GeneralUserObject::validParams();
   params.addClassDescription(
       "Accumulator used to evaluate the inner product of the particle number density and the test function.");
-  params.addParam<UserObjectName>("study", "study", "The PICStudy that owns the charged particles");
+  params.addRequiredParam<UserObjectName>("study", "The PICStudy that owns the charged particles");
   // These parameters are necessary when using ResidualAccumulator
   params += TaggingInterface::validParams();
   // This exec flag is necessary for the ParticleQuantityResidualAccumulatorBase to contribute to residuals

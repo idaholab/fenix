@@ -72,7 +72,7 @@ q = 1.602e-19
   [grad_potential]
     type = NegativeVariableGradientComponent
     variable = Ex
-    var = phi
+    gradient_variable = phi
     component = 0
     execute_on = 'INITIAL TIMESTEP_END'
   []
@@ -106,7 +106,8 @@ q = 1.602e-19
     initializer = initializer
     always_cache_traces = true
     data_on_cache_traces = true
-    use_custom_rayids = false
+    # use_custom_rayids = false
+    particles_per_element = 1
     execute_on = 'TIMESTEP_BEGIN'
   []
 
@@ -147,6 +148,15 @@ q = 1.602e-19
 []
 
 
+[VectorPostprocessors]
+  [ray_data]
+    type = TestParticleMotionData
+    study = study
+    execute_on = TIMESTEP_END
+  []
+[]
+
+
 [Executioner]
   type = Transient
   solve_type = NEWTON
@@ -168,10 +178,10 @@ q = 1.602e-19
     type = CSV
     execute_on = TIMESTEP_END
   []
-  [rays]
-    type = RayTracingExodus
-    study = study
-    output_data = true
-    execute_on = 'TIMESTEP_END'
-  []
+  # [rays]
+  #   type = RayTracingExodus
+  #   study = study
+  #   output_data = true
+  #   execute_on = 'TIMESTEP_END'
+  # []
 []

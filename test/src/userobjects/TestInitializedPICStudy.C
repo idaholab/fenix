@@ -38,8 +38,8 @@ TestInitializedPICStudy::validParams()
 TestInitializedPICStudy::TestInitializedPICStudy(const InputParameters & parameters)
   : PICStudyBase(parameters),
     _initializer(getUserObject<ParticleInitializerBase>("initializer")),
-    _particles_per_element(getParam<unsigned int>("particles_per_element")),
     _use_custom_id_scheme(getParam<bool>("use_custom_rayids")),
+    _particles_per_element(getParam<unsigned int>("particles_per_element")),
     _curr_elem_id(0)
 {
   if (_use_custom_id_scheme && _particles_per_element == 0)
@@ -51,7 +51,6 @@ TestInitializedPICStudy::initializeParticles()
 {
   auto initial_data = _initializer.getParticleData();
   // if there are no rays on this processor: do nothing
-  std::cout << initial_data.size() << std::endl;
   if (initial_data.size() == 0)
     return;
 
