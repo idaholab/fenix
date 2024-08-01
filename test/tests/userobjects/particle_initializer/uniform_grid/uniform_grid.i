@@ -1,7 +1,10 @@
-[Mesh/gmg]
-  type = GeneratedMeshGenerator
-  dim = 1
-  nx = 4
+[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 4
+  []
+  allow_renumbering = false
 []
 
 [Problem]
@@ -34,9 +37,9 @@
     type = TestInitializedPICStudy
     stepper = stepper
     initializer = initializer
+    particles_per_element = 1
     always_cache_traces = true
     data_on_cache_traces = true
-    use_custom_rayids = false
     execute_on = 'TIMESTEP_BEGIN'
   []
 []
