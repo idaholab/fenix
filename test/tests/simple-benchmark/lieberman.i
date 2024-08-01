@@ -191,11 +191,23 @@ num_samples = ${fparse num_elem + 1}
 []
 [Outputs]
   exodus = true
-  [csv]
+  [particle_population]
     type = CSV
-    execute_on = TIMESTEP_END
     file_base = 'lieberman'
-    start_step = 1
-    time_step_interval = 259
+    show = 'ray_count'
+    execute_on = TIMESTEP_END
+  []
+  [csv_initial]
+    type = CSV
+    file_base = 'lieberman_i'
+    show = 'ray_data potential'
+    end_step = 1
+    execute_on = TIMESTEP_END
+  []
+  [csv_final]
+    type = CSV
+    file_base = 'lieberman_f'
+    show = 'ray_data potential'
+    execute_on = FINAL
   []
 []
