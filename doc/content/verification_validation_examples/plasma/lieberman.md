@@ -148,6 +148,31 @@ and the test function, while the [NumberDensityAccumulator.md] evalulates the in
   n = \sum_{i=1}^N \omega_i,
 \end{equation}
 
-and the test function. These objects contribute to the residual of the electrostatic potential and the projection of the particle density onto the finite element mesh respectively.
+and the test function. These objects contribute to the residual of the electrostatic potential, `phi` and the projection of the particle density onto the finite element mesh, `n`, respectively.
 
 ## Results
+
+
+!row! style=display:inline-flex;
+!col! small=12 medium=4 large=3
+
+!media figures/lieberman_vdf_comparison.png style=width:120%;display:block;
+
+!col-end!
+
+!col! small=12 medium=4 large=3
+
+!media figures/lieberman_population_comparison.png style=width:120%;display:block;
+
+!col-end!
+!row-end!
+
+
+!row! style=display:inline-flex;
+!col! small=12 medium=4 large=3
+
+!media figures/lieberman_potential_comparison.png style=width:120%;display:block;
+
+!col-end!
+!row-end!
+
