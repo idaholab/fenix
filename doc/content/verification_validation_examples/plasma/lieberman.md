@@ -65,10 +65,69 @@ where $V$ is the volume of the element in which the particle exists, and $PPE$ i
 
 In figure 2.2 of [!cite](lieberman1994principles) there is inconsistent information about the time step selected and the total simulation time. We were able to replicated the results presented in this figure using a total simulation time of $2.5\times10^{-9}$ \[s\] with a constant time step of $\Delta t = 10^{-10}$ \[s\]. Additionally, the example input file uses 100 elements, 1 for each particle, this was selected arbitrarily.
 
-## Results
-
-
-
 ## Input file
 
-!listing test/tests/simple-benchmark/lieberman.i
+### Various Constants
+
+!listing test/tests/simple-benchmark/lieberman.i end=Mesh
+
+The first section of the input file declares some constants and problem parameters that will be used in various different blocks throughout the input file. These quantities do not belong to any block and can be called from any block within the input file.
+
+### Mesh
+
+!listing test/tests/simple-benchmark/lieberman.i block=Mesh
+
+The mesh block creates a one dimensional domain $x\in[0, l]$ split up evenly into 100 different elements.
+
+### Variables
+
+!listing test/tests/simple-benchmark/lieberman.i block=Variables
+
+In this simulation there are two field variables. The first variable, `phi`, is the variable that represents the electrostatic potential. The second variable, `n`, represents the projection of the discrete particle density onto the finite element mesh.
+
+!alert note title=Particle Quantity Visualization
+Since computational particles in FENIX are assumed to be point particles, the particle shape function is a dirac delta function, we must project the discrete quantities onto the finite element mesh.
+
+### Kernels
+
+!listing test/tests/simple-benchmark/lieberman.i block=Kernels
+
+Each variable only needs a single kernel. The electrostatic potential, `phi`, requires this diffusion kernel which enables the system to solve Poisson's equation.
+
+!alert note title=
+Since FENIX does not apply the factor $\varepsilon_0^{-1}$ directly when evalulating the inner product of the particle charge density and the test function the quantity $\varepsilon_0$ is shifted to the laplacian operator.
+
+The variable `n` utilizes the [ProjectionKernel.md] to enable visualization of the particle number density as a field variable. See [ProjectionKernel.md] for more detail.
+
+### Boundary Conditions
+
+!listing test/tests/simple-benchmark/lieberman.i block=BCs
+
+The only variable that needs a boundary condition is the electrostatic potential. Since our simulation assumes that end points of the domain are grounded.
+
+### Field Initial Condition
+
+!listing test/tests/simple-benchmark/lieberman.i block=Functions ICs
+
+The only variable which needs an initial condition is the electrostatic potential, here we prescribe the initial condition of the electrostatic potential to be the analytic solution for the electrostatic potential given the prescribed uniform charge density.
+
+### AuxVariables
+
+!listing test/tests/simple-benchmark/lieberman.i block=AuxVariables
+
+Here one auxilary variable is created for each field component. We require three here since our particles always have 3 velocity components stored in data.
+
+### AuxKernels
+
+!listing test/tests/simple-benchmark/lieberman.i block=AuxKernels
+
+For this simulation only the x component of the electric field is being used in this block the electric field is computed from the electrostatic potential. The other AuxVariables do not have any kernels associated with them and as a result they will have a value of 0 throughout the simulation.
+
+### Particle Initialization and Updating
+
+!listing test/tests/simple-benchmark/lieberman.i block=Distributions UserObjects
+                                                 remove=UserObjects/charge_accumulator UserObjects/density_accumulator
+
+This block is where particles are created and the rules for how the particle velocity is update by the fields is defined. The `stepper` is a [LeapFrogStepper.md] which updates the particles velocity based on the value of the electric fields at the location the particle exists. The `initializer` defines the rules for how particles are placed in the mesh. The [UniformGridParticleInitializer.md]
+
+## Results

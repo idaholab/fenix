@@ -1,15 +1,20 @@
-number_density = 1e16 # m^-3
+# The input reproduces the results in Principles of Plasma Discharge and Material Processing
+# ISBN 0-471-72001-1 chapter 1, pages 26-27
+# the initial uniform number density to represent
+# with particles
+number_density = 1e16 # [m^-3]
 # domain length
 l = 0.1 # [m]
-# premitity of free space
+# permittivity of free space
 eps_0 = 8.85e-12 # [F/m]
-# particle mass
+# Argon mass
 m = 6.64e-26 # [kg]
-# particle charge
+# particle charge, singly charged ion
 q = 1.602e-19 # [C]
 # number of elements being used
 num_elem = 100
 # number of points to sample the potential at
+# this should be at every node in the domain
 num_samples = ${fparse num_elem + 1}
 
 [Mesh/gmg]
@@ -85,13 +90,13 @@ num_samples = ${fparse num_elem + 1}
   []
 []
 
-
 [Distributions]
   [zero]
     type = Constant
     value = 0
   []
 []
+
 [UserObjects]
   [stepper]
     type = LeapFrogStepper
@@ -118,7 +123,7 @@ num_samples = ${fparse num_elem + 1}
     execute_on = 'TIMESTEP_BEGIN'
   []
 
-  [potential_accumulator]
+  [charge_accumulator]
     type = ChargeDensityAccumulator
     study = study
     variable = phi
