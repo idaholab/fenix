@@ -23,9 +23,8 @@ NegativeVariableGradientComponent::validParams()
   params.addClassDescription(
       "Returns the component of the gradient of a variable and applies a constant factor of -1.");
   params.addRequiredCoupledVar("gradient_variable", "The variable of which to take the gradient");
-  params.addRequiredRangeCheckedParam<unsigned int>("component",
-                              "component < 3",
-                               "The component of the component of the gradients to access");
+  params.addRequiredRangeCheckedParam<unsigned int>(
+      "component", "component < 3", "The component of the component of the gradients to access");
   return params;
 }
 

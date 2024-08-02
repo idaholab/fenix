@@ -23,15 +23,16 @@ InputParameters
 UniformGridParticleInitializer::validParams()
 {
   auto params = ParticleInitializerBase::validParams();
-  params.addClassDescription(
-      "Particle initializer that places particles along a line with approximate uniform spacing between particles");
+  params.addClassDescription("Particle initializer that places particles along a line with "
+                             "approximate uniform spacing between particles");
   params.addRangeCheckedParam<unsigned int>(
       "total_particles",
       "total_particles != 0",
       "The number of computational particles that should be placed along the line");
-  params.addRangeCheckedParam<Real>("number_density",
-                                    "number_density > 0.0",
-                                    "The number density of to represent with computational particles");
+  params.addRangeCheckedParam<Real>(
+      "number_density",
+      "number_density > 0.0",
+      "The number density of to represent with computational particles");
 
   return params;
 }
@@ -79,8 +80,9 @@ UniformGridParticleInitializer::getParticleData() const
 
   // doign some rounding here to help reduce the cases where the total number of requested particles
   // does not match the total number to be created
-  // without this rounding even in cases where the total number of particles requested is divided evenly
-  // by the number of procs the number of particles created does not match the requested number
+  // without this rounding even in cases where the total number of particles requested is divided
+  // evenly by the number of procs the number of particles created does not match the requested
+  // number
   uint local_particle_count = std::round(double(_total_particles) * local_volume / global_volume);
   uint global_particle_count = local_particle_count;
 
@@ -90,7 +92,8 @@ UniformGridParticleInitializer::getParticleData() const
   if (global_particle_count != _total_particles)
   {
     std::ostringstream oss;
-    oss << _total_particles << " particles across " << comm().size() << " processes were requested." << std::endl;
+    oss << _total_particles << " particles across " << comm().size() << " processes were requested."
+        << std::endl;
     oss << "But " << global_particle_count << " will be created because of the mesh partition.";
     mooseWarning(oss.str());
   }

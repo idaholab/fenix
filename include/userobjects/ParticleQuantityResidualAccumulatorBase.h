@@ -53,5 +53,4 @@ protected:
   const RayDataIndex _mass_index;
   /// the ray data index where the species of the particle is stored
   const RayDataIndex _species_index;
-
 };

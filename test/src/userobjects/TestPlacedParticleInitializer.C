@@ -41,7 +41,6 @@ TestPlacedParticleInitializer::TestPlacedParticleInitializer(const InputParamete
     paramError("start_velocities", "Must be the same size as 'start_points'");
 }
 
-
 std::vector<InitialParticleData>
 TestPlacedParticleInitializer::getParticleData() const
 {

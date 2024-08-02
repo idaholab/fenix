@@ -41,5 +41,5 @@ protected:
   /// location where the ray data indicies will be stored
   std::vector<RayDataIndex> _ray_data_indices;
   /// vector post processor values
-  std::vector<VectorPostprocessorValue*> _data_values;
+  std::vector<VectorPostprocessorValue *> _data_values;
 };

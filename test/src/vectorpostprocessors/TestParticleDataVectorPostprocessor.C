@@ -19,10 +19,12 @@ TestParticleDataVectorPostprocessor::validParams()
   return params;
 }
 
-TestParticleDataVectorPostprocessor::TestParticleDataVectorPostprocessor(const InputParameters & parameters)
-  : ParticleDataVectorPostprocessor(parameters) {
-    _data_values.push_back(&declareVector("id"));
-  }
+TestParticleDataVectorPostprocessor::TestParticleDataVectorPostprocessor(
+    const InputParameters & parameters)
+  : ParticleDataVectorPostprocessor(parameters)
+{
+  _data_values.push_back(&declareVector("id"));
+}
 
 void
 TestParticleDataVectorPostprocessor::execute()
@@ -51,9 +53,7 @@ TestParticleDataVectorPostprocessor::finalize()
   std::sort(indicies.begin(),
             indicies.end(),
             [&](size_t a, size_t b) -> bool
-            {
-              return (*_data_values.back())[a] < (*_data_values.back())[b];
-            });
+            { return (*_data_values.back())[a] < (*_data_values.back())[b]; });
 
   for (auto data : _data_values)
     Moose::applyIndices(*data, indicies);

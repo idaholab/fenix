@@ -44,8 +44,7 @@ NumberDensityAccumulator::execute()
 
     for (auto & p : particles)
     {
-      accumulator->add(
-          *p->currentElem(), p->currentPoint(), p->data(_weight_index));
+      accumulator->add(*p->currentElem(), p->currentPoint(), p->data(_weight_index));
     }
 
     accumulator->finalize();

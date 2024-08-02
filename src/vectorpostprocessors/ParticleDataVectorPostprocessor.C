@@ -16,33 +16,33 @@ InputParameters
 ParticleDataVectorPostprocessor::validParams()
 {
   InputParameters params = GeneralVectorPostprocessor::validParams();
-  params.addClassDescription("Collects data which is stored in RayData on particles on a per timestep basis.");
+  params.addClassDescription(
+      "Collects data which is stored in RayData on particles on a per timestep basis.");
   params.addRequiredParam<UserObjectName>("study", "The PICStudy that owns the Ray");
-  params.addParam<std::vector<std::string>>(
-      "additional_ray_data_outputs", {}, "The names of any Ray data in addition to the particle position and velocity that will be output");
+  params.addParam<std::vector<std::string>>("additional_ray_data_outputs",
+                                            {},
+                                            "The names of any Ray data in addition to the particle "
+                                            "position and velocity that will be output");
   return params;
 }
 
 ParticleDataVectorPostprocessor::ParticleDataVectorPostprocessor(const InputParameters & parameters)
   : GeneralVectorPostprocessor(parameters),
     _study(getUserObject<PICStudyBase>("study")),
-    _ray_data_indices({
-      _study.getRayDataIndex("v_x"),
-      _study.getRayDataIndex("v_y"),
-      _study.getRayDataIndex("v_z")
-    }),
-    _data_values({
-      &declareVector("t_pos"),
-      &declareVector("t_vel"),
-      &declareVector("x"),
-      &declareVector("y"),
-      &declareVector("z"),
-      &declareVector("v_x"),
-      &declareVector("v_y"),
-      &declareVector("v_z")
-    })
+    _ray_data_indices({_study.getRayDataIndex("v_x"),
+                       _study.getRayDataIndex("v_y"),
+                       _study.getRayDataIndex("v_z")}),
+    _data_values({&declareVector("t_pos"),
+                  &declareVector("t_vel"),
+                  &declareVector("x"),
+                  &declareVector("y"),
+                  &declareVector("z"),
+                  &declareVector("v_x"),
+                  &declareVector("v_y"),
+                  &declareVector("v_z")})
 {
-  const auto & additional_ray_data = getParam<std::vector<std::string>>("additional_ray_data_outputs");
+  const auto & additional_ray_data =
+      getParam<std::vector<std::string>>("additional_ray_data_outputs");
 
   if (additional_ray_data.empty())
     return;
@@ -53,7 +53,6 @@ ParticleDataVectorPostprocessor::ParticleDataVectorPostprocessor(const InputPara
 
   for (const auto & data_name : additional_ray_data)
     _data_values.push_back(&declareVector(data_name));
-
 }
 
 void

@@ -28,5 +28,4 @@ public:
    * id so that it will be consistent in testing
    */
   virtual void finalize() override;
-
 };

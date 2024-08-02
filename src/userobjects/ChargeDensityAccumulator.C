@@ -24,9 +24,9 @@ InputParameters
 ChargeDensityAccumulator::validParams()
 {
   auto params = ParticleQuantityResidualAccumulatorBase::validParams();
-  params.addClassDescription(
-      "Accumulator used to evaluate the inner product of the particle charge density and the test function "
-      "required for solving electromagnetic equations");
+  params.addClassDescription("Accumulator used to evaluate the inner product of the particle "
+                             "charge density and the test function "
+                             "required for solving electromagnetic equations");
   return params;
 }
 

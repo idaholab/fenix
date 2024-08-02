@@ -20,12 +20,13 @@ InputParameters
 ParticleQuantityResidualAccumulatorBase::validParams()
 {
   auto params = GeneralUserObject::validParams();
-  params.addClassDescription(
-      "Accumulator used to evaluate the inner product of the particle number density and the test function.");
+  params.addClassDescription("Accumulator used to evaluate the inner product of the particle "
+                             "number density and the test function.");
   params.addRequiredParam<UserObjectName>("study", "The PICStudy that owns the charged particles");
   // These parameters are necessary when using ResidualAccumulator
   params += TaggingInterface::validParams();
-  // This exec flag is necessary for the ParticleQuantityResidualAccumulatorBase to contribute to residuals
+  // This exec flag is necessary for the ParticleQuantityResidualAccumulatorBase to contribute to
+  // residuals
   ExecFlagEnum & exec_enum = params.set<ExecFlagEnum>("execute_on", true);
   exec_enum.addAvailableFlags(EXEC_PRE_KERNELS);
   params.set<ExecFlagEnum>("execute_on") = EXEC_PRE_KERNELS;
@@ -36,7 +37,8 @@ ParticleQuantityResidualAccumulatorBase::validParams()
   return params;
 }
 
-ParticleQuantityResidualAccumulatorBase::ParticleQuantityResidualAccumulatorBase(const InputParameters & params)
+ParticleQuantityResidualAccumulatorBase::ParticleQuantityResidualAccumulatorBase(
+    const InputParameters & params)
   : GeneralUserObject(params),
     _var_name(getParam<NonlinearVariableName>("variable")),
     _study(getUserObject<PICStudyBase>("study")),

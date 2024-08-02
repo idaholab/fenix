@@ -30,7 +30,10 @@ TestInitializedPICStudy::validParams()
   params.addParam<unsigned int>(
       "particles_per_element", 0, "The number of particles that will be placed in each element");
 
-  params.addParam<bool>("use_custom_rayids", true, "Wether or not to use the implemented ray id generation scheme or the default one");
+  params.addParam<bool>(
+      "use_custom_rayids",
+      true,
+      "Wether or not to use the implemented ray id generation scheme or the default one");
 
   return params;
 }
@@ -43,7 +46,9 @@ TestInitializedPICStudy::TestInitializedPICStudy(const InputParameters & paramet
     _curr_elem_id(0)
 {
   if (_use_custom_id_scheme && _particles_per_element == 0)
-    paramError("particles_per_element", "particles per element cannot be zero when using the custom ray id generation scheme");
+    paramError(
+        "particles_per_element",
+        "particles per element cannot be zero when using the custom ray id generation scheme");
 }
 
 void
