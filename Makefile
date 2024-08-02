@@ -40,11 +40,11 @@ CHEMICAL_REACTIONS          := yes
 CONTACT                     := no
 ELECTROMAGNETICS            := yes
 EXTERNAL_PETSC_SOLVER       := no
-FLUID_PROPERTIES            := no
+FLUID_PROPERTIES            := yes
 FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_TRANSFER               := no
+HEAT_TRANSFER               := yes
 LEVEL_SET                   := no
 MISC                        := yes
 NAVIER_STOKES               := yes
@@ -60,8 +60,7 @@ SCALAR_TRANSPORT            := yes
 SOLID_MECHANICS             := yes
 SOLID_PROPERTIES            := yes
 STOCHASTIC_TOOLS            := yes
-THERMAL_HYDRAULICS          := no
-TENSOR_MECHANICS            := no
+THERMAL_HYDRAULICS          := yes
 XFEM                        := no
 
 include $(MOOSE_DIR)/modules/modules.mk
