@@ -15,7 +15,7 @@
       input = 'number_density_accumulator.i'
       exodiff = 'number_density_accumulator_out.e'
       allow_test_objects = true
-      requirement = 'number density.'
+      detail = 'number density.'
     []
   []
 []

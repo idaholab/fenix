@@ -161,7 +161,8 @@ num_samples = ${fparse num_elem + 1}
 
 [VectorPostprocessors]
   [ray_data]
-    type = TestParticleMotionData
+    type = TestParticleDataVectorPostprocessor
+    additional_ray_data_outputs = 'mass charge weight'
     study = study
     execute_on = TIMESTEP_END
   []

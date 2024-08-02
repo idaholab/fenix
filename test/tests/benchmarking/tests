@@ -1,4 +1,6 @@
 [Tests]
+  issues = "#27 #61 #63"
+  design = "NegativeVariableGradientComponent.md ParticleDataVectorPostprocessor.md UniformGridParticleInitializer.md"
   [lieberman]
     requirement = 'The system shall be capable of solving the problem in chapter 1 pages 26-27 of Principles of Plasma Discharge and Material Processing ISBN 0-471-72001-1 and reproduce the same'
     [field_variables]

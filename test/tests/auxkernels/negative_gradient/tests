@@ -1,6 +1,6 @@
 [Tests]
-  # design = 'Diffusion.md'
-  # issues = '#108'
+  design = 'NegativeVariableGradientComponent.md'
+  issues = '#62'
   [test]
     type = 'Exodiff'
     input = 'negative_gradient.i'

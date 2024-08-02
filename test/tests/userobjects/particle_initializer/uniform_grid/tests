@@ -1,4 +1,6 @@
 [Tests]
+  design = 'UniformGridParticleInitializer.md'
+  issues = '#61'
   [uniform_grid]
     requirement = 'The system shall be capable of placing particles on a uniform grid on the mesh'
     [1d]

@@ -1,0 +1,3 @@
+# NegativeVariableGradientComponent
+
+!syntax description /AuxKernels/NegativeVariableGradientComponent

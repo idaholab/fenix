@@ -25,7 +25,9 @@ public:
   static InputParameters validParams();
 
 protected:
-
+  /**
+   * computes a specific component of the variable gradient
+   */
   virtual Real computeValue() override;
   /// The gradient of a coupled variable
   const VariableGradient & _grad_var;
