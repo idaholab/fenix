@@ -20,8 +20,22 @@ TestParticleDataVectorPostprocessor::validParams()
 }
 
 TestParticleDataVectorPostprocessor::TestParticleDataVectorPostprocessor(const InputParameters & parameters)
-  : ParticleDataVectorPostprocessor(parameters) {}
+  : ParticleDataVectorPostprocessor(parameters) {
+    _data_values.push_back(&declareVector("id"));
+  }
 
+void
+TestParticleDataVectorPostprocessor::execute()
+{
+  // this does end up looping over the rays twice
+  // but since it will only be for testing this is fine
+  // helps to test the behaviour of the object people will actually
+  // use without requiring it to store meta data that is not important for them.
+  ParticleDataVectorPostprocessor::execute();
+  const auto rays = _study.getBankedRays();
+  for (const auto & ray : rays)
+    _data_values.back()->push_back(ray->id());
+}
 
 void
 TestParticleDataVectorPostprocessor::finalize()
@@ -38,7 +52,7 @@ TestParticleDataVectorPostprocessor::finalize()
             indicies.end(),
             [&](size_t a, size_t b) -> bool
             {
-              return (*_data_values.front())[a] < (*_data_values.front())[b];
+              return (*_data_values.back())[a] < (*_data_values.back())[b];
             });
 
   for (auto data : _data_values)

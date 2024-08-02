@@ -32,7 +32,6 @@ ParticleDataVectorPostprocessor::ParticleDataVectorPostprocessor(const InputPara
       _study.getRayDataIndex("v_z")
     }),
     _data_values({
-      &declareVector("id"),
       &declareVector("t_pos"),
       &declareVector("t_vel"),
       &declareVector("x"),
@@ -71,15 +70,16 @@ ParticleDataVectorPostprocessor::execute()
   const auto rays = _study.getBankedRays();
   for (const auto & ray : rays)
   {
-    _data_values[0]->push_back(ray->id());
-    _data_values[1]->push_back(_t);
-    _data_values[2]->push_back(_t - _dt / 2);
+    // storing the time at which the particle position is known
+    _data_values[0]->push_back(_t);
+    // storing the time at which the particle velocity is known
+    _data_values[1]->push_back(_t - _dt / 2);
     const auto & point = ray->currentPoint();
-    for (const auto i : make_range(3, 6))
-      _data_values[i]->push_back(point(i - 3));
+    for (const auto i : make_range(2, 5))
+      _data_values[i]->push_back(point(i - 2));
 
-    for (const auto i : make_range(6, int(6 + _ray_data_indices.size())))
-      _data_values[i]->push_back(ray->data(_ray_data_indices[i - 6]));
+    for (const auto i : make_range(5, int(5 + _ray_data_indices.size())))
+      _data_values[i]->push_back(ray->data(_ray_data_indices[i - 5]));
   }
 }
 

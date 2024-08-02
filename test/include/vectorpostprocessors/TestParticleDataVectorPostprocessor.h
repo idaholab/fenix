@@ -18,6 +18,11 @@ public:
   TestParticleDataVectorPostprocessor(const InputParameters & parameters);
 
   /**
+   * adds the ray id to the particle data for sorting results
+   * This will help ensure testability
+   */
+  virtual void execute() override;
+  /**
    * In the testing version of this the finalize not only
    * communicates between procs but also sorts the data by ray
    * id so that it will be consistent in testing
