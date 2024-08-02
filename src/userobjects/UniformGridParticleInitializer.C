@@ -88,7 +88,6 @@ UniformGridParticleInitializer::getParticleData() const
 
   comm().sum(global_particle_count);
 
-  // std::cout << comm().size() << std::endl;
   if (global_particle_count != _total_particles)
   {
     std::ostringstream oss;
@@ -137,6 +136,5 @@ UniformGridParticleInitializer::getParticleData() const
       break;
   }
 
-  std::cout << data.size() << std::endl;
   return data;
 }
