@@ -1,6 +1,6 @@
 # Lieberman Ion Wall Losses
 
-This benchmark case is based on the example presented in [!cite](lieberman1994principles), chapter 1, pages 26-27
+This benchmark case is based on the example presented in [!cite](lieberman1994principles), chapter 1, pages 26-27. This case presents some basic PIC simulation results from an unnamed finite difference based PIC code.
 
 ## Problem Description
 
@@ -153,28 +153,17 @@ and the test function. These objects contribute to the residual of the electrost
 
 ## Results
 
-!row! style=display:inline-flex;
-!col! small=12 medium=4 large=3
-
-!media figures/lieberman_vdf_comparison.png style=width:120%;display:block;
-
-!col-end!
-
-!col! small=12 medium=4 large=3
-
-!media figures/lieberman_population_comparison.png style=width:120%;display:block;
-
-!col-end!
-!row-end!
-
+Results of the FENIX simulation are directly to compared to those reported in [!cite](lieberman1994principles), the comparison of these results is accomplished by using the figures in figure 2.2 of [!cite](lieberman1994principles) and plotting the FENIX results directly on top of them, ensuring that the bounds of the axes presented in  [!cite](lieberman1994principles) are maintained. As seen in these figures FENIX is able to reproduce the results nearly exactly.
 
 !row! style=display:inline-flex;
-!col! small=12 medium=4 large=3
 
-!media figures/lieberman_potential_comparison.png style=width:120%;display:block;
+!media figures/lieberman_vdf_comparison.png style=width:90%;display:block;margin-left:auto;margin-right:auto;
 
-!col-end!
+!media figures/lieberman_population_comparison.png style=width:88%;display:block;margin-left:auto;margin-right:auto;
+
 !row-end!
+
+!media figures/lieberman_potential_comparison.png style=width:50%;display:block;margin-left:auto;margin-right:auto;
 
 
 ## Running the Case
