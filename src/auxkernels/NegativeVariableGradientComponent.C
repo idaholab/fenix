@@ -21,7 +21,7 @@ NegativeVariableGradientComponent::validParams()
 {
   InputParameters params = AuxKernel::validParams();
   params.addClassDescription(
-      "Returns the negative gradient component of field variable");
+      "Returns the component of the gradient of a variable and applies a constant factor of -1.");
   params.addRequiredCoupledVar("gradient_variable", "The variable of which to take the gradient");
   params.addRequiredRangeCheckedParam<unsigned int>("component",
                               "component < 3",

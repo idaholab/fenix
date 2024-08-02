@@ -9,7 +9,7 @@ Because the charge density in FENIX is defined by Dirac delta functions and each
 !alert warning Using Non-Cartesian Geometries
 The weight calculation for particles has only been implemented for Cartesian domains and may not be valid for Non-Cartesian domains.
 
-In this object the weight of the $j^(th)$ particle is given by
+In this object the weight of the $j^\text{th}$ particle is given by
 
 \begin{equation}
   \omega_j \equiv

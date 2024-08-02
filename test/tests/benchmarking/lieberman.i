@@ -17,11 +17,14 @@ num_elem = 100
 # this should be at every node in the domain
 num_samples = ${fparse num_elem + 1}
 
-[Mesh/gmg]
-  type = GeneratedMeshGenerator
-  dim = 1
-  nx = ${num_elem}
-  xmax = ${l}
+[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = ${num_elem}
+    xmax = ${l}
+  []
+  allow_renumbering = false
 []
 
 [Variables]

@@ -24,14 +24,14 @@ UniformGridParticleInitializer::validParams()
 {
   auto params = ParticleInitializerBase::validParams();
   params.addClassDescription(
-      "particle initializer that places particles along a line with uniform spacing between particles");
+      "Particle initializer that places particles along a line with approximate uniform spacing between particles");
   params.addRangeCheckedParam<unsigned int>(
       "total_particles",
       "total_particles != 0",
       "The number of computational particles that should be placed along the line");
   params.addRangeCheckedParam<Real>("number_density",
                                     "number_density > 0.0",
-                                    "The number density of particles you want to represent");
+                                    "The number density of to represent with computational particles");
 
   return params;
 }

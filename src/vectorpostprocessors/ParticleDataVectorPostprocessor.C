@@ -16,7 +16,7 @@ InputParameters
 ParticleDataVectorPostprocessor::validParams()
 {
   InputParameters params = GeneralVectorPostprocessor::validParams();
-  params.addClassDescription("Collects data which is stored in RayData on particles");
+  params.addClassDescription("Collects data which is stored in RayData on particles on a per timestep basis.");
   params.addRequiredParam<UserObjectName>("study", "The PICStudy that owns the Ray");
   params.addParam<std::vector<std::string>>(
       "additional_ray_data_outputs", {}, "The names of any Ray data in addition to the particle position and velocity that will be output");
@@ -88,17 +88,4 @@ ParticleDataVectorPostprocessor::finalize()
 {
   for (auto data : _data_values)
     comm().gather(0, *data);
-
-  // std::vector<size_t> indicies;
-  // indicies.resize(_data_values.front()->size());
-  // std::iota(indicies.begin(), indicies.end(), 0);
-  // std::sort(indicies.begin(),
-  //           indicies.end(),
-  //           [&](size_t a, size_t b) -> bool
-  //           {
-  //             return (*_data_values.front())[a] < (*_data_values.front())[b];
-  //           });
-
-  // for (auto data : _data_values)
-  //   Moose::applyIndices(*data, indicies);
 }
