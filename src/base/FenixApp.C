@@ -19,6 +19,9 @@
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+// contribs
+#include "TMAP8App.h"
+
 InputParameters
 FenixApp::validParams()
 {
@@ -42,6 +45,8 @@ FenixApp::registerAll(Factory & f, ActionFactory & af, Syntax & s)
   Registry::registerObjectsTo(f, {"FenixApp"});
   Registry::registerActionsTo(af, {"FenixApp"});
 
+  TMAP8App::registerAll(f, af, s);
+
   /* register custom execute flags, action syntax, etc. here */
 }
 
@@ -50,6 +55,7 @@ FenixApp::registerApps()
 {
   registerApp(FenixApp);
   ModulesApp::registerApps();
+  TMAP8App::registerApps();
 }
 
 /***************************************************************************************************

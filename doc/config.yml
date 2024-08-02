@@ -3,12 +3,36 @@ Content:
         root_dir: ${ROOT_DIR}/doc/content
     framework:
         root_dir: ${MOOSE_DIR}/framework/doc/content
+    chemical_reactions:
+        root_dir: ${MOOSE_DIR}/modules/chemical_reactions/doc/content
     electromagnetics:
         root_dir: ${MOOSE_DIR}/modules/electromagnetics/doc/content
+    fluid_properties:
+        root_dir: ${MOOSE_DIR}/modules/fluid_properties/doc/content
+    heat_transfer:
+        root_dir: ${MOOSE_DIR}/modules/heat_transfer/doc/content
+    misc:
+        root_dir: ${MOOSE_DIR}/modules/misc/doc/content
+    navier_stokes:
+        root_dir: ${MOOSE_DIR}/modules/navier_stokes/doc/content
+    phase_field:
+        root_dir: ${MOOSE_DIR}/modules/phase_field/doc/content
+    reactor:
+        root_dir: ${MOOSE_DIR}/modules/reactor/doc/content
+    rdg:
+        root_dir: ${MOOSE_DIR}/modules/rdg/doc/content
     ray_tracing:
         root_dir: ${MOOSE_DIR}/modules/ray_tracing/doc/content
+    scalar_transport:
+        root_dir: ${MOOSE_DIR}/modules/scalar_transport/doc/content
+    solid_mechanics:
+        root_dir: ${MOOSE_DIR}/modules/solid_mechanics/doc/content
+    solid_properties:
+        root_dir: ${MOOSE_DIR}/modules/solid_properties/doc/content
     stochastic_tools:
         root_dir: ${MOOSE_DIR}/modules/stochastic_tools/doc/content
+    thermal_hydraulics:
+        root_dir: ${MOOSE_DIR}/modules/thermal_hydraulics/doc/content
     modules:
         root_dir: ${MOOSE_DIR}/modules/doc/content
         content:
@@ -17,6 +41,7 @@ Content:
             - help/finite_element_concepts/nodal_patch_recovery.md
             - application_development/performance_benchmarking.md
             - application_usage/restart_recover.md
+            - application_usage/command_line_usage.md
     python:
         root_dir: ${MOOSE_DIR}/python/doc/content
         content:
@@ -27,6 +52,8 @@ Content:
             - python/testers/**
             - python/CSVDiff.md
             - python/TestHarness.md
+    tmap8:
+        root_dir: ${ROOT_DIR}/tmap8/doc/content
 
 Renderer:
     type: MooseDocs.base.MaterializeRenderer
@@ -49,7 +76,7 @@ Extensions:
             Software Quality:
                 Software Quality Assurance (SQA) Information: /sqa/index.md
                 Code Standards: sqa/fenix_scs.md
-                #Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
+                Code Coverage: https://mooseframework.inl.gov/fenix/docs/coverage
             Help:
               FENIX Issues Page: https://github.com/idaholab/FENIX/issues
               FENIX Discussion Forum: https://github.com/idaholab/fenix/discussions
@@ -71,14 +98,33 @@ Extensions:
                 CAD: computer-aided design
     MooseDocs.extensions.sqa:
         active: true
-        categories:
+        categories: # commented-out categories are not available
             fenix: !include ${ROOT_DIR}/doc/sqa_fenix.yml
             framework: !include ${MOOSE_DIR}/framework/doc/sqa_framework.yml
-            ray_tracing: !include ${MOOSE_DIR}/modules/ray_tracing/doc/sqa_ray_tracing.yml
+            #chemical_reactions: !include ${MOOSE_DIR}/modules/chemical_reactions/doc/sqa_chemical_reactions.yml
             electromagnetics: !include ${MOOSE_DIR}/modules/electromagnetics/doc/sqa_electromagnetics.yml
+            fluid_properties: !include ${MOOSE_DIR}/modules/fluid_properties/doc/sqa_fluid_properties.yml
+            heat_transfer: !include ${MOOSE_DIR}/modules/heat_transfer/doc/sqa_heat_transfer.yml
+            misc: !include ${MOOSE_DIR}/modules/misc/doc/sqa_misc.yml
+            navier_stokes: !include ${MOOSE_DIR}/modules/navier_stokes/doc/sqa_navier_stokes.yml
+            phase_field: !include ${MOOSE_DIR}/modules/phase_field/doc/sqa_phase_field.yml
+            reactor: !include ${MOOSE_DIR}/modules/reactor/doc/sqa_reactor.yml
+            rdg: !include ${MOOSE_DIR}/modules/rdg/doc/sqa_rdg.yml
+            ray_tracing: !include ${MOOSE_DIR}/modules/ray_tracing/doc/sqa_ray_tracing.yml
+            scalar_transport: !include ${MOOSE_DIR}/modules/scalar_transport/doc/sqa_scalar_transport.yml
+            solid_mechanics: !include ${MOOSE_DIR}/modules/solid_mechanics/doc/sqa_solid_mechanics.yml
+            solid_properties: !include ${MOOSE_DIR}/modules/solid_properties/doc/sqa_solid_properties.yml
             stochastic_tools: !include ${MOOSE_DIR}/modules/stochastic_tools/doc/sqa_stochastic_tools.yml
+            thermal_hydraulics: !include ${MOOSE_DIR}/modules/thermal_hydraulics/doc/sqa_thermal_hydraulics.yml
+            tmap8: !include ${ROOT_DIR}/tmap8/doc/sqa_tmap8.yml
         reports: !include ${ROOT_DIR}/doc/sqa_reports.yml
         repos:
             default: https://github.com/idaholab/fenix
     MooseDocs.extensions.template:
         active: true
+    MooseDocs.extensions.bibtex:
+        duplicates:
+            - hales15homogenization
+            - kim_phase-field_1999
+            - Incropera2002
+            - petersen
