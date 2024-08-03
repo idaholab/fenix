@@ -45,8 +45,10 @@ protected:
   virtual void initializeParticles() override final;
   /// the object that will supply initial data needed for rays
   const ParticleInitializerBase & _initializer;
+  /// wether or not the id generation scheme from raytracing study will be used or the one in this user object will be
+  const bool _use_custom_id_scheme;
   /// the number of particles that will be placed in each element
-  const unsigned int _particles_per_element;
+  unsigned int _particles_per_element;
   /// the element id of the element that we are putting rays in
   dof_id_type _curr_elem_id;
   /// the number of rays that we have put into the current element

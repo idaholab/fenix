@@ -90,16 +90,22 @@
     bfield_components = 'Bx By Bz'
   []
 
-  [study]
-    type = TestPICStudyUserDefinedRays
+  [initializer]
+    type = TestPlacedParticleInitializer
     start_points = '0 0 0'
     start_velocities = '10 10 0'
-    charge = 1
     mass = 1
-    execute_on = 'TIMESTEP_BEGIN'
+    charge = 1
+  []
+
+  [study]
+    type = TestInitializedPICStudy
+    stepper = stepper
+    initializer = initializer
+    use_custom_rayids = false
     always_cache_traces = true
     data_on_cache_traces = true
-    velocity_updater = stepper
+    execute_on = 'TIMESTEP_BEGIN'
   []
 []
 
@@ -107,14 +113,6 @@
 [RayKernels]
   [null]
     type = NullRayKernel
-  []
-[]
-
-[RayBCs]
-  [reflect]
-    type = ReflectRayBC
-    boundary = 'top bottom right left'
-    study = study
   []
 []
 
