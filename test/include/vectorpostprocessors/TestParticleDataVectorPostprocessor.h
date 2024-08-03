@@ -1,11 +1,17 @@
-//* This file is part of the MOOSE framework
-//* https://www.mooseframework.org
+//* This file is part of FENIX: Fusion ENergy Integrated multiphys-X,
+//* A multiphysics application for modeling plasma facing components
+//* https://github.com/idaholab/fenix
+//* https://mooseframework.inl.gov/fenix
 //*
-//* All rights reserved, see COPYRIGHT for full restrictions
-//* https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//* FENIX is powered by the MOOSE Framework
+//* https://www.mooseframework.inl.gov
 //*
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
+//*
+//* Copyright 2024, Battelle Energy Alliance, LLC
+//* ALL RIGHTS RESERVED
+//*
 
 #pragma once
 #include "ParticleDataVectorPostprocessor.h"
@@ -24,7 +30,7 @@ public:
   virtual void execute() override;
   /**
    * In the testing version of this the finalize not only
-   * communicates between procs but also sorts the data by ray
+   * communicates between processors but also sorts the data by ray
    * id so that it will be consistent in testing
    */
   virtual void finalize() override;

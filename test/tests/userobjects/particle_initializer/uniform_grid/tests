@@ -8,7 +8,7 @@
       input = 'uniform_grid.i'
       exodiff = 'uniform_grid_rays.e'
       allow_test_objects = true
-      detail = 'in one dimension'
+      detail = 'in one dimension.'
     []
   []
   [unsupported_dimensions]
@@ -19,7 +19,7 @@
       allow_test_objects = true
       cli_args = 'Mesh/gmg/dim=2'
       expect_err = "The simulation must be in 1D in order to use the UniformGridParticleInitializer"
-      detail = 'a two dimensional simulation.'
+      detail = 'a two-dimensional simulation, and'
     []
     [3d]
       type = RunException
@@ -27,7 +27,7 @@
       allow_test_objects = true
       cli_args = 'Mesh/gmg/dim=3'
       expect_err = "The simulation must be in 1D in order to use the UniformGridParticleInitializer"
-      detail = 'a three dimensional simulation.'
+      detail = 'a three-dimensional simulation.'
     []
   []
 []

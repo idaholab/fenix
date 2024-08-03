@@ -22,9 +22,6 @@ In FENIX the charge density $\rho$ is defined as
 
 where $N$ is the number of computational particles in the simulation, $q_i$ is the charge of the $i^\text{th}$ particle, $w_i$ is the weight of the $i^\text{th}$ particle, and $\vec{r}_i$ is the position at which the $i^\text{th}$ computational particle exists.
 
-## Visualization
-
-
 ## Example Input Syntax
 
 !listing test/tests/userobjects/particle_quantity_accumulation/simple_potential_solve.i block=UserObjects

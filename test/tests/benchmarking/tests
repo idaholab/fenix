@@ -2,7 +2,7 @@
   issues = "#27 #61 #63"
   design = "NegativeVariableGradientComponent.md ParticleDataVectorPostprocessor.md UniformGridParticleInitializer.md"
   [lieberman]
-    requirement = 'The system shall be capable of solving the problem in chapter 1 pages 26-27 of Principles of Plasma Discharge and Material Processing ISBN 0-471-72001-1 and reproduce the same'
+    requirement = 'The system shall be capable of solving an ion wall loss problem, as described in chapter 1, pages 26-27 of Principles of Plasma Discharge and Material Processing (ISBN 0-471-72001-1), and reproduce the same'
     [field_variables]
       type = Exodiff
       input = 'lieberman.i'
@@ -12,7 +12,7 @@
                   Outputs/active=particle_population
                   Outputs/particle_population/show='ray_count ray_data'"
       allow_test_objects = true
-      detail = 'field variable results'
+      detail = 'field variable results, and'
     []
     [kinetic_data]
       type = CSVDiff
@@ -27,7 +27,7 @@
                  lieberman_ray_data_0007.csv
                  lieberman_ray_data_0008.csv'
       should_execute = false
-      detail = 'kinetic particle results'
+      detail = 'kinetic particle results.'
     []
   []
 []

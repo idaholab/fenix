@@ -32,7 +32,7 @@ UniformGridParticleInitializer::validParams()
   params.addRangeCheckedParam<Real>(
       "number_density",
       "number_density > 0.0",
-      "The number density of to represent with computational particles");
+      "The number density to represent with computational particles");
 
   return params;
 }
@@ -78,11 +78,11 @@ UniformGridParticleInitializer::getParticleData() const
   comm().min(min_frac);
   comm().max(max_frac);
 
-  // doign some rounding here to help reduce the cases where the total number of requested particles
-  // does not match the total number to be created
-  // without this rounding even in cases where the total number of particles requested is divided
-  // evenly by the number of procs the number of particles created does not match the requested
-  // number
+  // Doing some rounding here to help reduce the cases where the total number of requested particles
+  // does not match the total number to be created.
+  // Without this rounding, even in cases where the total number of particles requested is divided
+  // evenly by the number of processors, the number of particles created does not match the requested
+  // number.
   uint local_particle_count = std::round(double(_total_particles) * local_volume / global_volume);
   uint global_particle_count = local_particle_count;
 

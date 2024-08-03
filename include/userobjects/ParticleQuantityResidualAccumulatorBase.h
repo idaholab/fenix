@@ -35,7 +35,7 @@ public:
   ///@}
 
 protected:
-  /// the name of the variable which are contributing to the residual of
+  /// the name of the variable which we are contributing to the residual of
   const NonlinearVariableName _var_name;
   /// the PIC study that is tracking all of our particles
   const PICStudyBase & _study;

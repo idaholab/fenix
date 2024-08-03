@@ -26,11 +26,11 @@ public:
 
 protected:
   /**
-   * computes a specific component of the variable gradient
+   * Computes a specific component of the variable gradient
    */
   virtual Real computeValue() override;
   /// The gradient of a coupled variable
   const VariableGradient & _grad_var;
-  /// the component of the gradient you will access
+  /// The component of the gradient being accessed
   const unsigned int _component;
 };

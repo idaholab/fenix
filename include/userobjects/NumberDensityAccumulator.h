@@ -15,9 +15,6 @@
 
 #pragma once
 #include "ParticleQuantityResidualAccumulatorBase.h"
-// including ray for RayDataIndex
-#include "Ray.h"
-class PICStudyBase;
 
 class NumberDensityAccumulator : public ParticleQuantityResidualAccumulatorBase
 {
@@ -27,7 +24,7 @@ public:
   NumberDensityAccumulator(const InputParameters & params);
 
   /**
-   * Accumulates the contribution to residual from the inner product
+   * Accumulates the contribution to the residual of the inner product
    * of the particle number density and the test function
    */
   virtual void execute() override;

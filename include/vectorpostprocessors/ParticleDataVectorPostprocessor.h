@@ -30,8 +30,8 @@ public:
    */
   virtual void execute() override;
   /**
-   * The finalize method simply communicates the data that exist on
-   * individual procs to the root proc
+   * The finalize method simply communicates the data that exists on
+   * individual processors to the root processor
    */
   virtual void finalize() override;
 
@@ -40,6 +40,6 @@ protected:
   const PICStudyBase & _study;
   /// location where the ray data indicies will be stored
   std::vector<RayDataIndex> _ray_data_indices;
-  /// vector post processor values
+  /// vector postprocessor values
   std::vector<VectorPostprocessorValue *> _data_values;
 };

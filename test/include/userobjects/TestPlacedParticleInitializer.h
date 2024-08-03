@@ -1,8 +1,8 @@
-//* This file is part of FENIX: Fusion Energy Integrated Multiphys-X,
+//* This file is part of FENIX: Fusion ENergy Integrated multiphys-X,
 //* A multiphysics application for modeling plasma facing components
 //* https://github.com/idaholab/fenix
 //*
-//* FENIX is powered by the MOOSE Fr amework
+//* FENIX is powered by the MOOSE Framework
 //* https://www.mooseframework.inl.gov
 //*
 //* Licensed under LGPL 2.1, please see LICENSE for details
@@ -19,14 +19,14 @@ public:
 
   static InputParameters validParams();
   /**
-   * Particle initializer for uniform densities
-   * the particle weight will be based on a constant charge density and
-   * the specified number of particles per element
+   * Particle initializer for uniform densities.
+   * The particle weight will be based on a constant charge density and
+   * the specified number of particles per element.
    */
   virtual std::vector<InitialParticleData> getParticleData() const override;
 
   /**
-   * overridden to be able to pull the distribution objects into this class
+   * Overridden to be able to pull the distribution objects into this class
    */
   virtual void initialSetup() override {}
 
@@ -35,7 +35,7 @@ protected:
   const std::vector<Point> & _start_points;
   /// The starting velocities
   const std::vector<Point> & _start_velocities;
-  /// the mass of the particles being placed
+  /// The mass of the particles being placed
   const Real _mass;
   /// the charge of the particles being placed
   const Real _charge;

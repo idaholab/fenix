@@ -24,15 +24,15 @@ public:
 
   static InputParameters validParams();
   /**
-   * Particle initializer for uniform densities
-   * the particle weight will be based on a constant charge density and
-   * the specified number of particles per element
+   * Particle initializer for uniform densities.
+   * The particle weight will be based on a constant charge density and
+   * the specified number of particles per element.
    */
   virtual std::vector<InitialParticleData> getParticleData() const override;
 
 protected:
-  /// The uniform charge density that the particle weights will be based off
+  /// The uniform charge density that the particle weights will be based off of
   const Real _number_density;
-  /// the number of particles that will be placed in each element
+  /// The number of particles that will be placed in each element
   const unsigned int _total_particles;
 };
