@@ -20,13 +20,13 @@ registerMooseObject("FenixTestApp", TestVariableSampler);
 InputParameters
 TestVariableSampler::validParams()
 {
-  InputParameters params = TestPICStudyUserDefinedRays::validParams();
+  InputParameters params = TestInitializedPICStudy::validParams();
   params.addRequiredParam<VariableName>("field", "The field that you want to sample");
   return params;
 }
 
 TestVariableSampler::TestVariableSampler(const InputParameters & params)
-  : TestPICStudyUserDefinedRays(params),
+  : TestInitializedPICStudy(params),
     _sampler(FENIX::VariableSampler(_fe_problem, getParam<VariableName>("field"), _tid)),
     _field_idx(registerRayData("field_value"))
 {
@@ -35,7 +35,7 @@ TestVariableSampler::TestVariableSampler(const InputParameters & params)
 void
 TestVariableSampler::postExecuteStudy()
 {
-  TestPICStudyUserDefinedRays::postExecuteStudy();
+  TestInitializedPICStudy::postExecuteStudy();
   for (auto & ray : _banked_rays)
   {
     ray->data(_field_idx) = _sampler.sampleVariable(ray->currentPoint(), ray->currentElem());

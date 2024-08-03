@@ -17,6 +17,7 @@
 
 #include "RayTracingStudy.h"
 
+#include "ParticleInitializerBase.h"
 class ParticleStepperBase;
 
 class PICStudyBase : public RayTracingStudy
@@ -75,6 +76,7 @@ protected:
    * @param v the new velocity to give the ray
    */
   void setVelocity(Ray & ray, const Point & v) const;
+
   /**
    *  Method that users should override for their custom particle initialization
    *  This is only called when the study first starts up
@@ -85,6 +87,8 @@ protected:
    * every step after the initialization has been called
    */
   virtual void reinitializeParticles();
+
+  virtual void setInitialParticleData(std::shared_ptr<Ray> & ray, const InitialParticleData & data);
 
 private:
   /// Whether or not we've generated rays yet (restartable)

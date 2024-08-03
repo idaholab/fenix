@@ -29,7 +29,7 @@ charge_density = 2
 []
 
 [UserObjects]
-  [velocity_updater]
+  [stepper]
     type = TestSimpleStepper
   []
 
@@ -48,7 +48,7 @@ charge_density = 2
   [study]
     type = TestInitializedPICStudy
     initializer = initializer
-    velocity_updater = velocity_updater
+    stepper = stepper
     always_cache_traces = true
     data_on_cache_traces = true
     execute_on=TIMESTEP_BEGIN

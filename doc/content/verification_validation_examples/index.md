@@ -30,8 +30,12 @@ FENIX is under active development and does not currently have any validation cas
 
 # List of benchmarking cases
 
-!alert construction title=Under development - no benchmarking cases are available yet
-FENIX is under active development and does not currently have any benchmarking cases available to users.
+| Case    | Title                                                                              |
+| ------- | ---------------------------------------------------------------------------------- |
+| 1 | [Lieberman Ion Wall Losses](lieberman.md) |
+
+
+
 
 # List of example cases
 

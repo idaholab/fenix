@@ -78,7 +78,7 @@ The `execute_on` parameter of this object is set to `PRE_KERNELS` and is not ava
 
 ## Example Input Syntax
 
-!listing test/tests/userobjects/charge_accumulation/simple_potential_solve.i block=UserObjects
+!listing test/tests/userobjects/particle_quantity_accumulation/simple_potential_solve.i block=UserObjects
 
 !syntax parameters /UserObjects/ChargeDensityAccumulator
 

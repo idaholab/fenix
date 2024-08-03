@@ -15,14 +15,14 @@
 
 #pragma once
 
-#include "TestPICStudyUserDefinedRays.h"
+#include "TestInitializedPICStudy.h"
 #include "AuxAccumulator.h"
 
 /**
  * Test study for mapping charge from particles into a finite element
  * aux variable
  */
-class TestChargeAccumulator : public TestPICStudyUserDefinedRays
+class TestChargeAccumulator : public TestInitializedPICStudy
 {
 public:
   TestChargeAccumulator(const InputParameters & parameters);

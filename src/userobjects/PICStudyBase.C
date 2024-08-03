@@ -25,8 +25,8 @@ PICStudyBase::validParams()
                              "Basic logic for resetting rays to be used as particles after the "
                              "original generation is complete is also provided");
   params.addRequiredParam<UserObjectName>(
-      "velocity_updater",
-      "The VelocityUpdater UserObject that has the rules for how particle"
+      "stepper",
+      "The ParticleStepper UserObject that has the rules for how particle"
       "velocities should be updated");
   // We're not going to use registration because we don't care to name our rays because
   // we will have a lot of them
@@ -46,7 +46,7 @@ PICStudyBase::PICStudyBase(const InputParameters & parameters)
     _charge_index(registerRayData("charge")),
     _mass_index(registerRayData("mass")),
     _species_index(registerRayData("species")),
-    _stepper(getUserObject<ParticleStepperBase>("velocity_updater")),
+    _stepper(getUserObject<ParticleStepperBase>("stepper")),
     _has_generated(declareRestartableData<bool>("has_generated", false))
 {
 }
@@ -101,6 +101,19 @@ PICStudyBase::postExecuteStudy()
   // we are going to be re using the same rays which just took a step so
   // we store them here to reset them in the generateRays method
   _banked_rays = rayBank();
+  // removing all of the rays which were killed during their tracing
+  _banked_rays.erase(std::remove_if(_banked_rays.begin(),
+                                    _banked_rays.end(),
+                                    [](const std::shared_ptr<Ray> & ray)
+                                    {
+                                      if (ray->stationary())
+                                        return false;
+
+                                      return std::abs(ray->distance() - ray->maxDistance()) /
+                                                 ray->maxDistance() >
+                                             1e-6;
+                                    }),
+                     _banked_rays.end());
 }
 
 void
@@ -123,4 +136,16 @@ const std::vector<std::shared_ptr<Ray>> &
 PICStudyBase::getBankedRays() const
 {
   return _banked_rays;
+}
+
+void
+PICStudyBase::setInitialParticleData(std::shared_ptr<Ray> & ray, const InitialParticleData & data)
+{
+  ray->setStart(data.position, data.elem);
+  ray->data(_v_x_index) = data.velocity(0);
+  ray->data(_v_y_index) = data.velocity(1);
+  ray->data(_v_z_index) = data.velocity(2);
+  ray->data(_mass_index) = data.mass;
+  ray->data(_weight_index) = data.weight;
+  ray->data(_charge_index) = data.charge;
 }
