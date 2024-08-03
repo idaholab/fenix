@@ -24,7 +24,7 @@ public:
   NumberDensityAccumulator(const InputParameters & params);
 
   /**
-   * Accumulates the contribution to the residual the inner product
+   * Accumulates the contribution to the residual of the inner product
    * of the particle number density and the test function
    */
   virtual void execute() override;
