@@ -37,8 +37,8 @@ protected:
   const std::vector<Point> & _start_velocities;
   /// The mass of the particles being placed
   const Real _mass;
-  /// the charge of the particles being placed
+  /// The charge of the particles being placed
   const Real _charge;
-  /// the weight of the particles being placed
+  /// The weight of the particles being placed
   const Real _weight;
 };
