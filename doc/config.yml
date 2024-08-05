@@ -66,7 +66,7 @@ Extensions:
                 Installation: getting_started/installation.md
                 FENIX on HPC: getting_started/hpc.md
                 Using FENIX: getting_started/using_fenix.md
-                User Notes: getting_started/user_notes.md
+                User Notes: getting_started/fenix_user_notes.md
                 Contributing to FENIX: getting_started/contributing.md
             Documentation:
                 FENIX-only Syntax: syntax/fenix_only.md
