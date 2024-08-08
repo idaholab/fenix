@@ -59,22 +59,52 @@ To compile FENIX, first make sure that the conda MOOSE environment is activated
 conda activate moose
 ```
 
-Then navigate to the FENIX clone directory and download the MOOSE and TMAP8 submodules:
+Then navigate to the FENIX clone directory and download the MOOSE, TMAP8, and Cardinal submodules:
 
 ```bash
 cd ~/projects/FENIX
 git submodule update --init moose
 git submodule update --init tmap8
+git submodule update --init cardinal
 ```
 
+Next, some Cardinal dependencies need to be downloaded:
+
+```bash
+cd ~/projects/FENIX/cardinal
+git submodule update --init --recursive contrib/openmc
+git submodule update --init contrib/DAGMC
+git submodule update --init contrib/moab
+```
+
+To download OpenMC cross sections needed for OpenMC-based Cardinal runs, run:
+
+```bash
+cd ~/projects/FENIX/cardinal
+scripts/download-openmc-cross-sections.sh
+```
+
+and subsequently set the location of those cross sections in your environment:
+
+```bash
+export OPENMC_CROSS_SECTIONS=~/projects/FENIX/cross_sections/cross_sections.xml
+```
+
+!alert! warning
+This variable +must+ be set in your environment anytime you wish to run FENIX input files that
+utilize the OpenMC functionality! This can be done either using `export` on the command line,
+or placing this command within a shell config file (`.bashrc`, `.zshrc`, etc.).
+!alert-end!
+
 !alert! note
-The copies of MOOSE and TMAP8 provided with FENIX have been fully tested against the current
+The copies of MOOSE, TMAP8, and Cardinal provided with FENIX have been fully tested against the current
 FENIX version, and is guaranteed to work with all current FENIX tests.
 !alert-end!
 
 Once all dependencies have been downloaded, FENIX can be compiled and tested:
 
 ```bash
+cd ~/projects/FENIX
 make -j8
 ./run_tests -j8
 ```
@@ -90,7 +120,7 @@ FENIX is ready to be used and further developed.
 
 ## Update FENIX
 
-FENIX (and its underlying dependencies MOOSE and TMAP8) is under heavy development and is
+FENIX (and its underlying dependencies MOOSE, TMAP8, and Cardinal) is under heavy development and is
 updated on a continuous basis. Therefore, it is important that the local copy of FENIX be periodically
 updated to obtain new capabilities, improvements, and bugfixes. Weekly updates are recommended as,
 at minimum, the MOOSE submodule within FENIX is updated up to several times a week.

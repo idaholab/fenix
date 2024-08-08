@@ -5,14 +5,16 @@
 # Optional Environment variables
 # MOOSE_DIR        - Root directory of the MOOSE project
 # TMAP8_DIR        - Root directory of the TMAP8 project
+# CARDINAL_DIR     - Root directory of the Cardinal project
 #
 ###############################################################################
 # Use the MOOSE submodule if it exists and MOOSE_DIR is not set
-MOOSE_SUBMODULE    := $(CURDIR)/moose
+# If it doesn't exist, and MOOSE_DIR is not set, then look for it adjacent to the application
+MOOSE_SUBMODULE       := $(CURDIR)/moose
 ifneq ($(wildcard $(MOOSE_SUBMODULE)/framework/Makefile),)
-  MOOSE_DIR        ?= $(MOOSE_SUBMODULE)
+  MOOSE_DIR           ?= $(MOOSE_SUBMODULE)
 else
-  MOOSE_DIR        ?= $(shell dirname `pwd`)/moose
+  MOOSE_DIR           ?= $(shell dirname `pwd`)/moose
 endif
 
 # Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
@@ -23,6 +25,21 @@ ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
 else
   TMAP8_DIR        ?= $(shell dirname `pwd`)/tmap8
 endif
+
+# Use the Cardinal submodule if it exists and CARDINAL_DIR is not set
+# If it doesn't exist, and CARDINAL_DIR is not set, then look for it adjacent to the application
+CARDINAL_SUBMODULE    := $(CURDIR)/cardinal
+ifneq ($(wildcard $(CARDINAL_SUBMODULE)/Makefile),)
+  CARDINAL_DIR        ?= $(CARDINAL_SUBMODULE)
+else
+  CARDINAL_DIR        ?= $(shell dirname `pwd`)/cardinal
+endif
+
+# Cardinal contrib variables
+CARDINAL_CONTRIB_DIR  := $(CARDINAL_DIR)/contrib
+CONTRIB_INSTALL_DIR   ?= $(CARDINAL_DIR)/install
+OPENMC_INSTALL_DIR    := $(CONTRIB_INSTALL_DIR)
+OPENMC_LIBDIR         := $(OPENMC_INSTALL_DIR)/lib
 
 # framework
 FRAMEWORK_DIR      := $(MOOSE_DIR)/framework
@@ -73,12 +90,36 @@ BUILD_EXEC         := no
 GEN_REVISION       := no
 include            $(FRAMEWORK_DIR)/app.mk
 
+# Cardinal
+APPLICATION_DIR    := $(CARDINAL_DIR)
+APPLICATION_NAME   := cardinal
+BUILD_EXEC         := no
+GEN_REVISION       := no
+include            $(FRAMEWORK_DIR)/app.mk
+
 # dep apps
 APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := fenix
 BUILD_EXEC         := yes
 GEN_REVISION       := no
+
+# Cardinal dependency libraries
+ADDITIONAL_LIBS := -L$(CARDINAL_DIR)/lib -L$(OPENMC_LIBDIR) -lopenmc -lhdf5_hl -ldagmc -lMOAB
+
 include            $(FRAMEWORK_DIR)/app.mk
 
 ###############################################################################
 # Additional special case targets should be added here
+
+# Used in prebuild
+export MOOSE_JOBS=$(patsubst -j%,%,$(filter -j%,$(MAKEFLAGS)))
+
+# Adding to rule in moose.mk to prebuild cardinal and dependencies
+prebuild::
+	+@-bash $(CURDIR)/scripts/build_cardinal.sh
+
+CARDINAL_EXTERNAL_FLAGS := -L$(CARDINAL_DIR)/lib -L$(OPENMC_LIBDIR)  \
+                           -Wl,-rpath,$(OPENMC_LIBDIR) -lopenmc -lhdf5_hl -ldagmc -lMOAB
+
+# EXTERNAL_FLAGS is used in rules for app.mk
+$(app_EXEC): EXTERNAL_FLAGS := $(CARDINAL_EXTERNAL_FLAGS)
