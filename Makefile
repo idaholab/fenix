@@ -75,9 +75,9 @@ EIGEN3_DIR          ?= $(LIBMESH_DIR)/include
 Eigen3_DIR          ?= $(EIGEN3_DIR)
 
 # If HDF5_DIR is set, use those settings to link HDF5 to OpenMC.
-# Otherwise, use where PETSc will put HDF5 if downloading it.
+# Otherwise, use the PETSc location, as the self-built HDF5 libraries will be housed within.
 ifeq ($(HDF5_DIR),)
-  HDF5_DIR          := $(PETSC_DIR)/$(PETSC_ARCH)
+  HDF5_DIR          := $(PETSC_DIR)
   export HDF5_DIR
 endif
 
