@@ -194,7 +194,7 @@ include            $(FRAMEWORK_DIR)/app.mk
 APPLICATION_DIR    := $(CARDINAL_DIR)
 APPLICATION_NAME   := cardinal
 BUILD_EXEC         := no
-GEN_REVISION       := no
+GEN_REVISION       := yes
 include            $(FRAMEWORK_DIR)/app.mk
 
 # app_objects are defined in moose.mk and built according to the rules in build.mk
@@ -206,7 +206,7 @@ $(test_objects): build_moab build_dagmc build_openmc
 APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := fenix
 BUILD_EXEC         := yes
-GEN_REVISION       := no
+GEN_REVISION       := yes
 
 # Cardinal dependency libraries
 ADDITIONAL_LIBS := -L$(CARDINAL_DIR)/lib $(CC_LINKER_SLFLAG)$(CARDINAL_DIR)/lib \
