@@ -1,0 +1,5 @@
+export CARDINAL_CONTRIB_INSTALL_DIR=/opt/fenix/contrib
+export HDF5_ROOT=${PETSC_DIR}
+export ENABLE_DAGMC=ON
+make build_openmc MAKEFLAGS=-j${MOOSE_JOBS}
+make build_dagmc MAKEFLAGS=-j${MOOSE_JOBS}
