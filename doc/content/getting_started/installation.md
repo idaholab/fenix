@@ -115,6 +115,19 @@ build the code and run the tests. The number in that flag can be changed to the
 number of physical and virtual cores on the workstation being used to build FENIX.
 !alert-end!
 
+!alert! note title=Speeding up OpenMC/DAGMC/MOAB builds
+If the build of Cardinal third-party libraries OpenMC, DAGMC, and MOAB is too slow on your machine,
+you can attempt to pass the number of `make` cores using the `MAKEFLAGS` variable. This can do a
+better job enabling proper parallelism in nested `make` builds (as is the case with Cardinal
+dependencies). To use this variable, simply perform:
+
+```bash
+make MAKEFLAGS=-j8
+```
+
+instead of the `make` commands highlighted above.
+!alert-end!
+
 If FENIX is working correctly, all active tests will pass. This indicates that
 FENIX is ready to be used and further developed.
 
