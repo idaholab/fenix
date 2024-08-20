@@ -73,7 +73,7 @@ Next, some Cardinal dependencies need to be downloaded:
 ```bash
 cd ~/projects/FENIX/cardinal
 git submodule update --init --recursive contrib/openmc
-git submodule update --init contrib/DAGMC
+git submodule update --init --recursive contrib/DAGMC
 git submodule update --init contrib/moab
 ```
 
@@ -158,6 +158,12 @@ git checkout main
 git fetch upstream
 git rebase upstream/main
 git submodule update moose
+git submodule update tmap8
+git submodule update cardinal
+cd cardinal
+git submodule update --recursive contrib/openmc
+git submodule update --recursive contrib/DAGMC
+git submodule update contrib/moab
 ```
 
 To update your FENIX repository as a FENIX developer who regularly makes modifications to the code, use the following commands,
@@ -169,6 +175,12 @@ git checkout devel
 git fetch upstream
 git rebase upstream/devel
 git submodule update moose
+git submodule update tmap8
+git submodule update cardinal
+cd cardinal
+git submodule update --recursive contrib/openmc
+git submodule update --recursive contrib/DAGMC
+git submodule update contrib/moab
 ```
 
 Both sets of instructions assume that your copy of FENIX is stored in `~/projects` and that the [idaholab/FENIX](https://github.com/idaholab/FENIX)
