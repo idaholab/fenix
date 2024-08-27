@@ -44,8 +44,6 @@ else
 endif
 
 # Check for optional dependencies and, if found, configure for building.
-# Set default for ENABLE_CARDINAL.
-ENABLE_CARDINAL := no
 include config/check_deps.mk
 
 ifeq ($(ENABLE_CARDINAL),yes)

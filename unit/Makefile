@@ -45,8 +45,7 @@ else
 endif
 
 # Check for optional dependencies and, if found, configure for building.
-# Set default for ENABLE_CARDINAL, and override default CARDINAL_DIR for unit build.
-ENABLE_CARDINAL := no
+# Override default CARDINAL_DIR for unit build.
 CARDINAL_DIR ?= $(CURDIR)/../cardinal
 include $(CURDIR)/../config/check_deps.mk
 
