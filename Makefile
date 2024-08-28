@@ -46,6 +46,7 @@ endif
 # Check for optional dependencies and, if found, configure for building.
 include config/check_deps.mk
 
+# ENABLE_CARDINAL = yes by default, but is set to "no" automatically if Cardinal is not found via CARDINAL_DIR. 
 ifeq ($(ENABLE_CARDINAL),yes)
   include config/configure_cardinal.mk
 endif
