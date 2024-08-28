@@ -92,13 +92,20 @@ export OPENMC_CROSS_SECTIONS=~/projects/FENIX/cross_sections/cross_sections.xml
 
 !alert! warning
 This variable +must+ be set in your environment anytime you wish to run FENIX input files that
-utilize the OpenMC functionality! This can be done either using `export` on the command line,
-or placing this command within a shell config file (`.bashrc`, `.zshrc`, etc.).
+utilize the OpenMC functionality within Cardinal! This can be done either using `export` on the
+command line, or placing this command within a shell config file (`.bashrc`, `.zshrc`, etc.).
 !alert-end!
 
 !alert! note
 The copies of MOOSE, TMAP8, and Cardinal provided with FENIX have been fully tested against the current
 FENIX version, and is guaranteed to work with all current FENIX tests.
+!alert-end!
+
+!alert! tip title=Disabling Cardinal
+Cardinal is an optional dependency of FENIX and can be disabled to speed up build times, if Cardinal
+capabilities are not needed. This can be done by simply not downloading the Cardinal submodule
+(i.e., not performing the `git submodule update --init cardinal` command as well as the Cardinal
+dependency download commands above.)
 !alert-end!
 
 Once all dependencies have been downloaded, FENIX can be compiled and tested:
