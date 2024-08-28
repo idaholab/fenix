@@ -1,6 +1,6 @@
 # FENIX Verification, Validation, and Example Cases
 
-For [software quality assurance (SQA)](sqa/index.md) purposes, FENIX undergoes verification, validation, and benchmarking. The FENIX development team defines these terms as:
+For [software quality assurance (SQA)](sqa/index.md exact=True) purposes, FENIX undergoes verification, validation, and benchmarking. The FENIX development team defines these terms as:
 
 - +Verification+: Comparing FENIX predictions against analytical solutions in different conditions, which are often simple cases.
 - +Validation+: Comparing FENIX predictions against experimental data.
