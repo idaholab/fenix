@@ -190,6 +190,13 @@ git submodule update --recursive contrib/DAGMC
 git submodule update contrib/moab
 ```
 
+!alert! tip title=Disabling Cardinal
+Cardinal is an optional dependency of FENIX and can be disabled to speed up build times, if Cardinal
+capabilities are not needed. This can be done by simply not downloading the Cardinal submodule
+(i.e., not performing the `git submodule update cardinal` command as well as the following Cardinal
+dependency update commands above.)
+!alert-end!
+
 Both sets of instructions assume that your copy of FENIX is stored in `~/projects` and that the [idaholab/FENIX](https://github.com/idaholab/FENIX)
 git remote is labeled `upstream`. Use `git remote -v` in the FENIX repository location to check for
 this and change the commands as necessary. Finally, FENIX can be re-compiled and re-tested.
