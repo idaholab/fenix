@@ -20,4 +20,5 @@ dependencies: # commented-out categories are not available
     - stochastic_tools
     - thermal_hydraulics
     - tmap8
+    #- cardinal
 reports: !include ${ROOT_DIR}/doc/sqa_reports.yml

@@ -1,0 +1,1 @@
+export OPENMC_CROSS_SECTIONS=/opt/fenix/share/fenix/endfb-vii.1-hdf5/cross_sections.xml
