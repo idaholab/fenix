@@ -35,20 +35,13 @@ endif
 FRAMEWORK_DIR      ?= $(MOOSE_DIR)/framework
 ###############################################################################
 
-# Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
-# If it doesn't exist, and TMAP8_DIR is not set, then look for it adjacent to the application
-TMAP8_SUBMODULE    := $(CURDIR)/../tmap8
-ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
-  TMAP8_DIR        ?= $(TMAP8_SUBMODULE)
-else
-  TMAP8_DIR        ?= $(shell dirname `pwd`)/../tmap8
-endif
-
 # Check for optional dependencies and, if found, configure for building.
-# Override default CARDINAL_DIR for unit build.
+# Override default dependency directories for unit builds.
+TMAP8_DIR ?= $(CURDIR)/../tmap8
 CARDINAL_DIR ?= $(CURDIR)/../cardinal
 include $(CURDIR)/../config/check_deps.mk
 
+# ENABLE_CARDINAL = yes by default, but is set to "no" automatically if Cardinal is not found via CARDINAL_DIR.
 ifeq ($(ENABLE_CARDINAL),yes)
   include $(CURDIR)/../config/configure_cardinal.mk
 endif
@@ -64,32 +57,35 @@ include $(FRAMEWORK_DIR)/moose.mk
 
 ALL_MODULES                 := no
 
-CHEMICAL_REACTIONS          := yes
+CHEMICAL_REACTIONS          := no
 CONTACT                     := no
 ELECTROMAGNETICS            := yes
 EXTERNAL_PETSC_SOLVER       := no
-FLUID_PROPERTIES            := yes
+FLUID_PROPERTIES            := no
 FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_TRANSFER               := yes
+HEAT_TRANSFER               := no
 LEVEL_SET                   := no
-MISC                        := yes
-NAVIER_STOKES               := yes
+MISC                        := no
+NAVIER_STOKES               := no
 OPTIMIZATION                := no
 PERIDYNAMICS                := no
-PHASE_FIELD                 := yes
+PHASE_FIELD                 := no
 POROUS_FLOW                 := no
 RAY_TRACING                 := yes
-REACTOR                     := yes
-RDG                         := yes
+REACTOR                     := no
+RDG                         := no
 RICHARDS                    := no
-SCALAR_TRANSPORT            := yes
-SOLID_MECHANICS             := yes
-SOLID_PROPERTIES            := yes
+SCALAR_TRANSPORT            := no
+SOLID_MECHANICS             := no
+SOLID_PROPERTIES            := no
 STOCHASTIC_TOOLS            := yes
-THERMAL_HYDRAULICS          := yes
+THERMAL_HYDRAULICS          := no
 XFEM                        := no
+
+# Enable modules required by optional dependencies
+include $(CURDIR)/../config/dep_modules.mk
 
 include           $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
@@ -98,26 +94,16 @@ include           $(MOOSE_DIR)/modules/modules.mk
 ADDITIONAL_INCLUDES := -I$(FRAMEWORK_DIR)/contrib/gtest
 ADDITIONAL_LIBS     := $(FRAMEWORK_DIR)/contrib/gtest/libgtest.la
 
-# TMAP8
-APPLICATION_DIR    := $(TMAP8_DIR)
-APPLICATION_NAME   := tmap8
-BUILD_EXEC         := no
-GEN_REVISION       := no
-include            $(FRAMEWORK_DIR)/app.mk
-
-# Cardinal
-ifeq ($(ENABLE_CARDINAL),yes)
-  include $(CURDIR)/../config/build_cardinal.mk
-endif
+# Build optional dependencies
+include $(CURDIR)/../config/build_deps.mk
 
 # FENIX
-CURRENT_DIR        := $(shell pwd)
-APPLICATION_DIR    := $(CURRENT_DIR)/..
+APPLICATION_DIR    := $(CURDIR)/..
 APPLICATION_NAME   := fenix
 GEN_REVISION       := yes
 include            $(FRAMEWORK_DIR)/app.mk
 
-APPLICATION_DIR    := $(CURRENT_DIR)
+APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := fenix-unit
 BUILD_EXEC         := yes
 DEP_APPS    ?= $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
@@ -133,10 +119,10 @@ include $(FRAMEWORK_DIR)/app.mk
 
 # External flags
 ifeq ($(ENABLE_CARDINAL),yes)
-  include $(CURRENT_DIR)/../config/external_cardinal_flags.mk
+  include $(CURDIR)/../config/external_cardinal_flags.mk
 endif
 
 # Find all the Fenix unit test source files and include their dependencies.
-fenix_unit_srcfiles := $(shell find $(CURRENT_DIR)/src -name "*.C")
+fenix_unit_srcfiles := $(shell find $(CURDIR)/src -name "*.C")
 fenix_unit_deps := $(patsubst %.C, %.$(obj-suffix).d, $(fenix_unit_srcfiles))
 -include $(fenix_unit_deps)
