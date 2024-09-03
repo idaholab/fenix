@@ -101,6 +101,12 @@ The copies of MOOSE, TMAP8, and Cardinal provided with FENIX have been fully tes
 FENIX version, and is guaranteed to work with all current FENIX tests.
 !alert-end!
 
+!alert! tip title=Disabling TMAP8
+TMAP8 is an optional dependency of FENIX and can be disabled to speed up build times, if TMAP8
+capabilities are not needed. This can be done by simply not downloading the TMAP8 submodule
+(i.e., not performing the `git submodule update --init tmap8` command above.)
+!alert-end!
+
 !alert! tip title=Disabling Cardinal
 Cardinal is an optional dependency of FENIX and can be disabled to speed up build times, if Cardinal
 capabilities are not needed. This can be done by simply not downloading the Cardinal submodule
@@ -189,6 +195,12 @@ git submodule update --recursive contrib/openmc
 git submodule update --recursive contrib/DAGMC
 git submodule update contrib/moab
 ```
+
+!alert! tip title=Disabling TMAP8
+TMAP8 is an optional dependency of FENIX and can be disabled to speed up build times, if TMAP8
+capabilities are not needed. This can be done by simply not downloading the TMAP8 submodule
+(i.e., not performing the `git submodule update tmap8` command above.)
+!alert-end!
 
 !alert! tip title=Disabling Cardinal
 Cardinal is an optional dependency of FENIX and can be disabled to speed up build times, if Cardinal

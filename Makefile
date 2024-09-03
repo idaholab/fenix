@@ -34,19 +34,10 @@ else
 endif
 FRAMEWORK_DIR      := $(MOOSE_DIR)/framework
 
-# Use the TMAP8 submodule if it exists and TMAP8_DIR is not set
-# If it doesn't exist, and TMAP8_DIR is not set, then look for it adjacent to the application
-TMAP8_SUBMODULE    := $(CURDIR)/tmap8
-ifneq ($(wildcard $(TMAP8_SUBMODULE)/Makefile),)
-  TMAP8_DIR        ?= $(TMAP8_SUBMODULE)
-else
-  TMAP8_DIR        ?= $(shell dirname `pwd`)/tmap8
-endif
-
 # Check for optional dependencies and, if found, configure for building.
 include config/check_deps.mk
 
-# ENABLE_CARDINAL = yes by default, but is set to "no" automatically if Cardinal is not found via CARDINAL_DIR. 
+# ENABLE_CARDINAL = yes by default, but is set to "no" automatically if Cardinal is not found via CARDINAL_DIR.
 ifeq ($(ENABLE_CARDINAL),yes)
   include config/configure_cardinal.mk
 endif
@@ -56,53 +47,51 @@ include $(FRAMEWORK_DIR)/build.mk
 include $(FRAMEWORK_DIR)/moose.mk
 
 ################################## MODULES ####################################
-# To use certain physics included with MOOSE, set variables below to
-# yes as needed.  Or set ALL_MODULES to yes to turn on everything (overrides
-# other set variables).
+# The default MOOSE modules used with FENIX are activated below. To turn on more
+# modules, set their respective variables to yes. One can also set ALL_MODULES
+# to yes to turn on everything (overrides other set variables).
+#
+# Additional modules may be turned on by optional dependencies - please
+# reference config/dep_modules.mk to review those that might be available
+# in your installation configuration.
 
 ALL_MODULES                 := no
 
-CHEMICAL_REACTIONS          := yes
+CHEMICAL_REACTIONS          := no
 CONTACT                     := no
 ELECTROMAGNETICS            := yes
 EXTERNAL_PETSC_SOLVER       := no
-FLUID_PROPERTIES            := yes
+FLUID_PROPERTIES            := no
 FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_TRANSFER               := yes
+HEAT_TRANSFER               := no
 LEVEL_SET                   := no
-MISC                        := yes
-NAVIER_STOKES               := yes
+MISC                        := no
+NAVIER_STOKES               := no
 OPTIMIZATION                := no
 PERIDYNAMICS                := no
-PHASE_FIELD                 := yes
+PHASE_FIELD                 := no
 POROUS_FLOW                 := no
 RAY_TRACING                 := yes
-REACTOR                     := yes
-RDG                         := yes
+REACTOR                     := no
+RDG                         := no
 RICHARDS                    := no
-SCALAR_TRANSPORT            := yes
-SOLID_MECHANICS             := yes
-SOLID_PROPERTIES            := yes
+SCALAR_TRANSPORT            := no
+SOLID_MECHANICS             := no
+SOLID_PROPERTIES            := no
 STOCHASTIC_TOOLS            := yes
-THERMAL_HYDRAULICS          := yes
+THERMAL_HYDRAULICS          := no
 XFEM                        := no
+
+# Enable modules required by optional dependencies
+include config/dep_modules.mk
 
 include $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
-# TMAP8
-APPLICATION_DIR    := $(TMAP8_DIR)
-APPLICATION_NAME   := tmap8
-BUILD_EXEC         := no
-GEN_REVISION       := no
-include            $(FRAMEWORK_DIR)/app.mk
-
-# Cardinal
-ifeq ($(ENABLE_CARDINAL),yes)
-  include config/build_cardinal.mk
-endif
+# Build optional dependencies
+include config/build_deps.mk
 
 # FENIX
 APPLICATION_DIR    := $(CURDIR)
