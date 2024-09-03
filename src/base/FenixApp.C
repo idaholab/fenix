@@ -20,7 +20,10 @@
 #include "MooseSyntax.h"
 
 // contribs
+#ifdef ENABLE_TMAP8
 #include "TMAP8App.h"
+#endif
+
 #ifdef ENABLE_CARDINAL
 #include "CardinalApp.h"
 #endif
@@ -48,7 +51,9 @@ FenixApp::registerAll(Factory & f, ActionFactory & af, Syntax & s)
   Registry::registerObjectsTo(f, {"FenixApp"});
   Registry::registerActionsTo(af, {"FenixApp"});
 
+#ifdef ENABLE_TMAP8
   TMAP8App::registerAll(f, af, s);
+#endif
 
 #ifdef ENABLE_CARDINAL
   CardinalApp::registerAll(f, af, s);
@@ -62,7 +67,10 @@ FenixApp::registerApps()
 {
   registerApp(FenixApp);
   ModulesApp::registerApps();
+
+#ifdef ENABLE_TMAP8
   TMAP8App::registerApps();
+#endif
 
 #ifdef ENABLE_CARDINAL
   CardinalApp::registerApps();
