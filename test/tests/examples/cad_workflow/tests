@@ -1,5 +1,5 @@
 [Tests]
-  design = 'cad_model.md'
+  design = 'CAD_workflow.md'
   issues = '#30'
   [solid_diff]
     type = Exodiff
