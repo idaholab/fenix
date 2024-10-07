@@ -105,8 +105,8 @@ mpiexec -np 2 fenix-opt -i solid.i --n-threads=2
 
 This will run both MOOSE and OpenMC (with Cardinal) with 2 MPI processes and 2 OpenMP threads per rank. To run the simulation faster, you can increase the parallel processes/threads, or simply decrease the number of particles used in OpenMC. When the simulation has completed, you will have created a number of different output files:
 
-- `solid_out.e`, an Exodus output with the solid mesh and solution from the MOOSE/FENIX input file
-- `solid_out_openmc0.e`, an Exodus output with the OpenMC solution and the data that was ultimately transferred in/out of OpenMC
+- `solid_out.e`, an Exodus output with the solid mesh and solution from the MOOSE/FENIX input file.
+- `solid_out_openmc0.e`, an Exodus output with the OpenMC solution and the data that was ultimately transferred in/out of OpenMC.
 
 ## Results
   
