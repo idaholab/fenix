@@ -4,20 +4,20 @@ This demonstration describes a workflow for modeling fusion problems in OpenMC a
 
 Fusion system designs are complex and require intricate and accurate models that can be best represented using CAD-based geometry. Fusion neutronics models are frequently leverage on CAD based geometries. An example is the Paramak python package [!cite](shimwell2021paramak) which allows production of 3D CAD models of fusion reactors. The model shown in [paramak] is based on the same generic workflow described in this tutorial.
 
-!media figures/cad_workflow_transfers.png 
+!media figures/cad_workflow_paramakmodel.png 
   id=paramak
   caption=Tokamak model based on CAD generated with Paramak package
   style=width:90%;display:block;margin-left:auto;margin-right:auto;
 
+The results of the coupled neutronics and heat transfer model are shown in [tok_temps] and [tok_h3production] for the temperature distribution and tritium production rate density.
+
 !row! style=display:inline-flex;
 !col! small=12 medium=4 large=3
-
-The results of the coupled neutronics and heat transfer model are shown in [tok_temps] and [tok_h3production] for the temperature distribution and tritium production rate density.
 
 !media figures/cad_workflow_tokamak_temps.png 
   id=tok_temps
   caption=Example Paramak tokamak model temperature distribution result 
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 
@@ -26,7 +26,7 @@ The results of the coupled neutronics and heat transfer model are shown in [tok_
 !media figures/cad_workflow_tokamak_tritium_production.png 
   id=tok_h3production
   caption=Example Paramak tokamak model tritium production rate density result
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 !row-end!
@@ -41,7 +41,7 @@ We describe this workflow for a generic CAD model which is extremely simplified 
 !media figures/cad_workflow_transfers.png 
   id=transfers
   caption=OpenMC and MOOSE Coupling
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:80%;display:block;margin-left:auto;margin-right:auto;
 
 ## Generating the meshes
 
@@ -57,7 +57,7 @@ In this example, `tmesh_1.e` ([volumetric_mesh]) is the finite element mesh used
 !media figures/cad_workflow_mesh_1.png 
   id=volumetric_mesh
   caption=Model volumetric mesh
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 
@@ -66,7 +66,7 @@ In this example, `tmesh_1.e` ([volumetric_mesh]) is the finite element mesh used
 !media figures/cad_workflow_d1.png 
   id=dagmc
   caption=Model DAGMC mesh
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 !row-end!
@@ -122,7 +122,7 @@ The results of this simulation are shown in [temps], [h3production], and [result
 !media figures/cad_workflow_Temps.png 
   id=temps
   caption=Temperature distribution result from [!cite](Eltawila2024PBNC)
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 
@@ -131,7 +131,7 @@ The results of this simulation are shown in [temps], [h3production], and [result
 !media figures/cad_workflow_tritium_production.png 
   id=h3production
   caption=Tritium production rate density result from [!cite](Eltawila2024PBNC)
-  style=width:90%;display:block;margin-left:auto;margin-right:auto;
+  style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 !row-end!
