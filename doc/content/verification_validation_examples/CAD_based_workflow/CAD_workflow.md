@@ -2,7 +2,7 @@
 
 This demonstration describes a workflow for modeling fusion problems in OpenMC and MOOSE using a computer aided design (CAD)-based geometry workflow. It is based on the work published in [!cite](Eltawila2024PBNC). 
 
-Fusion system designs are complex and require intricate and accurate models that can be best represented using CAD-based geometry. Fusion neutronics models are frequently leverage on CAD based geometries. An example is the Paramak python package [!cite](shimwell2021paramak) which allows production of 3D CAD models of fusion reactors. The model shown in [paramak] is based on the same generic workflow described in this tutorial.
+Fusion system designs are complex and require intricate and accurate models that can be best represented using CAD-based geometry. Fusion neutronics models frequently leverage on CAD based geometries. An example is the Paramak python package [!cite](shimwell2021paramak) which allows production of 3D CAD models of fusion reactors. The model shown in [paramak] is based on the same generic workflow described in this tutorial.
 
 !media figures/cad_workflow_paramakmodel.png 
   id=paramak
@@ -17,7 +17,7 @@ The results of the coupled neutronics and heat transfer model are shown in [tok_
 !media figures/cad_workflow_tokamak_temps.png 
   id=tok_temps
   caption=Example Paramak tokamak model temperature distribution result 
-  style=width:130%;display:block;margin-left:auto;margin-right:auto;
+  style=width:70%;display:block;margin-left:auto;margin-right:auto;
 
 !col-end!
 
