@@ -1,4 +1,4 @@
-!include divertor_monoblock_neutronics_Base.i
+!include divertor_monoblock_base.i
 
 [AuxVariables]
     [heat_source]
