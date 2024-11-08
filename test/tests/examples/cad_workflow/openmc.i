@@ -21,22 +21,27 @@
 
 [Problem]
   type = OpenMCCellAverageProblem
-  tally_type = cell
-  tally_name = 'heat_source H3'
-  lowest_cell_level = 0
+  cell_level = 0
   temperature_blocks = '1 2 3'
-  check_tally_sum = false
+
   source_strength = 1e18 # Particles/s.
   volume_calculation = vol
-  tally_score = 'heating_local H3_production'
-  tally_trigger = 'rel_err none'
-  tally_trigger_threshold = '0.1 0.1'
+
   verbose = true
-  max_batches = 10
-  batch_interval = 5
-  particles = 5000
-  output = unrelaxed_tally_std_dev
+  # this is a low number of particles; you will want to increase in order to obtain
+  # high-quality results
+  first_iteration_particles = 5000
+  relaxation = dufek_gudowski
+
   skinner = moab
+  [Tallies]
+    [tally1]
+      type = MeshTally
+      mesh_template = tmesh_1.e
+      score = 'heating_local H3_production'
+      output = unrelaxed_tally_std_dev
+    []
+  []
 []
 
 [UserObjects]
@@ -57,11 +62,11 @@
 [Postprocessors]
   [heat_source]
     type = ElementIntegralVariablePostprocessor
-    variable = heat_source
+    variable = heating_local
   []
   [tritium_production]
     type = ElementIntegralVariablePostprocessor
-    variable = H3
+    variable = H3_production
   []
   [tritium_RelativeError]
     type = TallyRelativeError

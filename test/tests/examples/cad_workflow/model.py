@@ -72,7 +72,7 @@ plots.export_to_xml()
 
 settings = openmc.Settings()
 settings.dagmc = True
-settings.batches = 100
+settings.batches = 20
 settings.particles = 10000000
 settings.run_mode = "fixed source"
 
@@ -92,6 +92,7 @@ source.angle = openmc.stats.Isotropic()
 source.energy = openmc.stats.Discrete([14.08e6], [1.0])
 source.space=spatial_dist
 settings.source = source
+settings.photon_transport = True
 settings.export_to_xml()
 
 dagmc_univ = openmc.DAGMCUniverse(filename='tmesh_1.h5m')
