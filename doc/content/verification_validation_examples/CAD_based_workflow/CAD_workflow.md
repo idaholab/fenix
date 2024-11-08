@@ -7,7 +7,7 @@ Fusion system designs are complex and require intricate and accurate models that
 !media figures/cad_workflow_paramakmodel.png 
   id=paramak
   caption=Tokamak model based on CAD generated with Paramak package
-  style=width:70%;display:block;margin-left:auto;margin-right:auto;
+  style=width:30%;display:block;margin-left:auto;margin-right:auto;
 
 The results of the coupled neutronics and heat transfer model are shown in [tok_temps] and [tok_h3production] for the temperature distribution and tritium production rate density.
 
