@@ -1038,6 +1038,34 @@ pitch = ${units 28 mm -> m}
     []
 []
 
+[CoupledHeatTransfers]
+    [channel]
+        boundary = 2to1
+        T_fluid = T_fluid
+        T = temperature
+        T_wall = T_wall
+        htc = htc
+        multi_app = thm
+        T_fluid_user_objects = 'T_uo'
+        htc_user_objects = 'Hw_uo'
+        position = '0 0 0'
+        orientation = '0 0 1'
+        length = 6e-3
+        n_elems = 8
+        skip_coordinate_collapsing = true
+    []
+[]
+
+[MultiApps]
+  [thm]
+    type = TransientMultiApp
+    app_type = ThermalHydraulicsApp
+    input_files = H20_Cooling_Channel.i
+    execute_on = 'TIMESTEP_END'
+    sub_cycling = true
+  []
+[]
+
 [Executioner]
     type = Transient
     scheme = bdf2
