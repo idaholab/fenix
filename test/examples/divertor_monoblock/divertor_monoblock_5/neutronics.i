@@ -93,16 +93,8 @@ num_layer_mesh_thickness = 1
 [Problem]
     type = OpenMCCellAverageProblem
     verbose = true
-
-    tally_type = mesh
-    mesh_template = neutronics_in.e
     scaling = 100.0
-    tally_name = 'heat_source flux'
-    temperature_blocks = '2 3 4'
-
-    tally_score = 'heating_local flux'
-    tally_trigger = 'rel_err none'
-    tally_trigger_threshold = '0.05 1.0'
+    temperature_blocks = '2 3 4'    
 
     cell_level = 0
     max_batches = 100
@@ -110,10 +102,20 @@ num_layer_mesh_thickness = 1
     particles = 100000
     source_strength = 2.3e16 # Particles/s.
 
-    output = unrelaxed_tally_std_dev
+    
     volume_calculation = vol
 
     check_tally_sum = false
+    [Tallies]
+      [heat_source]
+        type = MeshTally
+        mesh_template = 'neutronics_in.e'
+        score = 'heating_local flux'
+        # tally_trigger = 'rel_err none'
+        # tally_trigger_threshold = '0.05 1.0'
+        output = unrelaxed_tally_std_dev
+      []
+    []
   []
 
   [UserObjects]
@@ -126,7 +128,7 @@ num_layer_mesh_thickness = 1
   [Postprocessors]
     [heat_source]
       type = ElementIntegralVariablePostprocessor
-      variable = heat_source
+      variable = heating_local
     []
     [heat_source_RelativeError]
       type = TallyRelativeError
