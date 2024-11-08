@@ -94,7 +94,7 @@ num_layer_mesh_thickness = 1
     type = OpenMCCellAverageProblem
     verbose = true
     scaling = 100.0
-    temperature_blocks = '2 3 4'    
+    temperature_blocks = '2 3 4'
 
     cell_level = 0
     max_batches = 100
@@ -102,7 +102,7 @@ num_layer_mesh_thickness = 1
     particles = 100000
     source_strength = 2.3e16 # Particles/s.
 
-    
+
     volume_calculation = vol
 
     check_tally_sum = false
