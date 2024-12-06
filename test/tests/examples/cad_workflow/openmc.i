@@ -30,7 +30,7 @@
   verbose = true
   # this is a low number of particles; you will want to increase in order to obtain
   # high-quality results
-  first_iteration_particles = 5000
+  first_iteration_particles = 1000
   relaxation = dufek_gudowski
 
   skinner = moab
