@@ -139,10 +139,10 @@ The results of this simulation are shown in [temperatures], [tritium_production]
 !table id=results caption=Results summary
 | Parameter (Units) | Value |
 | :- | :- |
-| Armor Max. Temp. (K)         | 1062.4                   |
-| First Wall Max. Temp. (K)    | 1057.6                   |
-| Breeder Max. Temp. (K)       | 987.4                    |
+| Armor Max. Temp. (K)         | $1062.4$                   |
+| First Wall Max. Temp. (K)    | $1057.6$                   |
+| Breeder Max. Temp. (K)       | $987.4$                    |
 | Heat Source (W)              | $2.44 \times 10^5 \pm 3 \times 10^3$   |
-| Tritium Production (atoms/s) | $4.70 \times 10^13 \pm 8 \times 10^11$ |
+| Tritium Production (atoms/s) | $4.70 \times 10^{13} \pm 8 \times 10^{11}$ |
 
 &nbsp;
