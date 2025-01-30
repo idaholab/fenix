@@ -8,6 +8,7 @@
     # This test has very few particles, and OpenMC will error if there aren't enough source particles
     # in the fission bank on a process
     max_parallel = 8
+    mesh_mode = 'replicated'
     requirement = "The system shall be able to run a coupled neutronics and heat conduction simulation,"
                    " heat source shall be extracted and normalized correctly from OpenMC."
     required_objects = 'OpenMCCellAverageProblem'
@@ -21,6 +22,7 @@
     # This test has very few particles, and OpenMC will error if there aren't enough source particles
     # in the fission bank on a process
     max_parallel = 8
+    mesh_mode = 'replicated'
     requirement = "The system shall be able to run a coupled neutronics and heat conduction simulation"
                   " and solve for the heat source and tritium production."
     required_objects = 'OpenMCCellAverageProblem'
