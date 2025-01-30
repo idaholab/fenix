@@ -110,7 +110,7 @@ This will run both MOOSE and OpenMC (with Cardinal) with 2 MPI processes and 2 O
   
 &nbsp;
 
-The results of this simulation are shown in [temperature], [tritium_production] visulaized in Figures 7 and 8 below. More information - including a mesh sensitivity study and results from a finer mesh - is available in [!cite](Eltawila2024PBNC).
+The results of this simulation are shown in [temperatures], [tritium_production], and [results]. More information - including a mesh sensitivity study and results from a finer mesh - is available in [!cite](Eltawila2024PBNC).
 
 &nbsp;
 

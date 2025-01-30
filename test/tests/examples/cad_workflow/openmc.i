@@ -3,6 +3,7 @@
     type = FileMeshGenerator
     file = tmesh_1.e
   []
+  allow_renumbering = false
 []
 
 [AuxVariables]
