@@ -25,7 +25,7 @@
   temperature_blocks = '1 2 3'
 
   source_strength = 1e18 # Particles/s.
-  volume_calculation = vol
+  volume_calculation = volume
 
   verbose = true
   # this is a low number of particles; you will want to increase in order to obtain
