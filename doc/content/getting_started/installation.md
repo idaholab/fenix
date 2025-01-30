@@ -78,7 +78,7 @@ Next, some Cardinal dependencies need to be downloaded:
 ```bash
 cd ~/projects/FENIX/cardinal
 git submodule update --init --recursive contrib/openmc
-git submodule update --init --recursive contrib/DAGMC
+git submodule update --init contrib/DAGMC
 git submodule update --init contrib/moab
 ```
 
@@ -180,7 +180,7 @@ git submodule update tmap8
 git submodule update cardinal
 cd cardinal
 git submodule update --recursive contrib/openmc
-git submodule update --recursive contrib/DAGMC
+git submodule update contrib/DAGMC
 git submodule update contrib/moab
 ```
 
@@ -197,7 +197,7 @@ git submodule update tmap8
 git submodule update cardinal
 cd cardinal
 git submodule update --recursive contrib/openmc
-git submodule update --recursive contrib/DAGMC
+git submodule update contrib/DAGMC
 git submodule update contrib/moab
 ```
 
