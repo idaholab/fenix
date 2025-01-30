@@ -44,7 +44,7 @@
     type = GenericConstantMaterial
     prop_values = '1.64' # [W/m.K]
     prop_names = 'thermal_conductivity'
-    block = 'Armour'
+    block = 'Armor'
   []
   [k_2]
     type = GenericConstantMaterial
