@@ -39,8 +39,6 @@ FENIX is under active development and does not currently have any validation cas
 
 # List of example cases
 
-!alert construction title=Under development - no example cases are available yet
-FENIX is under active development and does not currently have any example cases available to users.
 
 | Case    | Title                                                                              |
 | ------- | ---------------------------------------------------------------------------------- |
