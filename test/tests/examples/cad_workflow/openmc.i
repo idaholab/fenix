@@ -45,7 +45,7 @@
 []
 
 [UserObjects]
-  [vol]
+  [volume]
     type = OpenMCVolumeCalculation
     n_samples = 5000
   []
