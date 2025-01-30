@@ -118,7 +118,7 @@ The results of this simulation are shown in [temps], [h3production], and [result
 !col! small=12 medium=4 large=3
 
 !media figures/cad_workflow_Temps.png 
-  id=temps
+  id=temperatures
   caption=Temperature distribution result from [!cite](Eltawila2024PBNC)
   style=width:130%;display:block;margin-left:auto;margin-right:auto;
 
