@@ -23,6 +23,7 @@
   type = OpenMCCellAverageProblem
   cell_level = 0
   temperature_blocks = '1 2 3'
+  temperature_variables = 'temperature'
 
   source_strength = 1e18 # Particles/s.
   volume_calculation = volume
@@ -35,10 +36,18 @@
 
   skinner = moab
   [Tallies]
-    [tally1]
+    [heating_local]
       type = MeshTally
       mesh_template = tmesh_1.e
-      score = 'heating_local H3_production'
+      score = 'heating_local'
+      name = 'heating_local'
+      output = unrelaxed_tally_std_dev
+    []
+    [tritium_production]
+      type = MeshTally
+      mesh_template = tmesh_1.e
+      score = 'H3_production'
+      name = 'tritium_production'
       output = unrelaxed_tally_std_dev
     []
   []
@@ -66,11 +75,11 @@
   []
   [tritium_production]
     type = ElementIntegralVariablePostprocessor
-    variable = H3_production
+    variable = tritium_production
   []
   [tritium_RelativeError]
     type = TallyRelativeError
-    tally_score = h3_production
+    tally_score = H3_production
   []
   [heat_source_RelativeError]
     type = TallyRelativeError

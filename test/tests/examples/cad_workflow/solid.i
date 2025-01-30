@@ -6,7 +6,7 @@
 []
 
 [Variables]
-  [temp]
+  [temperature]
     initial_condition = 800.0 # [K]
   []
 []
@@ -21,11 +21,11 @@
 [Kernels]
   [hc]
     type = HeatConduction
-    variable = temp
+    variable = temperature
   []
   [heat]
     type = CoupledForce
-    variable = temp
+    variable = temperature
     v = heat_source
   []
 []
@@ -33,7 +33,7 @@
 [BCs]
   [surface]
     type = DirichletBC
-    variable = temp
+    variable = temperature
     boundary = 1
     value = 800.0 # [K]
   []
@@ -44,7 +44,7 @@
     type = GenericConstantMaterial
     prop_values = '1.64' # [W/m.K]
     prop_names = 'thermal_conductivity'
-    block = 'Armor'
+    block = 'Armour'
   []
   [k_2]
     type = GenericConstantMaterial
@@ -95,8 +95,8 @@
   [temp_to_openmc]
     type = MultiAppGeneralFieldShapeEvaluationTransfer
     to_multi_app = openmc
-    variable = temp
-    source_variable = temp
+    variable = temperature
+    source_variable = temperature
   []
 []
 
@@ -108,6 +108,6 @@
   []
   [max_T]
     type = NodalExtremeValue
-    variable = temp
+    variable = temperature
   []
 []

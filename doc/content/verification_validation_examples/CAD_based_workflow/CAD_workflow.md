@@ -110,7 +110,7 @@ This will run both MOOSE and OpenMC (with Cardinal) with 2 MPI processes and 2 O
   
 &nbsp;
 
-The results of this simulation are shown in [temps], [h3production], and [results]. More information - including a mesh sensitivity study and results from a finer mesh - is available in [!cite](Eltawila2024PBNC).
+The results of this simulation are shown in [temperature], [tritium_production] visulaized in Figures 7 and 8 below. More information - including a mesh sensitivity study and results from a finer mesh - is available in [!cite](Eltawila2024PBNC).
 
 &nbsp;
 
@@ -142,7 +142,7 @@ The results of this simulation are shown in [temps], [h3production], and [result
 | Armor Max. Temp. (K)         | 1062.4                   |
 | First Wall Max. Temp. (K)    | 1057.6                   |
 | Breeder Max. Temp. (K)       | 987.4                    |
-| Heat Source (W)              | $2.44 \times 10^5^ \pm 3 \times 10^3^$   |
-| Tritium Production (atoms/s) | $4.70 \times 10^13^ \pm 8 \times 10^11^$ |
+| Heat Source (W)              | $2.44 \times 10^5 \pm 3 \times 10^3$   |
+| Tritium Production (atoms/s) | $4.70 \times 10^13 \pm 8 \times 10^11$ |
 
 &nbsp;
