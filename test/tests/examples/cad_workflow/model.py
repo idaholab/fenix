@@ -92,6 +92,7 @@ source.angle = openmc.stats.Isotropic()
 source.energy = openmc.stats.Discrete([14.08e6], [1.0])
 source.space=spatial_dist
 settings.source = source
+settings.seed = 4096
 settings.photon_transport = True
 settings.export_to_xml()
 

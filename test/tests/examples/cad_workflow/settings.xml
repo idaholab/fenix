@@ -17,6 +17,7 @@
     </energy>
   </source>
   <photon_transport>true</photon_transport>
+  <seed>4096</seed>
   <temperature_default>800.0</temperature_default>
   <temperature_method>interpolation</temperature_method>
   <temperature_range>294.0 3000.0</temperature_range>
