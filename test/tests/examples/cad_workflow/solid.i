@@ -1,3 +1,11 @@
+# Conditions
+initial_temperature = ${units 800.0 K} 
+
+# Material properties
+thermal_conductivity_armor = ${units 1.64 W/m/K}
+thermal_conductivity_FW = ${units 0.45 W/m/K}
+thermal_conductivity_BM = ${units 0.65 W/m/K}
+
 [Mesh]
   [file]
     type = FileMeshGenerator
@@ -7,7 +15,7 @@
 
 [Variables]
   [temperature]
-    initial_condition = 800.0 # [K]
+    initial_condition = ${initial_temperature}
   []
 []
 
@@ -35,26 +43,26 @@
     type = DirichletBC
     variable = temperature
     boundary = 1
-    value = 800.0 # [K]
+    value = ${initial_temperature}
   []
 []
 
 [Materials]
   [k_1]
     type = GenericConstantMaterial
-    prop_values = '1.64' # [W/m.K]
+    prop_values = ${thermal_conductivity_armor}
     prop_names = 'thermal_conductivity'
     block = 'Armour'
   []
   [k_2]
     type = GenericConstantMaterial
-    prop_values = '0.45'  # [W/m.K]
+    prop_values = ${thermal_conductivity_FW}
     prop_names = 'thermal_conductivity'
     block = 'FW'
   []
   [k_3]
     type = GenericConstantMaterial
-    prop_values = '0.65'  # [W/m.K]
+    prop_values = ${thermal_conductivity_BM}
     prop_names = 'thermal_conductivity'
     block = 'BM'
   []
@@ -92,7 +100,7 @@
     from_postprocessors_to_be_preserved = heat_source
     to_postprocessors_to_be_preserved = source_integral
   []
-  [temp_to_openmc]
+  [temperature_to_openmc]
     type = MultiAppGeneralFieldShapeEvaluationTransfer
     to_multi_app = openmc
     variable = temperature
@@ -106,7 +114,7 @@
     variable = heat_source
     execute_on = transfer
   []
-  [max_T]
+  [max_temperature]
     type = NodalExtremeValue
     variable = temperature
   []
