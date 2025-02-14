@@ -32,9 +32,9 @@
   verbose = true
   # this is a low number of particles; you will want to increase in order to obtain
   # high-quality results
-  first_iteration_particles = 100
+  particles = 50
   batches = 5
-  relaxation = dufek_gudowski
+  relaxation = robbins_monro
 
   skinner = moab
   [Tallies]
