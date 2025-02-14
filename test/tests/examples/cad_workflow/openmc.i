@@ -32,8 +32,8 @@
   verbose = true
   # this is a low number of particles; you will want to increase in order to obtain
   # high-quality results
-  first_iteration_particles = 500
-  batches = 10
+  first_iteration_particles = 100
+  batches = 5
   relaxation = dufek_gudowski
 
   skinner = moab
@@ -63,7 +63,7 @@
   [moab]
     type = MoabSkinner
     temperature_min = 800
-    temperature_max = 1150
+    temperature_max = 1500
     n_temperature_bins = 10
     temperature = temperature
     build_graveyard = true

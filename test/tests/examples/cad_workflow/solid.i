@@ -1,5 +1,5 @@
 # Conditions
-initial_temperature = ${units 800.0 K} 
+initial_temperature = ${units 800.0 K}
 
 # Material properties
 thermal_conductivity_armor = ${units 1.64 W/m/K}
