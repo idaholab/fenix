@@ -1,0 +1,34 @@
+[Tests]
+  design = 'CAD_workflow.md'
+  issues = '#30'
+  [solid_diff_heavy]
+    type = CSVDiff
+    input = solid.i
+    csvdiff = 'solid_out.csv'
+    # This test has very few particles, and OpenMC will error if there aren't enough source particles
+    # in the fission bank on a process
+    max_parallel = 8
+    mesh_mode = 'replicated'
+    recover = false # see #81
+    requirement = "The system shall be able to run a coupled neutronics with photon transport and heat conduction simulation,"
+                   " heat source shall be extracted and normalized correctly from OpenMC."
+    required_objects = 'OpenMCCellAverageProblem'
+    heavy = true
+  []
+  [openmc_diff_heavy]
+    type = CSVDiff
+    input = solid.i
+    csvdiff = 'solid_out_openmc0.csv'
+    should_execute = False
+    prereq = solid_diff_heavy
+    # This test has very few particles, and OpenMC will error if there aren't enough source particles
+    # in the fission bank on a process
+    max_parallel = 8
+    mesh_mode = 'replicated'
+    recover = false # see #81
+    requirement = "The system shall be able to run a coupled neutronics with photon transport and heat conduction simulation"
+                  " and solve for the heat source and tritium production."
+    required_objects = 'OpenMCCellAverageProblem'
+    heavy = true
+  []
+[] 
