@@ -79,13 +79,13 @@ The OpenMC input files is as follows:
 
 The Cardinal input files is shown below. The ([MoabSkinner](https://cardinal.cels.anl.gov/source/userobjects/MoabSkinner.html)) was chosen in this model to update the DAGMC geometry from the MOOSE mesh directly ensuring meshes matching which is further discussed in [!cite](Eltawila2024PBNC) as well as the use of cell tallies.
 
-!listing /test/tests/examples/cad_workflow/openmc.i
+!listing /test/tests/examples/cad_workflow/heavy/openmc.i
 
 ## FENIX (MOOSE) Heat transfer
 
 The FENIX input files is as follows:
 
-!listing /test/tests/examples/cad_workflow/solid.i
+!listing /test/tests/examples/cad_workflow/heavy/solid.i
 
 ## Execution
 
