@@ -73,7 +73,7 @@ In this example, `tmesh_1.e` ([volumetric_mesh]) is the finite element mesh used
 
 The OpenMC input files is as follows:
 
-!listing /test/tests/examples/cad_workflow/model.py language=python
+!listing /test/tests/examples/cad_workflow/heavy/model.py language=python
 
 ## Cardinal
 

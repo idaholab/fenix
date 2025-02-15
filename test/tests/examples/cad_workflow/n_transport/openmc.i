@@ -32,8 +32,8 @@
   verbose = true
   # this is a low number of particles; you will want to increase in order to obtain
   # high-quality results
-  particles = 50
-  batches = 5
+  particles = 10
+  batches = 2
   relaxation = robbins_monro
 
   skinner = moab
@@ -63,7 +63,7 @@
   [moab]
     type = MoabSkinner
     temperature_min = 800
-    temperature_max = 1500
+    temperature_max = 3000
     n_temperature_bins = 10
     temperature = temperature
     build_graveyard = true
