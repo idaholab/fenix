@@ -38,18 +38,10 @@
 
   skinner = moab
   [Tallies]
-    [heating_local]
+    [heating_tritium]
       type = MeshTally
-      mesh_template = tmesh_1.e
-      score = 'heating_local'
-      name = 'heating_local'
-      output = unrelaxed_tally_std_dev
-    []
-    [tritium_production]
-      type = MeshTally
-      mesh_template = tmesh_1.e
-      score = 'H3_production'
-      name = 'tritium_production'
+      score = 'heating_local H3_production'
+      name = 'heating_local tritium_production'
       output = unrelaxed_tally_std_dev
     []
   []
